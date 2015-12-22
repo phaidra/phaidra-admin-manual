@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [Docked Applications](docked_applications.md)
+* [Docked Applications](dockedapplications_md.md)
    * [Fedora](fedora.md)
        * [Oaiprovider](oaiprovider.md)
 
