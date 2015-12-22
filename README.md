@@ -1,3 +1,0 @@
-# Phaidra Mdmin Manual
-
-## 
