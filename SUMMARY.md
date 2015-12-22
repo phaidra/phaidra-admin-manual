@@ -1,5 +1,5 @@
 # Summary
 
 * Phaidra Admin Manual
-* Docked Applications
+* [Docked Applications](docked_applications.md)
 
