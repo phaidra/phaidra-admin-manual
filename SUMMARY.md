@@ -1,4 +1,4 @@
 # Summary
 
-* Phaidra Admin Manual
+* [Phaidra Admin Manual](phaidra_admin_manual.md)
 
