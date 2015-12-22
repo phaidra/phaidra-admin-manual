@@ -1,5 +1,6 @@
 # Summary
 
-* [Phaidra Admin Manual](phaidra_admin_manual.md)
+* [Introduction](README.md)
+* [Docked Applications](docked_applications.md)
    * Docked applications
 
