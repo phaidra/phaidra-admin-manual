@@ -8,10 +8,7 @@ cd /var/www/static.phaidra/proai/
 /usr/local/fedora/config/phaidra_tmpl.pl
 ```
 
-1. Generate Identify.xml  
-```bash
-cp phaidra/release_2.9/config/oaiprovider-1.1.3/xlink-1999.xsd /usr/share/tomcat6/
-```
+1. Copy [xlink-1999.xsd](https://www.w3.org/1999/xlink.xsd) to /usr/share/tomcat6/
 
 1. Download the oaiprovider from github
 ```bash
