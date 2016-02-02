@@ -9,7 +9,7 @@
 | **Name** | **Remote sparqlEndpoint** | **Format** | **Text-index support** | **uriSpace/sparqlGraph** |  **Works** |
 | -- | -- | -- | -- | -- | -- |
 | EuroVoc (4.2) | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://eurovoc.europa.eu/ | ![](tick.png) |
-| Getty Art & Architecture Thesaurus | http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/aat/ |![](delete-icon_small.png) | 
+| Getty Art & Architecture Thesaurus | http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/aat/ |![](delete.png) | 
 | Getty Thesaurus of Geographic Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/tgn/ |  ![](delete-icon_small.png)| 
 | Getty Union List of Artist Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/ulan/ | ![](delete-icon_small.png) | 
 | ÖFOS 2012 - Statistik Austria | 1:6 | 2:6 | 3:6 | 4:6 | 5:6 | 
