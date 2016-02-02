@@ -10,8 +10,8 @@
 | -- | -- | -- | -- | -- | -- |
 | EuroVoc (4.2) | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://eurovoc.europa.eu/ | ![](tick.png) |
 | Getty Art & Architecture Thesaurus | http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/aat/ |![](delete.png) | 
-| Getty Thesaurus of Geographic Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/tgn/ |  ![](delete-icon_small.png)| 
-| Getty Union List of Artist Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/ulan/ | ![](delete-icon_small.png) | 
+| Getty Thesaurus of Geographic Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
+| Getty Union List of Artist Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
 | ÖFOS 2012 - Statistik Austria | 1:6 | 2:6 | 3:6 | 4:6 | 5:6 | 
 | The ACM Computing Classification System [1998 Version]| 1:7 | 2:7 | 3:7 | 4:7 | 5:7 | 
 |Physics and Astronomy Classification Scheme| 1:8 | 2:8 | 3:8 | 4:8 | 5:8 | 
