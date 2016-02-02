@@ -9,9 +9,9 @@
 | **Name** | **Remote sparqlEndpoint** | **Format** | **Text-index support** | **uriSpace/sparqlGraph** |  **Works** |
 | -- | -- | -- | -- | -- | -- |
 | EuroVoc (4.2) | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://eurovoc.europa.eu/ | ![](tick.png) |
-| Getty Art & Architecture Thesaurus | http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/aat/ |![](delete.png) | 
-| Getty Thesaurus of Geographic Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
-| Getty Union List of Artist Names |  http://vocab.getty.edu/sparql | SKOS | No | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
+| Getty Art & Architecture Thesaurus | http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/aat/ | ![](delete.png) | 
+| Getty Thesaurus of Geographic Names |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
+| Getty Union List of Artist Names |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
 | ÖFOS 2012 - Statistik Austria | 1:6 | 2:6 | 3:6 | 4:6 | 5:6 | 
 | The ACM Computing Classification System [1998 Version]| 1:7 | 2:7 | 3:7 | 4:7 | 5:7 | 
 |Physics and Astronomy Classification Scheme| 1:8 | 2:8 | 3:8 | 4:8 | 5:8 | 
@@ -22,6 +22,11 @@
 | BIC Standard Subject Categories | 1:13 | 2:13 | 3:13 | 4:13 | 5:13 | 
 | General Finnish thesaurus | http://api.dev.finto.fi/sparql | ? | Yes | http://www.yso.fi/onto/ysa/ |![](tick.png) |
 | General Finnish ontology | http://api.dev.finto.fi/sparql | ? | Yes | http://www.yso.fi/onto/yso/ |![](tick.png) |
+|  EU's multilingual thesaurus | http://api.skosmos.dev.finto.fi/sparql | ? | Yes | http://eurovoc.europa.eu/ |![](tick.png) |
+|  UNESCO Thesaurus | http://api.skosmos.dev.finto.fi/sparql | ? | Yes | http://skos.um.es/unescothes/ |![](tick.png) |
+| AGROVOC - Multilingual agricultural thesaurus | http://api.skosmos.dev.finto.fi/sparql | ? | Yes | http://aims.fao.org/aos/agrovoc/ |![](tick.png) |
+| STW Thesaurus for Economics | http://api.skosmos.dev.finto.fi/sparql | ? | Yes | http://zbw.eu/stw/ |![](tick.png) |
+
 
 ###Local
 
@@ -40,6 +45,8 @@
 | Dewey Decimal Classification | 1:11 | 2:11 | 3:11 | 4:11 | 5:11 | 6:11 | 
 | BIC Standard Subject Qualifiers | 1:12 | 2:12 | 3:12 | 4:12 | 5:12 | 6:12 |
 | BIC Standard Subject Categories | 1:13 | 2:13 | 3:13 | 4:13 | 5:13 | 6:13 |
+| UNESCO Thesaurus | ? | ? | ?| ? | http://skos.um.es/unescothes/ |![](tick.png) |
+
 
 ##Vocabularies
 
@@ -48,7 +55,7 @@
 
 | **Name** | **Remote sparqlEndpoint** | **Format** | **Text-index support** | **uriSpace/sparqlGraph** |  **Works** |
 | -- | -- | -- | -- | -- | -- |
-| COAR - Resource Type Vocabulary | http://vocabularies.coar-repositories.org/sparql/repositories/coar | SKOS XL | ? | http://purl.org/coar/resource_type/ | No |
+| COAR - Resource Type Vocabulary | http://vocabularies.coar-repositories.org/sparql/repositories/coar | *SKOS XL* | ? | http://purl.org/coar/resource_type/ | ![](delete.png) |
 
 ###Local
 
