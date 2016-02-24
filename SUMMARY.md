@@ -6,4 +6,5 @@
        * [Oaiprovider](oaiprovider.md)
 * [Modules](modules.md)
    * [Classification server](classification_server.md)
+       * Introduction to classifications
 
