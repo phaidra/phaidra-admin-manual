@@ -5,5 +5,5 @@
    * [Fedora](fedora.md)
        * [Oaiprovider](oaiprovider.md)
 * [Modules](modules.md)
-   * [Vocabulary server](vocabulary_server.md)
+   * [Classification server](classification_server.md)
 
