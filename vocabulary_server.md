@@ -1,4 +1,4 @@
-# Vocabulary server
+# Classification server
 
 
 ##Classifications
