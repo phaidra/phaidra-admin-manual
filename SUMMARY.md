@@ -9,6 +9,6 @@
        * [Introduction to classifications](introduction_to_classifications.md)
            * [Available tools for classification](available_tools_for_classification.md)
                * Introduction to classifications
-       * Introduction to classification
+       * [Introduction to classification](introduction_to_classification.md)
        * Available tools for classification
 
