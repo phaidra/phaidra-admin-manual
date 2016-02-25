@@ -6,9 +6,6 @@
        * [Oaiprovider](oaiprovider.md)
 * [Modules](modules.md)
    * [Classification server](classification_server.md)
-       * [Introduction to classifications](introduction_to_classifications.md)
-           * [Available tools for classification](available_tools_for_classification.md)
-               * Introduction to classifications
        * [Introduction to classification](introduction_to_classification.md)
        * Available tools for classification
 
