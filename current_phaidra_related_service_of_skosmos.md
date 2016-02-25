@@ -4,16 +4,37 @@
 
 ##Thesauri
 
+###On-line
+
+
+| **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / Size** | **Works** |
+| -- | -- | -- | -- | -- | -- |
+| **EuroVoc (4.2)** | http://eurovoc.europa.eu/ |  http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes  |  ![](tick.png) |
+|  | | http://eurovoc.europa.eu/http://open-data.europa.eu/en/data/dataset/eurovoc/resource/ 8e0272e9-d12a-4e78-9fe7-8e8ceb5535d8 |.rdf |  900 MB | ![](tick.png) |
+
+
+| **Getty Art & Architecture Thesaurus **| http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/aat/ | ![](delete.png) | 
+| **Getty Thesaurus of Geographic Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
+| **Getty Union List of Artist Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
+
+
+###Local
+
+
+| **Name** | **Source** |**Format** | **Size** |**TDB Size** | **uriSpace/sparqlGraph** |  **Works** |
+| -- | -- | -- | -- | -- | -- | -- |
+| **EuroVoc (4.2)** | http://open-data.europa.eu/en/ data/dataset/eurovoc/resource/ 8e0272e9-d12a-4e78-9fe7-8e8ceb5535d8 | .rdf | 277 MB | 900 MB | http://eurovoc.europa.eu/ | ![](tick.png) | 
+| **Getty Art & Architecture Thesaurus** |http://vocab.getty.edu/dataset/ aat/full.zip | .nt | 2,3 GB | 5,9 GB | http://vocab.getty.edu/aat/ |![](tick.png)| 
+| **Getty Thesaurus of Geographic Names** | http://vocab.getty.edu/dataset/ tgn/full.zip | .nt | 23 GB | 69 GB | http://vocab.getty.edu/tgn/ | ![](tick.png) | 
+| **Getty Union List of Artist Names** | http://vocab.getty.edu/dataset/ ulan/full.zip | .nt | 5,9 GB | 16 GB | http://vocab.getty.edu/ulan/ | ![](tick.png) | 
+##Taxonomies
+
 
 ###On-line
 
 
 | **Name** | **Remote sparqlEndpoint** | **Format** | **Text-index support** | **uriSpace/sparqlGraph** |  **Works** |
 | -- | -- | -- | -- | -- | -- |
-| **EuroVoc (4.2)** | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://eurovoc.europa.eu/ | ![](tick.png) |
-| **Getty Art & Architecture Thesaurus **| http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/aat/ | ![](delete.png) | 
-| **Getty Thesaurus of Geographic Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
-| **Getty Union List of Artist Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
 | **ÖFOS 2012 - Statistik Austria** | 1:6 | 2:6 | 3:6 | 4:6 | 5:6 | 
 | The ACM Computing Classification System [1998 Version]| 1:7 | 2:7 | 3:7 | 4:7 | 5:7 | 
 |Physics and Astronomy Classification Scheme| 1:8 | 2:8 | 3:8 | 4:8 | 5:8 | 
