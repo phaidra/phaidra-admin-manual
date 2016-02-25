@@ -4,7 +4,7 @@
 
 ##Thesauri
 
-###On-line
+
 
 
 | **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / Size** | **Works** |
@@ -13,6 +13,8 @@
 |  | | http://eurovoc.europa.eu/http://open-data.europa.eu/en/data/dataset/eurovoc/resource/ 8e0272e9-d12a-4e78-9fe7-8e8ceb5535d8 |.rdf |  900 MB | ![](tick.png) |
 
 
+| **Name** | **Remote sparqlEndpoint** | **Format** | **Text-index support** | **uriSpace/sparqlGraph** |  **Works** |
+| -- | -- | -- | -- | -- | -- |
 | **Getty Art & Architecture Thesaurus **| http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/aat/ | ![](delete.png) | 
 | **Getty Thesaurus of Geographic Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/tgn/ |  ![](delete.png)| 
 | **Getty Union List of Artist Names** |  http://vocab.getty.edu/sparql | SKOS | *No* | http://vocab.getty.edu/ulan/ | ![](delete.png) | 
