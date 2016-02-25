@@ -17,16 +17,16 @@
 
 | **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / Size** | **Works** |
 | -- | -- | -- | -- | -- | -- |
-| **ÖFOS 2012 - Statistik Austria** | 1:6 | 2:6 | 3:6 | 4:6 | 5:6 | 
-|  |  |  |  |  | ? |
+| **ÖFOS 2012 - Statistik Austria** |  |  |  |  | ![](question_mark.png) | 
+|  |  |  |  |  | ![](question_mark_small.png) |
 
 ##Vocabularies
 
 | **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / Size** | **Works** |
 | -- | -- | -- | -- | -- | -- |
-| **COAR - Resource Type Vocabulary** |  http://purl.org/coar/resource_type/ | http://vocabularies.coar-repositories.org/sparql/repositories/coar | *SKOS-XL* | ? | ![](delete.png) |
+| **COAR - Resource Type Vocabulary** |  http://purl.org/coar/resource_type/ | http://vocabularies.coar-repositories.org/sparql/repositories/coar | *SKOS-XL* | ![](question_mark_small.png) | ![](delete.png) |
 | | | http://vocabularies.coar-repositories.org/pubby/page/ resource_type.xml | SKOS-XL | 488 KB | ![](tick.png) |
-![](question_mark_small.png)
+
 ## General classifications
 
 | **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / Size** | **Works** |
