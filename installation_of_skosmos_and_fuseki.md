@@ -31,53 +31,66 @@ Result: c:\xampp\htdocs\skosmos contains index.php and other files and folders.
 
 (Skosmos requires a number of PHP libraries, which will be installed using Composer.)
 
-1. Download the Windows installer of Composer (Composer-Setup.exe) from here.
-Run Composer-Setup.exe
-Open command prompt and cd into the skosmos directory (c:\xampp\htdocs\skosmos)
-Run from this folder the command (this will install the dependencies): composer install --no-dev
+1. Download the Windows installer of Composer (Composer-Setup.exe) from https://getcomposer.org/doc/00-intro.md#installation-windows.
+2. Run Composer-Setup.exe
+3. Open command prompt and cd into the skosmos directory (c:\xampp\htdocs\skosmos)
+4. Run from this folder the command (this will install the dependencies): composer install --no-dev
 (Successful result: lot of components will be installed, lock file will be written, and finally autoload file will be generated.)
+
 If you download a new version of Skosmos (in case of by starting Skosmos you receive the error message: "Error: Dependencies managed by Composer missing. Please run "php composer.phar install"), that requires to set up PHP dependencies again.
 
-5. Install Jena Fuseki (later with jena-text extension)
+### 5. Install Jena Fuseki (later with jena-text extension)
+
 (Jena Fuseki is a SPARQL server and RDF triple store which is the recommended backend for Skosmos. 
 The jena-text extension can be used for faster text search.)
 
-Download the latest Fuseki distribution jena-fuseki-*.zip from here:http://jena.apache.org/download/#apache-jena-fuseki
-Unpack the downloaded file (apache-jena-fuseki-2.3.0.zip) to c:\apache-jena-fuseki-2.3.0
-(More details on installing Fuseki with the jena-text extension can be seen here: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText )
+1. Download the latest Fuseki distribution jena-fuseki-*.zip from http://jena.apache.org/download/#apache-jena-fuseki
+2. Unpack the downloaded file (apache-jena-fuseki-2.3.0.zip) to c:\apache-jena-fuseki-2.3.0
 
-## ConfigurationEdit
-1. Configure Skosmos
+(More details on installing Fuseki with the jena-text extension can be seen at https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText)
+
+## Configuration
+
+### 1. Configure Skosmos
+
 Create config.inc file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named config.inc.dist that you can rename/copy as starting point.
-Edit the config.inc file and
-change the TEMPLATE_CACHE setting like this:
-define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
-check the default SPARQL endpoint setting and change that to match your SPARQL endpoint:
+
+Edit the config.inc file:
+1. change the TEMPLATE_CACHE setting like this: define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
+2. check the default SPARQL endpoint setting and change that to match your SPARQL endpoint: 
 define("DEFAULT_ENDPOINT", "http://localhost:3030/ds/sparql");
-add this line to the bottom of file:
+3. add this line to the bottom of file:
 define("BASE_HREF", "http://localhost/skosmos/");
-(See other settings of Skosmos in Configuration)
 
-Edit
-2. Configure PHP (optional) The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
-Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
-If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
-Edit
-Getting and setting vocabulariesEdit
-1. Getting vocabularies (if you want to use certain vocabularies locally)
-(e.g. Putting "COAR - Resource Type Vocabulary" or "getty TGN vocabulary" into Skosmos)
+(See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
-Create a new directory called vocabularies in Skosmos folder (c:\xampp\htdocs\skosmos)
-Open a browser and go to the vocabulary that you wnat to use (e.g. COAR - Resource Type Vocabulary or getty TGN voabulary
-Download (save) the vocabulary as an xml or rdf file (e.g. resource_types.xml or tgn_7011179.rdf) into c:\xampp\htdocs\skosmos\vocabularies
-Edit
-2. Skosify the downloaded vocabularies (optional)
+
+### 2. Configure PHP (optional)
+
+The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
+
+* Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
+* If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
+
+
+## Getting and setting vocabularies
+
+### 1. Getting vocabularies (if you want to use certain vocabularies locally)
+
+(e.g. Putting "COAR - Resource Type Vocabulary" or "Getty TGN vocabulary" into Skosmos)
+
+1. Create a new directory called vocabularies in Skosmos folder (c:\xampp\htdocs\skosmos)
+2. Open a browser and go to the vocabulary that you want to use (e.g. COAR - Resource Type Vocabulary or Getty TGN voabulary
+3. Download (save) the vocabulary as an xml/rdf file (e.g. resource_types.xml or tgn_7011179.rdf) into c:\xampp\htdocs\skosmos\vocabularies
+
+### 2. Skosify the downloaded vocabularies (optional)
+
 (Check if the downloaded files (e.g. resource_types.xml or tgn_7011179.rdf) is in correct SKOS format using the Skosify tool.)
 
-Online version of the Skosify tool used to be available here:https://code.google.com/p/skosify/, and use as follows
-Select the vocabulary to be checked as input
-leave the default options as they are
-Click on the Process button
+Online version of the Skosify tool used to be available here: https://code.google.com/p/skosify/, and use as follows
+1. Select the vocabulary to be checked as input
+2. Leave the default options as they are
+3. Click on the Process button
 After successful process you will get a Processed vocabulary that you can download and rename (e.g. as checked_resource_types.xml or checked_tgn_7011179.rdf) into the folder c:\xampp\htdocs\skosmos\vocabularies
 You can find a recent versions of the Skosify tool here 
 Unfortunately there is currently no recent online version available. 
