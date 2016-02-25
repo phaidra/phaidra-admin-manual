@@ -1,6 +1,9 @@
 # Current Phaidra related service of Skosmos
 
-##Classifications
+## General classifications
+
+##Thesauri
+
 
 ###On-line
 
@@ -19,12 +22,6 @@
 | Dewey Decimal Classification | 1:11 | 2:11 | 3:11 | 4:11 | 5:11 | 
 | BIC Standard Subject Qualifiers | 1:12 | 2:12 | 3:12 | 4:12 | 5:12 | 
 | BIC Standard Subject Categories | 1:13 | 2:13 | 3:13 | 4:13 | 5:13 | 
-| General Finnish thesaurus | http://api.dev.finto.fi/sparql | SKOS | Yes | http://www.yso.fi/onto/ysa/ |![](tick.png) |
-| General Finnish ontology | http://api.dev.finto.fi/sparql | SKOS | Yes | http://www.yso.fi/onto/yso/ |![](tick.png) |
-|  EU's multilingual thesaurus | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://eurovoc.europa.eu/ |![](tick.png) |
-|  UNESCO Thesaurus | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://skos.um.es/unescothes/ |![](tick.png) |
-| AGROVOC - Multilingual agricultural thesaurus | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://aims.fao.org/aos/agrovoc/ |![](tick.png) |
-| STW Thesaurus for Economics | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://zbw.eu/stw/ |![](tick.png) |
 
 
 ###Local
@@ -44,8 +41,6 @@
 | Dewey Decimal Classification | 1:11 | 2:11 | 3:11 | 4:11 | 5:11 | 6:11 | 
 | BIC Standard Subject Qualifiers | 1:12 | 2:12 | 3:12 | 4:12 | 5:12 | 6:12 |
 | BIC Standard Subject Categories | 1:13 | 2:13 | 3:13 | 4:13 | 5:13 | 6:13 |
-| UNESCO Thesaurus | http://skos.um.es/unescothes/  | .rdf | 5,7 MB| 25 MB | http://skos.um.es/unescothes/ |![](tick.png) |
-| STW Thesaurus for Economics | http://zbw.eu/stw/ version/latest/about | .rdf / .nt / .ttl | 14 MB | 4:15 |  http://zbw.eu/stw/ | 6:15|
 
 
 ##Vocabularies
