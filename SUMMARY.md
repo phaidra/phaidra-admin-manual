@@ -10,4 +10,5 @@
        * [Available tools for classification](available_tools_for_classification.md)
        * [Installation and configuration of Skosmos and Fuseki](installation_of_skosmos_and_fuseki.md)
        * [Current Phaidra-related service of Skosmos](current_phaidra_related_service_of_skosmos.md)
+       * Using Skosmos with Fuseki
 
