@@ -1,8 +1,12 @@
 # Installation and configuration of Skosmos and Fuseki
 
-## Installation for Windows 7
+## On skosmos.phaidra.org
 
-Windows 7 (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11) environment.
+(to be added) 
+
+## On a Windows 7 machine 
+
+Installation on Windows 7 (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11) environment.
 
 ### 1. Install XAMPP
 
@@ -49,9 +53,9 @@ The jena-text extension can be used for faster text search.)
 
 (More details on installing Fuseki with the jena-text extension can be seen at https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText)
 
-## Configuration
 
-### 1. Configure Skosmos
+
+### 6. Configure Skosmos
 
 Create config.inc file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named config.inc.dist that you can rename/copy as starting point.
 
@@ -65,13 +69,12 @@ define("BASE_HREF", "http://localhost/skosmos/");
 (See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
 
-### 2. Configure PHP (optional)
+### 7. Configure PHP (optional)
 
 The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
 
 * Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
 * If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
-
 
 ## Getting and setting vocabularies
 
