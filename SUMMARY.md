@@ -10,4 +10,5 @@
            * [Available tools for classification](available_tools_for_classification.md)
                * Introduction to classifications
        * Introduction to classification
+       * Available tools for classification
 
