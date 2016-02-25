@@ -8,4 +8,5 @@
    * [Classification server](classification_server.md)
        * [Introduction to classification](introduction_to_classification.md)
        * [Available tools for classification](available_tools_for_classification.md)
+       * Installation of Skosmos and Fuseki
 
