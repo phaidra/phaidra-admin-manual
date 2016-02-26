@@ -1,4 +1,4 @@
-# Installation and configuration of Skosmos and Fuseki
+# Installation of Skosmos and Fuseki
 
 ## On a Linux machine with Apache and PHP already installed
 
