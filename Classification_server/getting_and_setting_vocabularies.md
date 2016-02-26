@@ -149,6 +149,45 @@ I think it's unlikely that the Getty vocabularies would work well in Skosmos due
 
 ### COAR Resource Type Vocabulary
 
+:coarrt a skosmos:Vocabulary, void:Dataset ;
+        dc:title "COAR Resource Type Vocabulary - PL - load dataset first!"@en ;
+        dc:subject :cat_general ;
+        void:uriSpace "http://purl.org/coar/resource_type/";
+        skosmos:language "en";
+        skosmos:showTopConcepts "true";
+        skosmos:loadExternalResources "true";
+        skosmos:fullAlphabeticalIndex "true";
+        #skosmos:arrayClass isothes:ThesaurusArray ;
+        void:sparqlEndpoint <http://localhost:3030/ds/sparql>;
+        #skosmos:sparqlGraph <http://purl.org/coar/resource_type/>;
+        .
+start-fuseki-in-mem
+load checked_resource_types.xml into the default graph
+(COAR and it seems to me that it only represents labels using SKOS XL properties. Skosmos doesn't support SKOS XL currently (see issue #109 in the GitHub Issues section, e.g. https://github.com/NatLibFi/Skosmos/issues/109 ), so you will first need to convert the data to SKOS Core labels ("plain SKOS"). 
+One tool that can do this for you is here: http://art.uniroma2.it/owlart/documentation/utilities.jsf#skos_utilities )
+...or perhaps an easier way would be to simply load the data into Fuseki and then execute this SPARQL Update query that converts SKOS XL labels into SKOS Core labels: 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX skos:   <http://www.w3.org/2004/02/skos/core#> 
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
+INSERT { 
+   ?c skos:prefLabel ?pref . 
+   ?c skos:altLabel ?alt . 
+   ?c skos:hiddenLabel ?hidden . 
+   ?c skos:definition ?def . 
+} 
+WHERE { 
+   { ?c skosxl:prefLabel/skosxl:literalForm ?pref } 
+   UNION 
+   { ?c skosxl:altLabel/skosxl:literalForm ?alt } 
+   UNION 
+   { ?c skosxl:hiddenLabel/skosxl:literalForm ?hidden } 
+  UNION 
+   { ?c skos:definition/rdf:value ?def }  
+} 
+ The remote endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) can not be used. Skosmos requires the data to follow SKOS Core. The COAR endpoint data currently is not SKOS Core. 
+
+
+
 ### ÖFOS
 
 ÖFOS - 2012
