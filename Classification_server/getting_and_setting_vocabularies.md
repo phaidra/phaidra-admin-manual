@@ -70,9 +70,9 @@ skosmos:fullAlphabeticalIndex "true"
 
 ## Individual vocabularies
 
-### Getty
-
 (to be aligned)
+
+### Getty
 
 They have the "explicit" set and the "full" set (aka Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader as I explained in a previous message). 
 
@@ -151,6 +151,15 @@ I think it's unlikely that the Getty vocabularies would work well in Skosmos due
 
 ### ÖFOS
 
+ÖFOS - 2012
+
+You need to represent your classification using the SKOS data model. For some guidance, see 
+the SKOS Primer [1] and introductory articles [2,3]. An excellent general introduction to RDF and Linked Data is given for example in the Linked Data book [4] available for free online. For specifics on what aspects of SKOS and other RDF vocabularies Skosmos supports, see the wiki page Data Model [5]. 
+[1] https://www.w3.org/TR/skos-primer/ 
+[2] http://www.dataversity.net/introduction-to-skos/ 
+[3] http://www.ala.org/alcts/resources/z687/skos 
+[4] http://linkeddatabook.com/ 
+[5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model 
 
 ### Examples
 
