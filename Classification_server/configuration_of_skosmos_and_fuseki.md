@@ -72,16 +72,17 @@ If you give it several GB it should be able to handle a 400MB file upload just f
 
 (move to Getting and setting vocabularies)
 
-1. Using the web interface of Fuskei
+### Using the web interface of Fuskei
 
-  1. to default graph
-  2. to named graph
+#### To the default graph
 
-2. From command line
+#### To a named graph
 
-  1. On-line (when Fuseki is running)
+### From the command line in Fuseki's folder
+
+#### On-line (when Fuseki is running)
   
-  * s-put that comes with Fuseki, like this e.g.: 
+* use s-put if you want to add single data file, like this e.g.: 
 
 **./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
 **
@@ -91,14 +92,12 @@ If you give it several GB it should be able to handle a 400MB file upload just f
 Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
 
 Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
-
-  2. Off-line (when Fuseki is not running)
+* s-post if you want to add new data files to existing data without clearing it
   
-Is it possible that while loading the data from several files, ? That's what . You should use s-post if you want to add to existing data without clearing it. 
 
-## Uploading data files to Fuseki offline
-
-If there are memory problems by uploading files to Fuseki, you will have to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and using the tdbloader command line utilities to create the TDB and load the RDF data. 
+#### Off-line (when Fuseki is not running)
+  
+If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and using the tdbloader command line utilities to create the TDB and load the RDF data. 
 
 Then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
 
