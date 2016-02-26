@@ -27,6 +27,14 @@
 3. To check if the Fuseki Server is running open the control panel from the browser: http://localhost:3030/ 
 and see if in the top right corner the Server status: is a green disk.
 
+#### Options for starting Fuseki
+
+* The --mem option is a shorthand for running Fuseki without a configuration file (--file is similar too)
+*  If you need a configuration file to use jena-text so you must use
+
+  **./fuseki-server --config jena-text-config.ttl **
+
+* If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
 
 
 
