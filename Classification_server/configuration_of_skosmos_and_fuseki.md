@@ -1,5 +1,17 @@
 # Configuration of Skosmos and Fuseki
 
+
+## Checking the jena-text configuration
+
+1. You have this line in config.inc: 
+define("DEFAULT_SPARQL_DIALECT", "JenaText"); 
+
+2. You are using a Fuseki assembler configuration with jena-text, i.e. the one from here: 
+https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText 
+
+3. You have built the jena-text index using jena.textindexer: 
+http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-the-text-index 
+
 ## Settings in vocabularies.ttl 
 
 (move to Getting and setting vocabularies)
@@ -52,8 +64,6 @@ https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl
 
 Short execution timeout for PHP scripts can trigger Runtime IO Exception. See php.ini max_execution_time setting. 
 
-
-
  If there is more data than Skosmos is made to handle, so some queries can take a very long time. Based on the error message I think you have a 60 second timeout somewhere, either in Apache (TimeOut directive) (/etc/httpd/conf/snippets/timeout.conf: Timeout 60 -> 600)
 , PHP (max_execution_time setting) 
 time.ini  max_execution_time=30 -> 600
@@ -102,15 +112,7 @@ You can try giving Fuseki more memory. See for some tips:
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
 
----
----
-he search for single letter error "No vocabularies on the server!" is strange. Do you get it directly or only after a delay? Have you configured jena-text properly? Please check the following: 
-1. You have this line in config.inc: 
-define("DEFAULT_SPARQL_DIALECT", "JenaText"); 
-2. You are using a Fuseki assembler configuration with jena-text, i.e. the one from here: 
-https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText 
-3. You have built the jena-text index using jena.textindexer: 
-http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-the-text-index 
+
 Please also try searching for a whole word that you know exists in AAT, for example "architecture", not just a single letter. 
 ---
 1. Hierarchy. Try setting "skosmos:showTopConcepts true" in your vocabularies.ttl file. That should display the top level hierarchy - assuming that the AAT data contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work. 
