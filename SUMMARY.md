@@ -7,7 +7,7 @@
 * [Modules](modules.md)
    * [Classification server](classification_server.md)
        * [Introduction to classification](introduction_to_classification.md)
-       * [Requirements](requirements.md)
+       * [Requirements of the Classification server](requirements.md)
        * [Available tools for classification](available_tools_for_classification.md)
        * [Selected tool: Skosmos with Jena-Fuseki](selected_tool_skosmos_with_jena-fuseki.md)
        * [Installation and configuration of Skosmos and Fuseki](installation_of_skosmos_and_fuseki.md)
