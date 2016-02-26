@@ -6,7 +6,7 @@
        * [Oaiprovider](oaiprovider.md)
 * [Modules](modules.md)
    * [Classification server](classification_server.md)
-       * [Introduction to classification](introduction_to_classification.md)
+       * [Introduction to classification](Classification_server/introductionto_classification_md.md)
        * [Requirements of the Classification server](requirements.md)
        * [Available tools for classification](available_tools_for_classification.md)
        * [Selected tool: Skosmos with Jena-Fuseki](selected_tool_skosmos_with_jena-fuseki.md)
