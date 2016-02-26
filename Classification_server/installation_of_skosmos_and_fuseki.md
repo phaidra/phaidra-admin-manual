@@ -2,7 +2,13 @@
 
 ## On a Linux machine with Apache and PHP already installed
 
+### How to install Skosmos
+
 see: https://github.com/NatLibFi/Skosmos/wiki/Installation 
+
+### Installing Fuseki with the jena-text extension
+
+see: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
 
 ## On a Windows 7 machine 
 
