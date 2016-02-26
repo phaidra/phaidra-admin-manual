@@ -239,6 +239,8 @@ It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index
 
 I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. 
 
+The lack of a text index would most likely prevent any actual use of Skosmos with the Getty endpoint. Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is perhaps a few thousand concepts, depending on the performance of the endpoint / triple store and how much delay users are willing to accept, but Getty vocabularies have many more than that. 
+
 ### COAR Resource Type Vocabulary
 
 :coarrt a skosmos:Vocabulary, void:Dataset ;
