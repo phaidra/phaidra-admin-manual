@@ -2,7 +2,7 @@
 
 (source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos#vocabularies)
 
-## 1. Getting vocabularies (if you want to use certain vocabularies locally)
+## Getting vocabularies (if you want to use certain vocabularies locally)
 
 (e.g. Putting "COAR - Resource Type Vocabulary" or "Getty TGN vocabulary" into Skosmos)
 
@@ -10,7 +10,7 @@
 2. Open a browser and go to the vocabulary that you want to use (e.g. COAR - Resource Type Vocabulary or Getty TGN voabulary
 3. Download (save) the vocabulary as an RDF file (in XML, Turtle, or N-Triples syntax) (e.g. resource_types.xml or tgn_7011179.rdf) into c:\xampp\htdocs\skosmos\vocabularies
 
-## 2. Skosify the downloaded vocabularies (optional)
+## Skosify the downloaded vocabularies (optional)
 
 (Check if the downloaded files (e.g. resource_types.xml or tgn_7011179.rdf) is in correct SKOS format using the Skosify tool.)
 
@@ -24,7 +24,7 @@ Unfortunately there is currently no recent online version available.
 Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine on Windows after those installed.
 
 
-## 3. Setting vocabularies
+## Setting vocabularies
 
 (The vocabularies to show in Skosmos are configured in the file `vocabularies.ttl` which is an RDF file in Turtle syntax.)
 
@@ -68,7 +68,18 @@ skosmos:mainConceptScheme < _main_Concept_Scheme_URI_ > .
 * if the vocabulary is relatively small (eg. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time.
 skosmos:fullAlphabeticalIndex "true"
 
+## Individual vocabularies
+
+### Getty
+
+### COAR Resource Type Vocabulary
+
+### ÖFOS
+
+
 ### Examples
+
+(to be deleted)
 
 #### For "COAR-Resource Type Vocabulary" set the properties as follow:
 
