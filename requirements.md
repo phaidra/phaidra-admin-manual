@@ -1,4 +1,4 @@
-# Requirements
+# Requirements of the Classification server
 
 (source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services)
 
