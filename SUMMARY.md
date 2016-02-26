@@ -10,7 +10,7 @@
        * [Requirements of the Classification server](Classification_server/requirements_of_the_classification_server.md)
        * [Available tools for classification](Classification_server/available_tools_for_classification.md)
        * [Selected tool: Skosmos with Jena-Fuseki](Classification_server/selected_tool_skosmos_with_jena-fuseki.md)
-       * [Installation and configuration of Skosmos and Fuseki](installation_of_skosmos_and_fuseki.md)
+       * [Installation and configuration of Skosmos and Fuseki](Classification_server/installation_of_skosmos_and_fuseki.md)
        * [Getting and setting vocabularies](getting_and_setting_vocabularies.md)
        * [Current Phaidra-related service of Skosmos](current_phaidra_related_service_of_skosmos.md)
        * [Non Phaidra-related services of Skosmos](non_phaidra-related_services_of_skosmos.md)
