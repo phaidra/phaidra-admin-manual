@@ -14,11 +14,7 @@ http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-
 
 ## Settings in vocabularies.ttl 
 
-(move to Getting and setting vocabularies)
 
-* Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
-* The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
-* It is not recommended to use fullAlphabeticalIndex for large vocabularies
 
 ## Named Graph in SPARQL triple store
 
@@ -102,10 +98,6 @@ You can try giving Fuseki more memory. See for some tips:
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
 
 
-Please also try searching for a whole word that you know exists in AAT, for example "architecture", not just a single letter. 
----
-1. Hierarchy. Try setting "skosmos:showTopConcepts true" in your vocabularies.ttl file. That should display the top level hierarchy - assuming that the AAT data contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work. 
-2. Group index. This is meant for thematic groups, often represented as skos:Collection or iso-thes:ConceptGroup. I'm not sure whether the AAT has these at all and in that case how they are represented in RDF. If you don't need this tab, simply drop the skosmos:groupClass setting from vocabularies.ttl. 
 ---
 The lack of a text index would most likely prevent any actual use of Skosmos with the Getty endpoint. Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is perhaps a few thousand concepts, depending on the performance of the endpoint / triple store and how much delay users are willing to accept, but Getty vocabularies have many more than that. 
 
