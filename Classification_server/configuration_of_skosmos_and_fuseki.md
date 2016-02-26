@@ -76,7 +76,11 @@ If you give it several GB it should be able to handle a 400MB file upload just f
 
 #### To the default graph
 
+(to be completed)
+
 #### To a named graph
+
+(to be completed)
 
 ### From the command line in Fuseki's folder
 
@@ -97,9 +101,13 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
 
 #### Off-line (when Fuseki is not running)
   
-If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and using the tdbloader command line utilities to create the TDB and load the RDF data. 
+If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
 
-Then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
+* using the tdbloader command line utilities to create the TDB and load the RDF data. 
+
+(to be completed)
+
+* then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
 
 https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
 
