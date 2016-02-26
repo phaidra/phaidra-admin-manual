@@ -1,8 +1,8 @@
 # Installation and configuration of Skosmos and Fuseki
 
-## On skosmos.phaidra.org
+## On a Linux machine with Apache and PHP already installed
 
-(to be added) 
+see: https://github.com/NatLibFi/Skosmos/wiki/Installation 
 
 ## On a Windows 7 machine 
 
