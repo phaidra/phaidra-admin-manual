@@ -18,12 +18,17 @@
 
 ###2. Start Jena Fuseki
 
+(to be edited)
+
 1. Open a command prompt and cd into apache-jena-fuseki directory (cd c:\apache-jena-fuseki-2.3.0)
 2. Run Fuseki Server from the command prompt: fuseki-server --update --mem /ds
 (--update --mem / ds options mean that allowing updates data set will be in the memory.)
 (After starting the server the last INFO will tell us the port (e.g. 3030), where the server is available.)
 3. To check if the Fuseki Server is running open the control panel from the browser: http://localhost:3030/ 
 and see if in the top right corner the Server status: is a green disk.
+
+
+
 
 ### 3. Adding vocabularies to Fuseki server (in case of local vocabularies)
 
