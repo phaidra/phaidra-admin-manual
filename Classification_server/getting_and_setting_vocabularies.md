@@ -23,6 +23,88 @@ You can find a recent versions of the Skosify tool here
 Unfortunately there is currently no recent online version available. 
 Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine on Windows after those installed.
 
+## Uploading files to Fuseki
+
+(move to Getting and setting vocabularies)
+
+### Using the web interface of Fuskei
+
+#### To the default graph
+
+(to be completed)
+
+#### To a named graph
+
+(to be completed)
+
+### From the command line in Fuseki's folder
+
+#### On-line (when Fuseki is running)
+  
+* use s-put if you want to add single data file, like this e.g.: 
+
+**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
+**
+
+(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
+
+Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
+
+Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
+* s-post if you want to add new data files to existing data without clearing it
+  
+
+#### Off-line (when Fuseki is not running)
+  
+If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
+
+* using the tdbloader command line utilities to create the TDB and load the RDF data. 
+
+(to be completed)
+
+* then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
+
+https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+
+
+## Checking data in Fuseki server
+
+These SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
+
+### 1. The amount of triples 
+
+
+* in named graph 
+
+SELECT (COUNT(*) AS ?count) { 
+   GRAPH <http://vocab.getty.edu/aat/> { ?s ?p ?o } 
+} 
+
+* in default graph 
+
+SELECT (COUNT(*) AS ?count) { ?s ?p ?o } 
+
+This should be a large number, maybe 10 or 20 times the number of concepts. 
+
+### 2. The number of SKOS concepts 
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+SELECT (COUNT(*) AS ?count) { 
+   GRAPH <http://vocab.getty.edu/aat/> { 
+     ?s a skos:Concept 
+   } 
+}
+
+### 3. The number of SKOS prefLabels 
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+SELECT (COUNT(*) AS ?count) { 
+   GRAPH <http://vocab.getty.edu/aat/> { 
+     ?s skos:prefLabel ?label 
+   } 
+}
+
+
 
 ## Setting vocabularies
 
