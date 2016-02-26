@@ -52,7 +52,7 @@ where language can be: en, fi, sv, ?
 * the URI of the SPARQL endpoint containing this vocabulary 
 void:sparqlEndpoint < URI_SPARQL_endpoint > ;
 URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
-
+* The uriSpace setting is not crucial for Skosmos (???). When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting. 
 
 You can set the following optional parameters:
 * if you want to enable the Hierarchy tab showing top-level concepts on the vocabulary home page:
