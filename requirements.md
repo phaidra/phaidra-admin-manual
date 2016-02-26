@@ -1,5 +1,7 @@
 # Requirements
 
+(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services)
+
 ## General
 
 * it should support classifications and controlled vocabularies
@@ -20,3 +22,4 @@
 * it needs to be able to support classifications/vocabularies which do not yet support linked data (do not have URIs)
   * some of the currently used classifications do not have LD/URIs so if terminology services do not support this we would need to use 2 interfaces for Phaidra
 * nice to have: it can be able to use external terminology services (eg dewey.info, then we maybe don't have to import it locally)
+
