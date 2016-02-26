@@ -19,14 +19,6 @@
 
 * If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
 
-## Problems with Getty
-
-The Getty SPARQL endpoint is not responding in the right way. There seems to be some incompatibility between Skosmos (in practice, the EasyRdf library which is used to perform SPARQL queries) and the Getty SPARQL endpoint. 
-
-It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index. Even if you could access the Getty SPARQL endpoint, it would most likely be extremely slow to use it with Skosmos, since it doesn't have a text index that Skosmos could use.
-
-I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. 
-
 ## Named Graph in SPARQL triple store
 
 In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
