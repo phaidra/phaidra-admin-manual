@@ -1,6 +1,6 @@
 # Available tools for classification
 
-(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services)
+(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services#candidates)
 
 ##**ONKI**
 
