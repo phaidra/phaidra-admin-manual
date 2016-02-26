@@ -48,103 +48,13 @@ https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl
 
 ## Timeout settings
 
+(to be aligned)
+
 Short execution timeout for PHP scripts can trigger Runtime IO Exception. See php.ini max_execution_time setting. 
 
 
-## Memory problems by uploading files to Fuseki
 
-The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena-text index in your case). It can  to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). 
-You can try giving Fuseki more memory. See for some tips:
-
-**https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
-
-If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
-
-## Uploading files to Fuseki
-
-(move to Getting and setting vocabularies)
-
-### Using the web interface of Fuskei
-
-#### To the default graph
-
-(to be completed)
-
-#### To a named graph
-
-(to be completed)
-
-### From the command line in Fuseki's folder
-
-#### On-line (when Fuseki is running)
-  
-* use s-put if you want to add single data file, like this e.g.: 
-
-**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
-**
-
-(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
-
-Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
-
-Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
-* s-post if you want to add new data files to existing data without clearing it
-  
-
-#### Off-line (when Fuseki is not running)
-  
-If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
-
-* using the tdbloader command line utilities to create the TDB and load the RDF data. 
-
-(to be completed)
-
-* then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
-
-https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-
-
-## Checking data in Fuseki server
-
-These SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
-
-### 1. The amount of triples 
-
-
-* in named graph 
-
-SELECT (COUNT(*) AS ?count) { 
-   GRAPH <http://vocab.getty.edu/aat/> { ?s ?p ?o } 
-} 
-
-* in default graph 
-
-SELECT (COUNT(*) AS ?count) { ?s ?p ?o } 
-
-This should be a large number, maybe 10 or 20 times the number of concepts. 
-
-### 2. The number of SKOS concepts 
-
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
-SELECT (COUNT(*) AS ?count) { 
-   GRAPH <http://vocab.getty.edu/aat/> { 
-     ?s a skos:Concept 
-   } 
-}
-
-### 3. The number of SKOS prefLabels 
-
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
-SELECT (COUNT(*) AS ?count) { 
-   GRAPH <http://vocab.getty.edu/aat/> { 
-     ?s skos:prefLabel ?label 
-   } 
-}
-
-
----
----
-It seems you've succeeded loading the data properly. The problem sounds like a timeout to me. There is simply a lot of data in AAT, more than Skosmos is made to handle, so some queries can take a very long time. Based on the error message I think you have a 60 second timeout somewhere, either in Apache (TimeOut directive) (/etc/httpd/conf/snippets/timeout.conf: Timeout 60 -> 600)
+ If there is more data than Skosmos is made to handle, so some queries can take a very long time. Based on the error message I think you have a 60 second timeout somewhere, either in Apache (TimeOut directive) (/etc/httpd/conf/snippets/timeout.conf: Timeout 60 -> 600)
 , PHP (max_execution_time setting) 
 time.ini  max_execution_time=30 -> 600
 max_input_time = 60 -> 600
@@ -181,7 +91,20 @@ There are two ways to do this. You can extend your timeout, or you can totally d
 ---
 Skosmos has a HTTP_TIMEOUT setting in config.inc, you could see if increasing that to a large value helps. It should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
 Also the EasyRdf HTTP client has a default timeout of 10 seconds. You could see if editing it helps. It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on, but at least we know where the timeout is being set) 
-The search for single letter error "No vocabularies on the server!" is strange. Do you get it directly or only after a delay? Have you configured jena-text properly? Please check the following: 
+T
+
+## Memory problems by uploading files to Fuseki
+
+The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena-text index in your case). It can  to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). 
+You can try giving Fuseki more memory. See for some tips:
+
+**https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
+
+If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
+
+---
+---
+he search for single letter error "No vocabularies on the server!" is strange. Do you get it directly or only after a delay? Have you configured jena-text properly? Please check the following: 
 1. You have this line in config.inc: 
 define("DEFAULT_SPARQL_DIALECT", "JenaText"); 
 2. You are using a Fuseki assembler configuration with jena-text, i.e. the one from here: 
