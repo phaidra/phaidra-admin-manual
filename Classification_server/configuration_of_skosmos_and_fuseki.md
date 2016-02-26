@@ -1,8 +1,16 @@
 # Configuration of Skosmos and Fuseki
 
-Yes, Skosmos does rely on hasTopConcept but it is only necessary if you enable the showTopConcepts setting. 
----
-The categories have to be defined in the same vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, we have defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general as you already did. 
+## Settings in vocabularies.ttl 
+
+(move to Getting and setting vocabularies)
+
+* Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
+* The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
+
+
+## Options for starting Fuseki
+
+
 The --mem option is a shorthand for running Fuseki without a configuration file. (--file is similar too) 
 You need a configuration file to use jena-text so you must use 
 ./fuseki-server --config jena-text-config.ttl 
