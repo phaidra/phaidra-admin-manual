@@ -6,14 +6,16 @@
 
 * Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
 * The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
+* It is not recommended to use fullAlphabeticalIndex for large vocabularies
 
 ## Options for starting Fuseki
 
 (move to Start Fuseki and Skosmos)
 
 * The --mem option is a shorthand for running Fuseki without a configuration file (--file is similar too)
-*  If you need a configuration file to use jena-text so you must use 
-> ./fuseki-server --config jena-text-config.ttl 
+*  If you need a configuration file to use jena-text so you must use
+
+  **./fuseki-server --config jena-text-config.ttl **
 
 * If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
 
@@ -25,62 +27,122 @@ It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index
 
 I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. 
 
-The STW and UNESCO thesauri are available for download from their respective home pages: 
-http://zbw.eu/stw/version/latest/about 
-http://skos.um.es/unescothes/ 
----
-Okay, so Skosmos is not seeing the triples you have in Fuseki. I'm guessing this could be because of mismatches in named graphs. In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. If you have put e.g. the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content. 
-I suggest you put the UNESCO thesaurus in a named graph <http://skos.um.es/unescothes/> (that's what we use as graph name). You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, like this: 
-./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
-(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
-Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) but you already seem to have that set correctly. 
----
-You are probably using the jena-text enabled configuration file with Fuseki. That configuration file specifies directories where Fuseki stores its data. If you have not modified the configuration, those will be /tmp/tdb and /tmp/lucene. You need to clear/remove these directories if you want to flush the Fuseki data. 
+## Named Graph in SPARQL triple store
 
-Fuseki stores them in files. It is also possible to configure Fuseki for in-memory only, but with a large dataset, that will require a lot of memory. If you want to see how it is done, check out this Fuseki configuration that we use for Skosmos unit tests: https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl 
+In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
+
+There is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. I suggest you use the URI namespaces as graph names. I.e. <http://vocab.getty.edu/tgn/> would store TGN data. 
+
+If you have put e.g. the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content.
+
+Put the UNESCO thesaurus in a named graph <http://skos.um.es/unescothes/> (that's what we use as graph name). You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, like this: 
+
+**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
+**
+
+(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
+
+Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
+
+## Data files of Fuseki
+
+The jena-text enabled configuration file specifies directories where Fuseki stores its data. If you have not modified the configuration, those will be /tmp/tdb and /tmp/lucene. You need to clear/remove these directories if you want to flush the Fuseki data. 
+
+Fuseki stores them in files. It is also possible to configure Fuseki for in-memory only, but with a large dataset, that will require a lot of memory. If you want to see how it is done, check out this Fuseki configuration that we use for Skosmos unit tests:
+
+https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl
+
 (tdb:location and text:directory settings are the relevant ones) 
 
-Yes, but then you need to use named graphs. There is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. I suggest you use the URI namespaces as graph names. I.e. <http://vocab.getty.edu/tgn/> would store TGN data. 
+## Timeout settings
 
-Why did I receive the Runtime IO Exception? 
-Not sure, maybe you have a short execution timeout for PHP scripts that was triggered? See php.ini max_execution_time setting. 
+Short execution timeout for PHP scripts can trigger Runtime IO Exception. See php.ini max_execution_time setting. 
 
-First of all, reading about SPARQL is recommended, especially dataset management and named graphs. There are some good books such as "Learning SPARQL", and of course the specifications are available though maybe not the best introductory material. 
-The Fuseki documentation is highly recommended: 
-https://jena.apache.org/documentation/serving_data/ 
----
-The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena-text index in your case). It seems to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). 
-You can try giving Fuseki more memory. See https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning for some tips. If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
-If that doesn't help, you will have to use offline loading of the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and using the tdbloader command line utilities to create the TDB and load the RDF data. Then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation: https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-You can also try asking for help on the Jena users mailing list, see 
-https://jena.apache.org/help_and_support/ 
----
-I wouldn't recommend using fullAlphabeticalIndex for such a large vocabulary, but that's not the reason for your problems. 
-I wonder whether your data is OK. You say you've loaded everything into the graph, but have you checked what's actually in there? For example these SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
-1. The amount of triples in the graph 
+
+## Memory problems by uploading files to Fuseki
+
+The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena-text index in your case). It can  to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). 
+You can try giving Fuseki more memory. See for some tips:
+
+**https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
+
+If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
+
+## Uploading files to Fuseki
+
+(move to Getting and setting vocabularies)
+
+1. Using the web interface of Fuskei
+
+  1. to default graph
+  2. to named graph
+
+2. From command line
+
+  1. On-line (when Fuseki is running)
+  
+  * s-put that comes with Fuseki, like this e.g.: 
+
+**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
+**
+
+(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
+
+Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
+
+Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
+
+  2. Off-line (when Fuseki is not running)
+  
+Is it possible that while loading the data from several files, ? That's what . You should use s-post if you want to add to existing data without clearing it. 
+
+## Uploading data files to Fuseki offline
+
+If there are memory problems by uploading files to Fuseki, you will have to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and using the tdbloader command line utilities to create the TDB and load the RDF data. 
+
+Then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
+
+https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+
+
+## Checking data in Fuseki server
+
+These SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
+
+### 1. The amount of triples 
+
+
+* in named graph 
+
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { ?s ?p ?o } 
 } 
 
-///
+* in default graph 
+
 SELECT (COUNT(*) AS ?count) { ?s ?p ?o } 
-///
+
 This should be a large number, maybe 10 or 20 times the number of concepts. 
-2. The number of SKOS concepts 
+
+### 2. The number of SKOS concepts 
+
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { 
      ?s a skos:Concept 
    } 
-} 
-3. The number of SKOS prefLabels 
+}
+
+### 3. The number of SKOS prefLabels 
+
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { 
      ?s skos:prefLabel ?label 
    } 
-} 
-Is it possible that while loading the data from several files, you have overwritten the previous data when loading a new file? That's what s-put does - it clears the graph first. You should use s-post if you want to add to existing data without clearing it. 
+}
+
+
 ---
 They have the "explicit" set and the "full" set (aka Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader as I explained in a previous message). 
 
