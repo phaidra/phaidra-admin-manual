@@ -10,18 +10,21 @@
 
 ## Options for starting Fuseki
 
+(move to Start Fuseki and Skosmos)
 
-The --mem option is a shorthand for running Fuseki without a configuration file. (--file is similar too) 
-You need a configuration file to use jena-text so you must use 
-./fuseki-server --config jena-text-config.ttl 
+* The --mem option is a shorthand for running Fuseki without a configuration file (--file is similar too)
+*  If you need a configuration file to use jena-text so you must use 
+> ./fuseki-server --config jena-text-config.ttl 
 
-> What is the difference, if I set and use the FUSEKI_CONF= environment  variable? 
-If you use the init script (/etc/init.d/fuseki), then the environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
+* If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
 
-The Getty SPARQL endpoint is not responding in the right way. There seems to be some incompatibility between Skosmos (in practice, the EasyRdf library which is used to perform SPARQL queries) and the Getty SPARQL endpoint. I don't know the reason for this, it would need more investigation. 
+## Problems with Getty
 
-I think you'd be better off setting up your own Fuseki SPARQL endpoint, with the jena-text index. Even if you could access the Getty SPARQL endpoint, it would most likely be extremely slow to use it with Skosmos, since it doesn't have a text index that Skosmos could use. 
-https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText 
+The Getty SPARQL endpoint is not responding in the right way. There seems to be some incompatibility between Skosmos (in practice, the EasyRdf library which is used to perform SPARQL queries) and the Getty SPARQL endpoint. 
+
+It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index. Even if you could access the Getty SPARQL endpoint, it would most likely be extremely slow to use it with Skosmos, since it doesn't have a text index that Skosmos could use.
+
+ 
 I suggest you set up Fuseki (with jena-text) and then put some much smaller and simpler SKOS dataset there for testing. For example, the STW Thesaurus and/or UNESCO Thesaurus would work for this. Once you get these working, you can then try one of the Getty vocabularies. Though as I've said before, I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. However, using a small subset could still work. 
 We have both the STW and UNESCO thesauri configured on the skosmos.dev.finto.fi demo site. To see how they are configured, you can take a look at the configuration file: 
 http://skosmos.dev.finto.fi/vocabularies.ttl 
