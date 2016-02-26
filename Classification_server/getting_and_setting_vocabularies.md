@@ -139,7 +139,13 @@ Updating the index
 
 If you allow updates to the dataset through Fuseki, the configured index will automatically be updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
 
+#### Problems with Getty
 
+The Getty SPARQL endpoint is not responding in the right way. There seems to be some incompatibility between Skosmos (in practice, the EasyRdf library which is used to perform SPARQL queries) and the Getty SPARQL endpoint. 
+
+It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index. Even if you could access the Getty SPARQL endpoint, it would most likely be extremely slow to use it with Skosmos, since it doesn't have a text index that Skosmos could use.
+
+I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. 
 
 ### COAR Resource Type Vocabulary
 
