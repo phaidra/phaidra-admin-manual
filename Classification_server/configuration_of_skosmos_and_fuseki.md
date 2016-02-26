@@ -196,14 +196,7 @@ Please also try searching for a whole word that you know exists in AAT, for exam
 The lack of a text index would most likely prevent any actual use of Skosmos with the Getty endpoint. Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is perhaps a few thousand concepts, depending on the performance of the endpoint / triple store and how much delay users are willing to accept, but Getty vocabularies have many more than that. 
 
 ---
-ÖFOS - 2012
-You need to represent your classification using the SKOS data model. For some guidance, see the SKOS Primer [1] and introductory articles [2,3]. An excellent general introduction to RDF and Linked Data is given for example in the Linked Data book [4] available for free online. For specifics on what aspects of SKOS and other RDF vocabularies Skosmos supports, see the wiki page Data Model [5]. 
-[1] https://www.w3.org/TR/skos-primer/ 
-[2] http://www.dataversity.net/introduction-to-skos/ 
-[3] http://www.ala.org/alcts/resources/z687/skos 
-[4] http://linkeddatabook.com/ 
-[5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model 
-The uriSpace setting is not crucial for Skosmos, this is the least of your worries. When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set (see the Linked Data book for some guidance). Then use that as the value of the uriSpace setting. 
+
 
 --- 
 COAR Resource Type Vocabulary
