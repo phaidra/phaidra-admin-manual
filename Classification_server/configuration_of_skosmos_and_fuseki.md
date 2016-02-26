@@ -12,10 +12,6 @@ https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
 3. You have built the jena-text index using jena.textindexer: 
 http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-the-text-index 
 
-## Settings in vocabularies.ttl 
-
-
-
 ## Named Graph in SPARQL triple store
 
 In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
@@ -86,7 +82,6 @@ There are two ways to do this. You can extend your timeout, or you can totally d
 ---
 Skosmos has a HTTP_TIMEOUT setting in config.inc, you could see if increasing that to a large value helps. It should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
 Also the EasyRdf HTTP client has a default timeout of 10 seconds. You could see if editing it helps. It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on, but at least we know where the timeout is being set) 
-T
 
 ## Memory problems by uploading files to Fuseki
 
@@ -96,13 +91,3 @@ You can try giving Fuseki more memory. See for some tips:
 **https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
-
-
----
-The lack of a text index would most likely prevent any actual use of Skosmos with the Getty endpoint. Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is perhaps a few thousand concepts, depending on the performance of the endpoint / triple store and how much delay users are willing to accept, but Getty vocabularies have many more than that. 
-
----
-
-
---- 
-X
