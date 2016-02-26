@@ -16,5 +16,5 @@
        * [Current Phaidra-related service of Skosmos](Classification_server/current_phaidra_related_service_of_skosmos.md)
        * [Non Phaidra-related services of Skosmos](Classification_server/non_phaidra-related_services_of_skosmos.md)
        * [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md)
-       * Upgrading Skosmos
+       * [Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
 
