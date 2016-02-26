@@ -20,17 +20,6 @@ http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-
 * The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
 * It is not recommended to use fullAlphabeticalIndex for large vocabularies
 
-## Options for starting Fuseki
-
-(move to Start Fuseki and Skosmos)
-
-* The --mem option is a shorthand for running Fuseki without a configuration file (--file is similar too)
-*  If you need a configuration file to use jena-text so you must use
-
-  **./fuseki-server --config jena-text-config.ttl **
-
-* If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
-
 ## Named Graph in SPARQL triple store
 
 In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
