@@ -318,24 +318,4 @@ WHERE {
 } 
  The remote endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) can not be used. Skosmos requires the data to follow SKOS Core. The COAR endpoint data currently is not SKOS Core. 
 
----
-Upgrading Skosmos
-(https://github.com/NatLibFi/Skosmos/wiki/Upgrading)
-make a backup of your current installation, especially config.inc and vocabularies.ttl  
-(make a backup of fuseki files except tdb and lucene)    
-upgrade your code to the new version: 
-a) download a new version form https://github.com/NatLibFi/Skosmos/releases and replace the files or
-b) switch to the new version tag/branch using e.g. git checkout tags/v1.4 or git checkout v1.4-maintenance
-migrate (copy) config.inc and vocabularies.ttl to your new installation if necessary
-update Composer just in case: php composer.phar self-update   
-update dependencies: php composer.phar update --no-dev   
-restart Apache (this will clear gettext and APC caches - reloading is not enough!)
-Version specific notes
-Skosmos 1.4 requires Jena Fuseki 1.3.0 or 2.3.0 if you use the JenaText index (NOTE: Fuseki 1.3.1 and 2.3.1 have a bug which affects Skosmos so they are not recommended). 
-You will also need to change the Fuseki configuration and rebuild the text index.
- See the InstallFusekiJenaText page for details about the new text index configuration (you will need to add text:storeValues, text:uidField and text:langField settings). 
-Note that these versions of Jena Fuseki require a Java 8 environment, so you may need to upgrade that first. 
-$ java -version
-openjdk version "1.8.0_65"
-OpenJDK Runtime Environment (build 1.8.0_65-b17)
-OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode) 
+
