@@ -108,6 +108,8 @@ SELECT (COUNT(*) AS ?count) {
 
 ## Setting vocabularies
 
+(to be edited)
+
 (The vocabularies to show in Skosmos are configured in the file `vocabularies.ttl` which is an RDF file in Turtle syntax.)
 
 1. create a vocabularies.ttl file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named vocabularies.ttl.dist that you can rename/copy to vovabularies.ttl as starting point. In this file
@@ -135,6 +137,14 @@ where language can be: en, fi, sv, ?
 void:sparqlEndpoint < URI_SPARQL_endpoint > ;
 URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
 * The uriSpace setting is not crucial for Skosmos (???). When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting. 
+
+
+
+* Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
+* The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
+* It is not recommended to use fullAlphabeticalIndex for large vocabularies
+* Hierarchy. Try setting "skosmos:showTopConcepts true" in your vocabularies.ttl file. That should display the top level hierarchy - assuming that the AAT data contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work. * Group index. This is meant for thematic groups, often represented as skos:Collection or iso-thes:ConceptGroup. I'm not sure whether the AAT has these at all and in that case how they are represented in RDF. If you don't need this tab, simply drop the skosmos:groupClass setting from vocabularies.ttl. 
+
 
 You can set the following optional parameters:
 * if you want to enable the Hierarchy tab showing top-level concepts on the vocabulary home page:
