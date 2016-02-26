@@ -7,7 +7,6 @@
 * Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
 * The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
 
-
 ## Options for starting Fuseki
 
 (move to Start Fuseki and Skosmos)
@@ -24,10 +23,7 @@ The Getty SPARQL endpoint is not responding in the right way. There seems to be 
 
 It is better to set up your own Fuseki SPARQL endpoint, with the jena-text index. Even if you could access the Getty SPARQL endpoint, it would most likely be extremely slow to use it with Skosmos, since it doesn't have a text index that Skosmos could use.
 
- 
-I suggest you set up Fuseki (with jena-text) and then put some much smaller and simpler SKOS dataset there for testing. For example, the STW Thesaurus and/or UNESCO Thesaurus would work for this. Once you get these working, you can then try one of the Getty vocabularies. Though as I've said before, I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. However, using a small subset could still work. 
-We have both the STW and UNESCO thesauri configured on the skosmos.dev.finto.fi demo site. To see how they are configured, you can take a look at the configuration file: 
-http://skosmos.dev.finto.fi/vocabularies.ttl 
+I think it's unlikely that the Getty vocabularies would work well in Skosmos due to their very large size. 
 
 The STW and UNESCO thesauri are available for download from their respective home pages: 
 http://zbw.eu/stw/version/latest/about 
