@@ -1,5 +1,6 @@
 # Getting and setting vocabularies
 
+(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos#vocabularies)
 
 ## 1. Getting vocabularies (if you want to use certain vocabularies locally)
 
