@@ -22,7 +22,9 @@
   * List of features can be seen here
 * latest version (TemaTres 2.0) was modified at 2015-08-26, can be downloaded from [here](http://sourceforge.net/projects/tematres/files/latest/download)
 
-## ~~PoolParty~~ (commercial) !!
+## PoolParty
+
+(commercial)
 
 ## GINCO (CeCiLL v2 license)
 
@@ -44,20 +46,20 @@
 
 * is a Windows based tool that provides
  * support for ANSI/NISO relationships
- * user ­defined relationships and comment fields for an unlimited number of thesauri (both monolingual and multilingual)
+ * user defined relationships and comment fields for an unlimited number of thesauri (both monolingual and multilingual)
 
-## TermTree 2000 is a Windows­ based tool
+## TermTree 2000 is a Windows-based tool
 
 * uses Access, SQL Server, or Oracle for data storage.
 * it can import and export
   * TRIM thesauri (a format used by the Towers Records Information Management system),
   * a defined TermTree 2000 tag format.
 
-## WebChoir is a family of client­-server Web applications
+## WebChoir is a family of client-server Web applications
 
 * that provides different utilities for thesaurus management in multiple DBMS platforms,
 * is a hierarchical information organizing and searching tool that enables one to create and search varieties of hierarchical subject categories, controlled vocabularies, and taxonomies based on either predefined standards or a 
-user ­defined structure, and is then exported to an XML-­based format.
+user defined structure, and is then exported to an XML-based format.
 * it has two subsystems:
   * *LinkChoir* that allows indexers to describe information sources using terminology organized in TermChoir.
   * *SeekChoir* is a retrieval system that enables users to browse thesaurus descriptors and their references (broader 
@@ -69,7 +71,7 @@ terms, related terms, synonyms, and so on).
 * that can be installed locally on a client’s intranet or extranet server,
 * thesaurus data is stored in a SQL server or Oracle database,
 * the application supports the creation of electronic thesauri in compliance with the ANSI/NISO standard,
-* the application allows the exchange of thesauri in CSV (comma­ separated values) text format.
+* the application allows the exchange of thesauri in CSV (comma separated values) text format.
 
 ## **ThManager**
 
@@ -106,12 +108,14 @@ terms, related terms, synonyms, and so on).
 * too complex for editing and visualizing such a simple model as SKOS.
 * provides too many options not specifically adapted to the type of relations in SKOS.
 
+## SKOS Play
+
+(to be added)
+
 ## HIVE
 
 ## iQvoc
 
 ## CATCH
-
-## SKOS Play !!
 
 ## OpenSKOS
