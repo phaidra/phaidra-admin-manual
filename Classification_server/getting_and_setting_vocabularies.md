@@ -27,17 +27,21 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 ### Using the web interface of Fuseki
 
-
 1. start Fuseki server (see [](...))
 2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
+3. Select Server Management / Control Panel
+4. Select Dataset: /ds
+5. File upload / Choose Files
 
 #### To the default graph
 
-
+1. Graph: default
+2. Upload
 
 #### To a named graph
 
-(to be completed)
+1. Graph: *write here the graph name according to the skosmos:sparqlGraph parameter in vocabularies.ttl*
+2. Upload
 
 ### From the command line in Fuseki's folder
 
@@ -60,14 +64,19 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
   
 If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
 
-* using the tdbloader command line utilities to create the TDB and load the RDF data. 
+#### Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data. 
 
-(to be completed)
+**$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf
+**
 
-* then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
+where 
+  * jena-text-config.ttl is a configuration file (to be described)
+  *  --graph=http://vocab.getty.edu/aat/ is the named graph according to the skosmos:sparqlGraph parameter in vocabularies.ttl
+
+
+#### then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
 
 https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-
 
 ## Checking data in Fuseki server
 
