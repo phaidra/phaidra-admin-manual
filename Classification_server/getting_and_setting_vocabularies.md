@@ -27,7 +27,7 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 ### Using the web interface of Fuseki
 
-1. start Fuseki server (see [](...))
+1. start Fuseki server (see [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md))
 2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
 3. Select Server Management / Control Panel
 4. Select Dataset: /ds
@@ -66,7 +66,49 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
 
 (when Fuseki is not running)
   
-If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
+If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. You can do it with tdbloader, which is part of the Jena distribution which you will need to download separately. A tutorial for using tdbloader with the text index is here: 
+https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+(Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
+https://jena.apache.org/documentation/assembler/index.html
+https://jena.apache.org/documentation/assembler/assembler-howto.html
+
+You will use a set of RDF vocabularies to write RDF describing how you want TDB to ingest your data. That will be your assembler file.
+
+**Building a TDBB dataset and Text Index**
+
+The index and the dataset can be built using command line tools in two steps: first load the RDF data, second create an index from the existing RDF dataset.
+
+*Step 1 - Building a TDB dataset*
+
+Build the TDB dataset:
+**java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file**
+
+
+using the copy of TDB included with Fuseki.
+You can use the same .ttl file  ((/var/www/skosmos/jena-fuseki1-1.3.0/jena-text-config.ttl))
+that you used for the Fuseki database and text index configuration, i.e. the one documented here:
+https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText#configuration
+Alternatively, use one of the TDB utilities tdbloader or tdbloader2 which are better for bulk loading:
+$JENA_HOME/bin/tdbloader --loc=directory  data_file
+(((Has been Jena already installed separately on phaidraentwl ? ))) 
+::
+
+*Step 2 - Build the Text Index*
+
+You can then build the text index with the jena.textindexer tool:
+
+**java -cp ./fuseki-server.jar jena.textindexer --desc=jena-text-config.ttl**
+
+(java -cp $FUSEKI_HOME/fuseki-server.jar jena.textindexer --desc=assembler_file)
+
+Because a Fuseki assembler description can have several datasets descriptions, and several text indexes, it may be necessary to extract a single dataset and index description into a separate assembler file for use in loading.
+
+*Updating the index*
+
+If you allow updates to the dataset through Fuseki, the configured index will automatically be updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
+
+
+Using the tbdloader you have to shut down Fuseki (since only one process can use the TDB at the same time) and 
 
 1. <a name="tbdloader"></a>Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data.  
   **$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf**
@@ -83,7 +125,6 @@ If there are memory problems by uploading (several, large) files to Fuseki, it i
 These SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
 
 ### 1. The amount of triples 
-
 
 * in named graph 
 
@@ -154,66 +195,32 @@ There are two sets of each Getty vocabulary, the "explicit" set and the "full" s
 
 The dowloaded export file includes all statements (explicit and inferred) of all independent entities.  It's a concatenation of the Per-Entity Exports in NTriples format. Because it includes all required Inference, you can load it to any repository (even one without RDFS reasoning).
 
-
 1. Load the External Ontologies (**SKOS**, SKOS-XL, ISO 25964) from http://vocab.getty.edu/doc/#External_Ontologies. The purpose is to get descriptions of properties, associative relations, etc.
 2. Load the GVP Ontology from http://vocab.getty.edu/ontology.rdf
-3.      If your repository supports Subproperty/Inverse/Transitive reasoning:
-·        If you want to eliminate the struck-out properties in Reduced SKOS Inference (like we do), execute the SPARQL updates given in Reduced SKOS Inference.
-·        If you don't, these properties will be inferred, which will add 2-3x more statements to your repository.
-4.      Load the export files:
-·        http://vocab.getty.edu/dataset/aat/full.zip: 120 Mb zipped, 1871 Mb unzipped
-·        http://vocab.getty.edu/dataset/tgn/full.zip: 340 Mb zipped, 5300 Mb unzipped
-·        http://vocab.getty.edu/dataset/ulan/full.zip: TODO Mb zipped, TODO Mb unzipped
-AAT
-TGN
-ULAN
-AATOut_Full.nt     : subjects
-AATOut_Contribs.nt : contribs
-AATOut_Sources.nt  : sources
-TGNOut_Full.nt     : subj, places
-TGNOut_Contribs.nt : contribs
-TGNOut_Sources.nt  : sources
-ULANOut_Full.nt     : subj, agents
-ULANOut_Contribs.nt : contribs
-ULANOut_Sources.nt  : sources
-·        Since the *Out_Full.nt files are very large, they may require some special data loading tool for your repository.
+3. If your repository supports Subproperty/Inverse/Transitive reasoning:
+If you want to eliminate the struck-out properties in Reduced SKOS Inference (like we do), execute the SPARQL updates given in Reduced SKOS Inference.
+If you don't, these properties will be inferred, which will add 2-3x more statements to your repository.
+4. Load the export files:
+  * http://vocab.getty.edu/dataset/aat/full.zip: 120 Mb zipped, 1871 Mb unzipped
+  * http://vocab.getty.edu/dataset/tgn/full.zip: 340 Mb zipped, 5300 Mb unzipped
+  * http://vocab.getty.edu/dataset/ulan/full.zip: TODO Mb zipped, TODO Mb unzipped
 
-1) set up inferencing or 
-With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. As for configuring inference in Fuseki, you will have to do some research (a search for "fuseki inference" at least gets you some hits). There is some documentation ( https://jena.apache.org/documentation/assembler/assembler-howto.html ) about configuring inference in Jena assembler files (such as the Fuseki configuration file). If that doesn't help, you can asks on the Jena users' mailing list or on forums such as StackOverflow
-2) use the "full" dataset with tdbloader. 
-tdbloader is part of the Jena distribution which you will need to download separately. A tutorial for using tdbloader with the text index is here: 
-https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-(Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
+| **AAT** | **TGN** | **ULAN** |
+| -- | -- | -- |
+| AATOut_Full.nt     : subjects | TGNOut_Full.nt     : subj, places | ULANOut_Full.nt     : subj, agents |
+| AATOut_Contribs.nt : contribs | TGNOut_Contribs.nt : contribs     | ULANOut_Contribs.nt : contribs     |
+| AATOut_Sources.nt  : sources  | TGNOut_Sources.nt  : sources      | ULANOut_Sources.nt  : sources      |
 
-https://jena.apache.org/documentation/assembler/index.html
-https://jena.apache.org/documentation/assembler/assembler-howto.html
+Since the *Out_Full.nt files are very large, they require using the tdbloader:
 
-You will use a set of RDF vocabularies to write RDF describing how you want TDB to ingest your data. That will be your assembler file.)
-Building a TDBB dataset and Text Index
-The index and the dataset can be built using command line tools in two steps: first load the RDF data, second create an index from the existing RDF dataset.
+**java -cp /fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/  ./vocabularies/getty_aat/full/ontology.rdf**
+...
 
-Step 1 - Building a TDB dataset
-Build the TDB dataset:
-java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file
-java -cp /fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/  ./vocabularies/getty_aat/full/ontology.rdf
-using the copy of TDB included with Fuseki.
-You can use the same .ttl file  ((/var/www/skosmos/jena-fuseki1-1.3.0/jena-text-config.ttl))
-that you used for the Fuseki database and text index configuration, i.e. the one documented here:
-https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText#configuration
-Alternatively, use one of the TDB utilities tdbloader or tdbloader2 which are better for bulk loading:
-$JENA_HOME/bin/tdbloader --loc=directory  data_file
-(((Has been Jena already installed separately on phaidraentwl ? ))) 
-::
-Step 2 - Build the Text Index
-You can then build the text index with the jena.textindexer tool:
+(to be continued)
 
-java -cp $FUSEKI_HOME/fuseki-server.jar jena.textindexer --desc=assembler_file
-(java -cp ./fuseki-server.jar jena.textindexer --desc=jena-text-config.ttl)
-Because a Fuseki assembler description can have several datasets descriptions, and several text indexes, it may be necessary to extract a single dataset and index description into a separate assembler file for use in loading.
+### Explicit set
 
-Updating the index
-
-If you allow updates to the dataset through Fuseki, the configured index will automatically be updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
+With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. As for configuring inference in Fuseki, you will have to do some research (a search for "fuseki inference" at least gets you some hits). There is some documentation (https://jena.apache.org/documentation/assembler/assembler-howto.html) about configuring inference in Jena assembler files (such as the Fuseki configuration file). 
 
 #### Problems with Getty
 
@@ -263,8 +270,6 @@ WHERE {
    { ?c skos:definition/rdf:value ?def }  
 } 
  The remote endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) can not be used. Skosmos requires the data to follow SKOS Core. The COAR endpoint data currently is not SKOS Core. 
-
-
 
 ### ÖFOS - 2012
 
