@@ -129,33 +129,16 @@ SELECT (COUNT(*) AS ?count) {
 where id is just an identifier. It will be used in the URL after /skosmos/.
 3. set the following required parameters:
 
-
-* the title of the vocabulary in different languages:
-dc:title " title_of_the_vocabulary "@ language ; 
-where language can be: en, fi, sv, ?
-* the category of the vocabulary:
-dc:subject : category ;
-where category can be: cat_general
-* the URI namespace for vocabulary objects (these my not overlap):
-void:uriSpace " URI_namespace ";
-* the language(s) that the vocabulary supports:
-skosmos:language " language ", " language ", ...
-where language can be: en, fi, sv, ?
-* the default language of the vocabulary, if the vocabulary supports multiple languages:
-skosmos:defaultLanguage " language " 
-where language can be: en, fi, sv, ?
-* the URI of the SPARQL endpoint containing this vocabulary 
-void:sparqlEndpoint < URI_SPARQL_endpoint > ;
-URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
-* The uriSpace setting is not crucial for Skosmos (???). When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting. 
-
-
-
-* Skosmos relies on hasTopConcept but it is only necessary if you enable the showTopConcepts setting
-* The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general 
-* It is not recommended to use fullAlphabeticalIndex for large vocabularies
-* Hierarchy. Try setting "skosmos:showTopConcepts true" in your vocabularies.ttl file. That should display the top level hierarchy - assuming that the AAT data contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work. * Group index. This is meant for thematic groups, often represented as skos:Collection or iso-thes:ConceptGroup. I'm not sure whether the AAT has these at all and in that case how they are represented in RDF. If you don't need this tab, simply drop the skosmos:groupClass setting from vocabularies.ttl. 
-
+  * the title of the vocabulary in different languages: **dc:title "title_of_the_vocabulary"@ language ;** where language can be: en, fi, sv, etc.
+  * the category of the vocabulary: **dc:subject : category ;** where category can be: **cat_general**. The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general.
+  * the URI namespace for vocabulary objects (these may not overlap): **void:uriSpace " URI_namespace ";** When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting. 
+  * the language(s) that the vocabulary supports: **skosmos:language " language ", " language ", ... ;** where language can be: en, fi, sv, etc.
+  * the default language of the vocabulary, if the vocabulary supports multiple languages: **skosmos:defaultLanguage " language ";**  where language can be: en, fi, sv, ?
+  * the URI of the SPARQL endpoint containing this vocabulary **void:sparqlEndpoint < URI_SPARQL_endpoint > ;** URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
+  
+  * Skosmos relies on **hasTopConcept** but it is only necessary if you enable the **showTopConcepts** setting. Setting **skosmos:showTopConcepts true** should display the top level hierarchy - assuming that the dataset contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work.
+  * It is not recommended to use **fullAlphabeticalIndex** for large vocabularies
+  * Group index is meant for thematic groups, often represented as **skos:Collection** or **iso-thes:ConceptGroup**. If you don't need this tab, simply drop the **skosmos:groupClass** setting.
 
 You can set the following optional parameters:
 * if you want to enable the Hierarchy tab showing top-level concepts on the vocabulary home page:
