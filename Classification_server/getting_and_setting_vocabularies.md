@@ -155,7 +155,7 @@ There are two sets of each Getty vocabulary, the "explicit" set and the "full" s
 The dowloaded export file includes all statements (explicit and inferred) of all independent entities.  It's a concatenation of the Per-Entity Exports in NTriples format. Because it includes all required Inference, you can load it to any repository (even one without RDFS reasoning).
 
 
-1. Load the External Ontologies (SKOS, SKOS-XL, ISO 25964) from [http://vocab.getty.edu/doc/#External_Ontologies](http://vocab.getty.edu/doc/#External_Ontologies). The purpose is to get descriptions of properties, associative relations, etc.
+1. Load the External Ontologies (**SKOS**, SKOS-XL, ISO 25964) from http://vocab.getty.edu/doc/#External_Ontologies. The purpose is to get descriptions of properties, associative relations, etc.
 2. Load the GVP Ontology from http://vocab.getty.edu/ontology.rdf
 3.      If your repository supports Subproperty/Inverse/Transitive reasoning:
 ·        If you want to eliminate the struck-out properties in Reduced SKOS Inference (like we do), execute the SPARQL updates given in Reduced SKOS Inference.
