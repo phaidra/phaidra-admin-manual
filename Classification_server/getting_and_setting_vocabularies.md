@@ -116,10 +116,7 @@ SELECT (COUNT(*) AS ?count) {
 }
 
 
-
 ## Setting vocabularies
-
-(to be edited)
 
 (The vocabularies to show in Skosmos are configured in the file `vocabularies.ttl` which is an RDF file in Turtle syntax.)
 
@@ -149,9 +146,11 @@ where id is just an identifier. It will be used in the URL after /skosmos/.
 
 ### Getty
 
-There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader (see [here](#off-line) ). 
+There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader (see [here](#off-line)). 
 
-full set to download:
+### Full set 
+
+(You can to download:
 http://vocab.getty.edu/doc/#Total_Exports
 This file includes all statements (explicit and inferred) of all independent entities.  It's a concatenation of the Per-Entity Exports in NTriples format. Because it includes all required Inference, you can load it to any repository (even one without RDFS reasoning):
 1.      Load the External Ontologies (SKOS, SKOS-XL, ISO 25964): links are provided in that section. The purpose is to get descriptions of properties, associative relations, etc.
