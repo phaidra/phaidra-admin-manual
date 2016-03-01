@@ -2,4 +2,4 @@
 
 ##Content
 
-[Introduction to classification](Classification_server/.introduction_to_classification.md)
+[Introduction to classification](Classification_server/introduction_to_classification.md)
