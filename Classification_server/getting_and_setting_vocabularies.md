@@ -64,7 +64,7 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
   
 If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
 
-#### Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data. 
+#### <a name="tbdloader"></a> Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data. 
 
 **$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf
 **
@@ -150,7 +150,7 @@ where id is just an identifier. It will be used in the URL after /skosmos/.
 
 ### Getty
 
-There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader as discussed here). 
+There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with [tdbloader](#tbdloader) as discussed here). 
 
 full set to download:
 http://vocab.getty.edu/doc/#Total_Exports
