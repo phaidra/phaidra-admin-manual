@@ -25,13 +25,15 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 ## Uploading files to Fuseki
 
-(move to Getting and setting vocabularies)
+### Using the web interface of Fuseki
 
-### Using the web interface of Fuskei
+
+1. start Fuseki server (see [](...))
+2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
 
 #### To the default graph
 
-(to be completed)
+
 
 #### To a named graph
 
