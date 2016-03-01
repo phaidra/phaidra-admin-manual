@@ -1,3 +1,5 @@
+(to be edited!!!)
+
 # Configuration of Skosmos and Fuseki
 
 
