@@ -102,7 +102,9 @@ terms, related terms, synonyms, and so on).
 
 * ThManager does not provide any SPARQL endpoint!
 
-## [protégé](http://protege.stanford.edu/) 
+## Protégé
+
+(see [protégé](http://protege.stanford.edu/))
 
 * is a free, open-source ontology editor and framework
 * too complex for editing and visualizing such a simple model as SKOS.
