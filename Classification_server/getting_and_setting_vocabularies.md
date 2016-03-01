@@ -136,31 +136,21 @@ where id is just an identifier. It will be used in the URL after /skosmos/.
   * the default language of the vocabulary, if the vocabulary supports multiple languages: **skosmos:defaultLanguage " language ";**  where language can be: en, fi, sv, ?
   * the URI of the SPARQL endpoint containing this vocabulary **void:sparqlEndpoint < URI_SPARQL_endpoint > ;** URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
   
-  * Skosmos relies on **hasTopConcept** but it is only necessary if you enable the **showTopConcepts** setting. Setting **skosmos:showTopConcepts true** should display the top level hierarchy - assuming that the dataset contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work.
-  * It is not recommended to use **fullAlphabeticalIndex** for large vocabularies
-  * Group index is meant for thematic groups, often represented as **skos:Collection** or **iso-thes:ConceptGroup**. If you don't need this tab, simply drop the **skosmos:groupClass** setting.
+  * Skosmos relies on **hasTopConcept** but it is only necessary if you enable the **showTopConcepts** setting. Setting **skosmos:showTopConcepts true** should display the top level hierarchy - assuming that the dataset contains the **skos:hasTopConcept** and/or **skos:topConceptOf** relationships that are necessary for this to work. If you want to enable the *Hierarchy tab* showing top-level concepts on the vocabulary home page: **skosmos:showTopConcepts** "true";
+  * *Group index* is meant for thematic groupsClass of resources to display as concept groups,  or as arrays (subdivisions) of sibling concepts (typical values are **skos:Collection** or **isothes:ConceptGroup**): **skosmos:groupClass isothes:ConceptGroup ;** If you don't need this tab, simply drop the **skosmos:groupClass** setting.
+  * if you do not want Skosmos to query the mapping concept URIs for labels if they haven't been found at the configured SPARQL endpoint: **skosmos:loadExternalResources "false";**
+  * URI of the main **skos:ConceptScheme** (instance of the current vocabulary) should be specified if the vocabulary contains multiple **skos:ConceptScheme** instances **skosmos:mainConceptScheme < _main_Concept_Scheme_URI_ >**.
+  * if the vocabulary is relatively small (eg. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time: **skosmos:fullAlphabeticalIndex "true";**. It is not recommended to use **fullAlphabeticalIndex** for large vocabularies
 
-You can set the following optional parameters:
-* if you want to enable the Hierarchy tab showing top-level concepts on the vocabulary home page:
-skosmos:showTopConcepts "true";
-* if you do not want Skosmos to query the mapping concept URIs for labels if they haven't been found at the configured SPARQL endpoint:
-skosmos:loadExternalResources "false";
-* class of resources to display as concept groups (typical values are skos:Collection or isothes:ConceptGroup):
-skosmos:groupClass isothes:ConceptGroup ;
-* class of resources to display as arrays (subdivisions) of sibling concepts (typical values are skos:Collection or isothes:ThesaurusArray):
-skosmos:arrayClass isothes:ThesaurusArray ;
-* URI of the main skos:ConceptScheme instance of this vocabulary. Should be specified if the vocabulary contains multiple skos:ConceptScheme instances.
-skosmos:mainConceptScheme < _main_Concept_Scheme_URI_ > .
-* if the vocabulary is relatively small (eg. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time.
-skosmos:fullAlphabeticalIndex "true"
+(See more details of configuring the vocabularies.ttl here: https://github.com/NatLibFi/Skosmos/wiki/Vocabularies)
 
 ## Individual vocabularies
 
-(to be aligned)
+(to be aligned, edited and completed)
 
 ### Getty
 
-They have the "explicit" set and the "full" set (aka Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader as I explained in a previous message). 
+There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader as discussed here). 
 
 full set to download:
 http://vocab.getty.edu/doc/#Total_Exports
@@ -276,9 +266,9 @@ WHERE {
 
 
 
-### ÖFOS
+### ÖFOS - 2012
 
-ÖFOS - 2012
+(to be edited)
 
 You need to represent your classification using the SKOS data model. For some guidance, see 
 the SKOS Primer [1] and introductory articles [2,3]. An excellent general introduction to RDF and Linked Data is given for example in the Linked Data book [4] available for free online. For specifics on what aspects of SKOS and other RDF vocabularies Skosmos supports, see the wiki page Data Model [5]. 
@@ -290,7 +280,7 @@ the SKOS Primer [1] and introductory articles [2,3]. An excellent general introd
 
 ### Examples
 
-(to be deleted)
+(to be edited and completed)
 
 #### For "COAR-Resource Type Vocabulary" set the properties as follow:
 
@@ -301,13 +291,12 @@ skosmos:language "en";
 void:sparqlEndpoint <http://localhost:3030/ds/sparql> ;
 .
 
-#### For "getty TGN vocabulary" set the properties as follow:
+#### For sample record of "Getty TGN vocabulary" set the properties as follow:
 
-dc:title "getty TGN Vocabulary"@en ;
+dc:title "Getty TGN Vocabulary"@en ;
 dc:subject :cat_general ;
 void:uriSpace "http://vocab.getty.edu/tgn/7011179";
 skosmos:language "en";
 void:sparqlEndpoint <http://localhost:3030/> ;
 .
 
-(See more details of configuring the vocabularies.ttl here: https://github.com/NatLibFi/Skosmos/wiki/Vocabularies )
