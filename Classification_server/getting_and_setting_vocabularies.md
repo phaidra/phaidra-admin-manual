@@ -45,7 +45,9 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 ### From the command line in Fuseki's folder
 
-#### On-line (when Fuseki is running)
+#### On-line 
+
+(when Fuseki is running)
   
 * use s-put if you want to add single data file, like this e.g.: 
 
@@ -60,23 +62,21 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
 * s-post if you want to add new data files to existing data without clearing it
   
 
-#### Off-line (when Fuseki is not running)
+#### Off-line 
+
+(when Fuseki is not running)
   
 If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. This means shutting down Fuseki (since only one process can use the TDB at the same time) and 
 
-####<a name="tbdloader"></a>Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data. 
+1. <a name="tbdloader"></a>Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data.  
+  **$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf**
+  where 
+    * jena-text-config.ttl is a configuration file (to be described)
+    *  --graph=http://vocab.getty.edu/aat/ is the named graph according to the skosmos:sparqlGraph parameter in vocabularies.ttl
 
-**$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf
-**
+2. then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
 
-where 
-  * jena-text-config.ttl is a configuration file (to be described)
-  *  --graph=http://vocab.getty.edu/aat/ is the named graph according to the skosmos:sparqlGraph parameter in vocabularies.ttl
-
-
-#### then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
-
-https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+  https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
 
 ## Checking data in Fuseki server
 
@@ -135,7 +135,6 @@ where id is just an identifier. It will be used in the URL after /skosmos/.
   * the language(s) that the vocabulary supports: **skosmos:language " language ", " language ", ... ;** where language can be: en, fi, sv, etc.
   * the default language of the vocabulary, if the vocabulary supports multiple languages: **skosmos:defaultLanguage " language ";**  where language can be: en, fi, sv, ?
   * the URI of the SPARQL endpoint containing this vocabulary **void:sparqlEndpoint < URI_SPARQL_endpoint > ;** URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
-  
   * Skosmos relies on **hasTopConcept** but it is only necessary if you enable the **showTopConcepts** setting. Setting **skosmos:showTopConcepts true** should display the top level hierarchy - assuming that the dataset contains the **skos:hasTopConcept** and/or **skos:topConceptOf** relationships that are necessary for this to work. If you want to enable the *Hierarchy tab* showing top-level concepts on the vocabulary home page: **skosmos:showTopConcepts** "true";
   * *Group index* is meant for thematic groupsClass of resources to display as concept groups,  or as arrays (subdivisions) of sibling concepts (typical values are **skos:Collection** or **isothes:ConceptGroup**): **skosmos:groupClass isothes:ConceptGroup ;** If you don't need this tab, simply drop the **skosmos:groupClass** setting.
   * if you do not want Skosmos to query the mapping concept URIs for labels if they haven't been found at the configured SPARQL endpoint: **skosmos:loadExternalResources "false";**
@@ -150,7 +149,7 @@ where id is just an identifier. It will be used in the URL after /skosmos/.
 
 ### Getty
 
-There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with [tdbloader](#tbdloader) as discussed here). 
+There are two sets of each Getty vocabulary, the "explicit" set and the "full" set (Total Exports). With the "explicit" set, which is smaller, you will need  to configure Fuseki to use inference so that the data store can infer the missing triples. With the full set this is not needed, but in turn the data set is much larger so you may have difficulties loading it (I wouldn't try loading that through Fuseki, but it could work with tdbloader (see [here](#off-line)). 
 
 full set to download:
 http://vocab.getty.edu/doc/#Total_Exports
