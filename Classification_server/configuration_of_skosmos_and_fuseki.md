@@ -13,13 +13,14 @@ http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-
 
 ## Data files of Fuseki
 
+Fuseki stores data in files. It is also possible to configure Fuseki for in-memory only, but with a large dataset, that will require a lot of memory. 
+
 The jena-text enabled configuration file specifies directories where Fuseki stores its data. If you have not modified the configuration, those will be /tmp/tdb and /tmp/lucene. You need to clear/remove these directories if you want to flush the Fuseki data. 
 
-Fuseki stores them in files. It is also possible to configure Fuseki for in-memory only, but with a large dataset, that will require a lot of memory. If you want to see how it is done, check out this Fuseki configuration that we use for Skosmos unit tests:
 
+For Skosmos unit tests this configuration was used:
 https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl
-
-(tdb:location and text:directory settings are the relevant ones) 
+where **tdb:location** and **text:directory** settings are the relevant ones. 
 
 ## Timeout settings
 
