@@ -31,7 +31,7 @@ For exapmle if you have put the UNESCO thesaurus in the default graph and config
 
 Then you should have the correct named graph in skosmos:sparqlGraph setting vocabularies.ttl.  
 
-### Using the web interface of Fuseki
+### Using the web interface of Fuseki On Linux
 
 1. start Fuseki server (see [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md))
 2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
@@ -49,7 +49,7 @@ Then you should have the correct named graph in skosmos:sparqlGraph setting voca
 1. Graph: *write here the graph name according to the skosmos:sparqlGraph parameter in vocabularies.ttl*
 2. Upload
 
-### From the command line in Fuseki's folder
+### From the command line in Fuseki's folder on Linux
 
 #### On-line 
 
@@ -108,7 +108,6 @@ Because a Fuseki assembler description can have several datasets descriptions, a
 
 If you allow updates to the dataset through Fuseki, the configured index will automatically be updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
 
-
 Using the tbdloader you have to shut down Fuseki (since only one process can use the TDB at the same time) and 
 
 1. <a name="tbdloader"></a>Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data.  
@@ -120,6 +119,17 @@ Using the tbdloader you have to shut down Fuseki (since only one process can use
 2. then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
 
   https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+
+
+### Adding vocabularies to Fuseki server on Windows
+
+In order to add vocabularies to the Fuseki server use the control panel of the Fuseki server from a browser: http://localhost:3030/
+
+1. click on the "add data" button in the middle
+2. on the next page (Upload files) click on the "+ select files" button in the middle
+3. select the vocabulary (e.g. checked_resource_types.xml or checked_tgn_7011179.rdf) file from the c:\xampp\htdocs\skosmos\vocabularies dictionary
+4. click on the "upload now" button
+
 
 ## Checking data in Fuseki server
 
