@@ -12,19 +12,16 @@ If Apache server is not running, we can start it with: **$service httpd start**
 
 If we have to restart, then use: **$service httpd restart**
 
-### 2. 
+### 2. Extending the heap for the JVM
 
-###2. Start Jena Fuseki
+It is worth extending the JVM heap to 8 GB
+**$export JVM_ARGS=-Xmx8000M**
 
-Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too.
 
+### 3. Start Jena Fuseki
 
 1. Open a command prompt and cd into apache-jena-fuseki directory (cd c:\apache-jena-fuseki-2.3.0)
 2. Run Fuseki Server from the command prompt: fuseki-server --update --mem /ds
-(--update --mem / ds options mean that allowing updates data set will be in the memory.)
-(After starting the server the last INFO will tell us the port (e.g. 3030), where the server is available.)
-3. To check if the Fuseki Server is running open the control panel from the browser: http://localhost:3030/ 
-and see if in the top right corner the Server status: is a green disk.
 
 #### Options for starting Fuseki
 
@@ -34,6 +31,18 @@ and see if in the top right corner the Server status: is a green disk.
   **./fuseki-server --config jena-text-config.ttl **
 
 * If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
+
+
+Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too.
+
+#### Dataset in the memory
+
+Start f
+
+(--update --mem / ds options mean that allowing updates data set will be in the memory.)
+(After starting the server the last INFO will tell us the port (e.g. 3030), where the server is available.)
+3. To check if the Fuseki Server is running open the control panel from the browser: http://localhost:3030/ 
+and see if in the top right corner the Server status: is a green disk.
 
 
 
