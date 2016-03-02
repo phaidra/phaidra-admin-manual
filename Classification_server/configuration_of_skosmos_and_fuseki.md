@@ -24,9 +24,17 @@ where **tdb:location** and **text:directory** settings are the relevant ones.
 
 ## Timeout settings
 
-If there is more data than Skosmos is made to handle, so some queries can take a very long time. Short execution timeout for PHP scripts can trigger Runtime IO Exception.
+If there is more data than Skosmos is made to handle, so some queries can take a very long time. 
+The slow queries are probably the statistical queries (number of concepts per type, number of labels per language) as well as the alphabetical index. (The statistical queries will be optimized in Skosmos 1.5 but this is not yet implemented, see https://github.com/NatLibFi/Skosmos/issues/413 )
 
-See php.ini max_execution_time either in Apache (TimeOut directive) the setting. I suggest finding the setting and changing it to a higher value (say 5 or 10 minutes):  
+Short execution timeout for PHP scripts can trigger Runtime IO Exception.
+
+### PHP and Apache timeout settings
+
+(to be clarified)
+
+See php.ini max_execution_time and Apache's TimeOut directive the settings. 
+It is worth finding the setting and changing it to a higher value (say 5 or 10 minutes):  
 
 * /etc/httpd/conf/snippets/timeout.conf: Timeout 60 -> 600)
 * time.ini  
@@ -37,11 +45,14 @@ See php.ini max_execution_time either in Apache (TimeOut directive) the setting.
   * mssql.timeout = 60 -> 600
   * ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "1000" ] ;
 
-The slow queries are probably the statistical queries (number of concepts per type, number of labels per language) as well as the alphabetical index. (The statistical queries will be optimized in Skosmos 1.5 but this is not yet implemented, see https://github.com/NatLibFi/Skosmos/issues/413 )
+### Skosmos timeout setting
 
-It is worth setting up **Varnish** (first_byte_timeout and between_bytes_timeout) in between Skosmos/Apache and Fuseki. It doesn't help with the first request, but subsequent ones will be answered very quickly from the cache. The statistical queries are always the same so they can be cached very well. 
-See https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning#http-caching 
+Skosmos has a HTTP_TIMEOUT setting in config.inc, you could see if increasing that to a large value helps. It should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
 
+### EasyRdf HTTP client timeout
+
+Also the EasyRdf HTTP client has a default timeout of 10 seconds. 
+It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on, but at least we know where the timeout is being set) 
 
 ### Checking the browsers' timing out. 
 
@@ -71,10 +82,11 @@ There are two ways to do this. You can extend your timeout, or you can totally d
 You can't change the timeout setting of Google Chrome. 
 Google has been ignoring requests to implement this feature for over six years.
 
+### Varnish
 
----
-Skosmos has a HTTP_TIMEOUT setting in config.inc, you could see if increasing that to a large value helps. It should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
-Also the EasyRdf HTTP client has a default timeout of 10 seconds. You could see if editing it helps. It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on, but at least we know where the timeout is being set) 
+It is worth setting up **Varnish** (first_byte_timeout and between_bytes_timeout) in between Skosmos/Apache and Fuseki. It doesn't help with the first request, but subsequent ones will be answered very quickly from the cache. The statistical queries are always the same so they can be cached very well. 
+See https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning#http-caching 
+
 
 ## Memory problems by uploading files to Fuseki
 
@@ -83,5 +95,7 @@ You can try giving Fuseki more memory. See for some tips:
 
 **https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
 
+For example Setting JVM heap to 8 GB:
+**export JVM_ARGS=-Xmx8000M**
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
