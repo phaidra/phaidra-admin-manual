@@ -1,10 +1,9 @@
 # Getting and setting vocabularies
 
-(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos#vocabularies)
 
 ## Getting vocabularies (if you want to use certain vocabularies locally)
 
-(e.g. Putting "COAR - Resource Type Vocabulary" or "Getty TGN vocabulary" into Skosmos)
+(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos#vocabularies)
 
 1. Create a new directory called vocabularies in Skosmos folder (c:\xampp\htdocs\skosmos)
 2. Open a browser and go to the vocabulary that you want to use (e.g. COAR - Resource Type Vocabulary or Getty TGN voabulary
@@ -29,7 +28,7 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. In other words, there is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. The URI namespaces can be used as graph names. E.g. <http://vocab.getty.edu/tgn/> would store Getty's TGN data. 
 
-For exapmle if you have put the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content. To solve the problem you can put the UNESCO thesaurus in a named graph e.g. <http://skos.um.es/unescothes/>. You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, or the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph. 
+For exapmle if you have put the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content. To solve the problem you can put the UNESCO thesaurus in a named graph e.g. <http://skos.um.es/unescothes/>. You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, or the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph (see below). 
 
 Then you should have the correct named graph in skosmos:sparqlGraph setting vocabularies.ttl.  
 
@@ -55,22 +54,18 @@ Then you should have the correct named graph in skosmos:sparqlGraph setting voca
 
 #### On-line 
 
-(when Fuseki is running)
-  
-* use s-put if you want to add single data file, like this e.g.: 
+1. Start Fuseki server (with text index) from its directory:
+  * **./fuseki-server --config jena-text-config.ttl**
+2. use the command line utility s-put or s-post, that comes with Fuseki:
+  * use **s-put** if you want to add single data file:
+    * ./s-put *SPARQL-server* *Graph-name* *data-to-be-uploaded*
+    * e.g.: ./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
 
-**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
-**
+    Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
 
-(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
-
-Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
-
-Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting)
-
-* s-post if you want to add new data files to existing data without clearing it
-  
-(to be added)
+  * use **s-post** if you want to add new data files to existing data without clearing it:
+    * ./s-post *SPARQL-server* *Graph-name* *data-to-be-uploaded*
+    * e.g.: ./s-post http://localhost:3030/ds/data http://vocab.getty.edu/aat/ ./vocabularies/skos.rdf
 
 #### Off-line 
 
@@ -78,7 +73,7 @@ Then you should have the correct named graph in vocabularies.ttl (skosmos:sparql
   
 If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. You can do it with tdbloader, which is part of the Jena distribution which you will need to download separately. A tutorial for using tdbloader with the text index is here: 
 https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-(Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
+Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
 https://jena.apache.org/documentation/assembler/index.html
 https://jena.apache.org/documentation/assembler/assembler-howto.html
 
@@ -93,15 +88,12 @@ The index and the dataset can be built using command line tools in two steps: fi
 Build the TDB dataset:
 **java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file**
 
-
 using the copy of TDB included with Fuseki.
-You can use the same .ttl file  ((/var/www/skosmos/jena-fuseki1-1.3.0/jena-text-config.ttl))
+You can use the same .ttl file (/var/www/skosmos/jena-fuseki1-1.3.0/jena-text-config.ttl)
 that you used for the Fuseki database and text index configuration, i.e. the one documented here:
 https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText#configuration
 Alternatively, use one of the TDB utilities tdbloader or tdbloader2 which are better for bulk loading:
 $JENA_HOME/bin/tdbloader --loc=directory  data_file
-(((Has been Jena already installed separately on phaidraentwl ? ))) 
-::
 
 *Step 2 - Build the Text Index*
 
