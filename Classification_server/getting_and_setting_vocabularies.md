@@ -25,6 +25,14 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 ## Uploading files to Fuseki
 
+### Named and default graph in SPARQL triple store
+
+In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. In other words, there is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. The URI namespaces can be used as graph names. E.g. <http://vocab.getty.edu/tgn/> would store Getty's TGN data. 
+
+For exapmle if you have put the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content. To solve the problem you can put the UNESCO thesaurus in a named graph e.g. <http://skos.um.es/unescothes/>. You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, or the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph. 
+
+Then you should have the correct named graph in skosmos:sparqlGraph setting vocabularies.ttl.  
+
 ### Using the web interface of Fuseki
 
 1. start Fuseki server (see [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md))
@@ -58,9 +66,11 @@ Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine 
 
 Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
 
-Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
+Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting)
+
 * s-post if you want to add new data files to existing data without clearing it
   
+(to be added)
 
 #### Off-line 
 
