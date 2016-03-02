@@ -12,9 +12,12 @@ If Apache server is not running, we can start it with: **$service httpd start**
 
 If we have to restart, then use: **$service httpd restart**
 
+### 2. 
+
 ###2. Start Jena Fuseki
 
-Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. You 
+Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too.
+
 
 1. Open a command prompt and cd into apache-jena-fuseki directory (cd c:\apache-jena-fuseki-2.3.0)
 2. Run Fuseki Server from the command prompt: fuseki-server --update --mem /ds
