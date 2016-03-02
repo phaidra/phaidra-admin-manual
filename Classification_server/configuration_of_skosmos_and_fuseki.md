@@ -1,7 +1,4 @@
-(to be edited!!!)
-
 # Configuration of Skosmos and Fuseki
-
 
 ## Checking the jena-text configuration
 
@@ -13,23 +10,6 @@ https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
 
 3. You have built the jena-text index using jena.textindexer: 
 http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-the-text-index 
-
-## Named Graph in SPARQL triple store
-
-In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
-
-There is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. I suggest you use the URI namespaces as graph names. I.e. <http://vocab.getty.edu/tgn/> would store TGN data. 
-
-If you have put e.g. the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content.
-
-Put the UNESCO thesaurus in a named graph <http://skos.um.es/unescothes/> (that's what we use as graph name). You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, like this: 
-
-**./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
-**
-
-(of course the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph) 
-
-Then you should have the correct named graph in vocabularies.ttl (skosmos:sparqlGraph setting) 
 
 ## Data files of Fuseki
 
