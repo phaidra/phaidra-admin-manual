@@ -67,8 +67,6 @@ and see if in the top right corner the Server status: is a green disk.
 
 * If you use the init script (/etc/init.d/fuseki), then the FUSEKI_CONF= environment variable is used to set the configuration file. But if you just run Fuseki from the command line, you need to use the --conf option. 
 
-
-
 ### 3. Adding vocabularies to Fuseki server (in case of local vocabularies)
 
 In order to read (preferably checked vocabularies (e.g. checked_resource_types.xml or checked_tgn_7011179.rdf) into the Fuseki server use the control panel of the Fuseki server from a browser: http://localhost:3030/
