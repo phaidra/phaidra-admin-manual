@@ -2,23 +2,27 @@
 
 (source: https://github.com/NatLibFi/Skosmos/wiki/Upgrading)
 
-1. make a backup of your current installation, especially config.inc and vocabularies.ttl  
+1. cd to the folder of Skosmos (/var/www/skosmos/)
 
-2. (make a backup of fuseki files except tdb and lucene)    
+2. make a backup of your current Skosmos installation, especially config.inc and vocabularies.ttl  
 
-3. upgrade your code to the new version: 
+3. (make a backup of fuseki files except tdb and lucene)    
+
+4. upgrade your code to the new version: 
 
   1. download a new version form https://github.com/NatLibFi/Skosmos/releases and replace the files or
 
-  2. switch to the new version tag/branch using e.g. git checkout tags/v1.4 or git checkout v1.4-maintenance
+  2. switch to the new version tag/branch using
+     1. ```git fetch``` to fetch new versions
+     2. ```git checkout``` the version you want (e.g. ```git checkout tags/v1.4``` or ```git checkout v1.5-maintenance```)
 
-4. migrate (copy) config.inc and vocabularies.ttl to your new installation if necessary
+5. migrate (copy) config.inc and vocabularies.ttl to your new installation if necessary
 
-5. update Composer just in case: php composer.phar self-update   
+6. update Composer just in case: ```php composer.phar self-update```   
 
-6. update dependencies: php composer.phar update --no-dev   
+7. update dependencies: ```php composer.phar update --no-dev```   
 
-7. restart Apache (this will clear gettext and APC caches - reloading is not enough!)
+8. restart Apache (this will clear gettext and APC caches - reloading is not enough!): ```service httpd restart```
 
 ### Version specific notes
 
