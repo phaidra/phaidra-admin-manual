@@ -1,2 +1,2 @@
-# Phaidra Admin Manual
+# Components of Phaidra
 
