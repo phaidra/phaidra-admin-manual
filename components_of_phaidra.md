@@ -1,5 +1,2 @@
 # Components of Phaidra
 
-
-jjjj
-
