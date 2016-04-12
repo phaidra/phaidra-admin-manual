@@ -30,8 +30,8 @@ modelConfigFile=workbench/config/model_sesame-noinference.config
 modelDataDir=workbench/storage
 
 baseuri=http\://purl.org/coar/resource_type/
-namespace=https\://www.gitbook.com/book/phaidra/phaidra-admin-manual/edit#
-defaultScheme=http\://my.defaultScheme/
+namespace=http\://phaidra.org/
+defaultScheme=http\://phaidra.org/
 </code>
 5. run library with dependencies in project root directory(dir above workbench directory):
 5.1. windows:
