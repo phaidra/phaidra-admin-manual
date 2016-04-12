@@ -36,11 +36,11 @@ defaultScheme=http\://phaidra.org/
 5. run library with dependencies in project root directory(dir above workbench directory):
 5.1. windows:
 
-java -classpath ".;dependency\commons-codec-1.2.jar;dependency\commons-httpclient-3.1.jar;dependency\commons-io-2.4.jar;dependency\commons-logging-1.0.4.jar;dependency\guava-15.0.jar;dependency\jackson-core-2.4.0.jar;dependency\log4j-1.2.16.jar;dependency\opencsv-2.0.jar;dependency\owlart-api-2.3.jar;dependency\owlart-sesame2impl-1.3.jar;dependency\sesame-onejar-2.7.10.jar;dependency\slf4j-api-1.6.1.jar;dependency\slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench\config\skosxl2skos.config workbench\rdf_files\skosxl.xml workbench\output\resultSkos.rdf true
+java -classpath ".;dependency\commons-codec-1.2.jar;dependency\commons-httpclient-3.1.jar;dependency\commons-io-2.4.jar;dependency\commons-logging-1.0.4.jar;dependency\guava-15.0.jar;dependency\jackson-core-2.4.0.jar;dependency\log4j-1.2.16.jar;dependency\opencsv-2.0.jar;dependency\owlart-api-2.3.jar;dependency\owlart-sesame2impl-1.3.jar;dependency\sesame-onejar-2.7.10.jar;dependency\slf4j-api-1.6.1.jar;dependency\slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench\config\skosxl2skos.config workbench\rdf_files\skosxl.xml workbench\output\resultSkos.rdf false
 
 5.2. linux:
 
-java -classpath ".:dependency/commons-codec-1.2.jar:dependency/commons-httpclient-3.1.jar:dependency/commons-io-2.4.jar:dependency/commons-logging-1.0.4.jar:dependency/guava-15.0.jar:dependency/jackson-core-2.4.0.jar:dependency/log4j-1.2.16.jar:dependency/opencsv-2.0.jar:dependency/owlart-api-2.3.jar:dependency/owlart-sesame2impl-1.3.jar:dependency/sesame-onejar-2.7.10.jar:dependency/slf4j-api-1.6.1.jar:dependency/slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench/config/skosxl2skos.config workbench/rdf_files/skosxl.xml workbench/output/resultSkos.rdf true
+java -classpath ".:dependency/commons-codec-1.2.jar:dependency/commons-httpclient-3.1.jar:dependency/commons-io-2.4.jar:dependency/commons-logging-1.0.4.jar:dependency/guava-15.0.jar:dependency/jackson-core-2.4.0.jar:dependency/log4j-1.2.16.jar:dependency/opencsv-2.0.jar:dependency/owlart-api-2.3.jar:dependency/owlart-sesame2impl-1.3.jar:dependency/sesame-onejar-2.7.10.jar:dependency/slf4j-api-1.6.1.jar:dependency/slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench/config/skosxl2skos.config workbench/rdf_files/skosxl.xml workbench/output/resultSkos.rdf false
 
 6. Result skos file is in workbench/output/resultSkos.rdf
 7. tested in java version "1.8.0_72"
