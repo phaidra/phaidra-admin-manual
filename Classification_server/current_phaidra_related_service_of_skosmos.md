@@ -12,6 +12,10 @@
 | | | http://vocab.getty.edu/dataset/tgn/full.zip | .nt |69 GB |  ![](Images/tick.png) |
 | **Getty Union List of Artist Names** | http://vocab.getty.edu/ulan/ | http://vocab.getty.edu/sparql | SKOS | *No* | online ![](Images/delete.png)| 
 | | | http://vocab.getty.edu/dataset/ulan/full.zip | .nt |16 GB | offline ![](Images/tick.png) |
+|  UNESCO Thesaurus | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://skos.um.es/unescothes/ |![](Images/tick.png) |
+| AGROVOC - Multilingual agricultural thesaurus | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://aims.fao.org/aos/agrovoc/ |![](Images/tick.png) |
+| STW Thesaurus for Economics | http://api.skosmos.dev.finto.fi/sparql | SKOS | Yes | http://zbw.eu/stw/ |![](Images/tick.png) |
+
 
 ##Taxonomies
 
