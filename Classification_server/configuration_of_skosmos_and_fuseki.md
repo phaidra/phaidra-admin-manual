@@ -43,13 +43,10 @@ For jena-text, you can use this:
 By default Skosmos uses text index, but it can be switched off by 
 
 
-* either set DEFAULT_SPARQL_DIALECT to "Generic" in config.inc (this affects all 
-vocabularies)
-* or set skosmos:sparqlDialect "Generic" for just the certain vocabularies in vocabularies.ttl.
-
-
-
-
+* either setting DEFAULT_SPARQL_DIALECT to "Generic" in config.inc (this affects all 
+vocabularies):
+```define("DEFAULT_SPARQL_DIALECT", "Generic")```;
+* or setting ```skosmos:sparqlDialect "Generic"``` for just the certain vocabularies in vocabularies.ttl.
 
 
 ## Timeout settings
