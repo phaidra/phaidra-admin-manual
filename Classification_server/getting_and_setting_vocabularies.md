@@ -18,13 +18,13 @@
 4. make config file in workbench/config dir e.g. workbench/config/skosxl2skos.config and set 'baseuri', 'namespace', and 'defaultScheme' according to your project settings.
 Here is an example of the config file:
 <code>
-#ModelFactory Implementation: required
+###ModelFactory Implementation: required
 modelFactoryImplClassName=it.uniroma2.art.owlart.sesame2impl.factory.ARTModelFactorySesame2Impl
 
-#modelConfigClass Implementation: not required
+###modelConfigClass Implementation: not required
 modelConfigClass=it.uniroma2.art.owlart.sesame2impl.models.conf.Sesame2NonPersistentInMemoryModelConfiguration
 
-#modelConfigFile : not required in Sesame2, though we have to disable inference, which is set to true by default
+###modelConfigFile : not required in Sesame2, though we have to disable inference, which is set to true by default
 modelConfigFile=workbench/config/model_sesame-noinference.config
 
 modelDataDir=workbench/storage
