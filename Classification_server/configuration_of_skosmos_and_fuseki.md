@@ -26,27 +26,23 @@ where **tdb:location** and **text:directory** settings are the relevant ones.
 
 The jena-text extension can be used for faster text search. 
 
-If you start fuseki in the tdb with ..., then it will run using text index.
+If you start fuseki in the tdb with ```./fuseki-server --config config.ttl```then it will run using text index.
+For that in config.ttl (see e.g. jena-text-config.ttl) you have to configure 
+* for TDB: ```tdb:location "/var/www/skosmos/jena-fuseki1-1.3.0/tdb" ;```
+* for jena-text:```text:directory <file:/var/www/skosmos/jena-fuseki1-1.3.0/lucene> ;```
 
 If you start fuseki in the memory with ```./fuseki-server --update --mem /ds```, then there is no text indexing by default.
 
-It is also possible to use in-memory TDB and text index, but you need a Fuseki configuration file ... with special "file names" that are 
-actually in-memory. 
-
-For TDB, you can use this: 
-     tdb:location "--mem--" ; 
-
-For jena-text, you can use this: 
-     text:directory "mem" ; 
-
+It is also possible to use in-memory TDB and text index, but you need a Fuseki configuration file (config.ttl) with special "file names" that are actually in-memory:
+* for tdb: ```tdb:location "--mem--" ; ```
+* for jena-text: ```text:directory "mem"; ```
 
 By default Skosmos uses text index, but it can be switched off by 
 
-
-* either setting DEFAULT_SPARQL_DIALECT to "Generic" in config.inc (this affects all 
+* either setting DEFAULT_SPARQL_DIALECT to "Generic" (instead of "JenaText") in config.inc (this affects all 
 vocabularies):
 ```define("DEFAULT_SPARQL_DIALECT", "Generic")```;
-* or setting ```skosmos:sparqlDialect "Generic"``` for just the certain vocabularies in vocabularies.ttl.
+* or setting ```skosmos:sparqlDialect "Generic"``` (instead of "JenaText") for just the certain vocabularies in vocabularies.ttl.
 
 
 ## Timeout settings
