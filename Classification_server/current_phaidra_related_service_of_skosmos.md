@@ -49,36 +49,36 @@
 |  |  |  |  |  | ? |
 | BIC Standard Subject Categories | 1:13 | 2:13 | 3:13 | 4:13 | 5:13 | 
 
-## Phaidra's controlled vocabulary - local
+## Phaidra's controlled vocabularies - local
 
 | **Name** | **uriSpace and sparqlGraph** | ** Source** |**Format** | **Size** | **Works** |
 | -- | -- | -- | -- | -- | -- |
-| LOM 2.2 Status | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 2.3.1 Role | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 4.4.1.1 Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 4.4.1.2 Name | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 9.1 Purpose | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.1 Interactivity Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.2 Learning Resource Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.3 Interactivity Level | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.4 Semantic Density Interactivity Level | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.5 Intended End User Role | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.6 Context | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 5.8 Difficulty | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| LOM 10.1 Hochschulschriftentyp | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| Maßeinheiten | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| HISTKULT Stempel | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| HISTKULT Abbildungen | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| HISTKULT Bezugsnummern | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| Universität Wien Objektidentifikatoren | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| Medium - Book Reiter | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| info-eu-repo-AccessRights | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| info-eu-repo-Version-type | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
-| Metadata quality check | http://phaidra.org/phvoc | Phaidra's DB | MySQL |  |  ![](Images/tick.png) |
+| LOM 2.2 Status | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB  |  ![](Images/tick.png) |
+| LOM 2.3.1 Role | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 39 KB |  ![](Images/tick.png) |
+| LOM 4.4.1.1 Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 2 KB |  ![](Images/tick.png) |
+| LOM 4.4.1.2 Name | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| LOM 9.1 Purpose | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 1 KB |  ![](Images/tick.png) |
+| LOM 5.1 Interactivity Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| LOM 5.2 Learning Resource Type | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 10 KB |  ![](Images/tick.png) |
+| LOM 5.3 Interactivity Level | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 4 KB |  ![](Images/tick.png) |
+| LOM 5.4 Semantic Density Interactivity Level | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| LOM 5.5 Intended End User Role | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB  |  ![](Images/tick.png) |
+| LOM 5.6 Context | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| LOM 5.8 Difficulty | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 4 KB |  ![](Images/tick.png) |
+| LOM 10.1 Hochschulschriftentyp | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 14 KB |  ![](Images/tick.png) |
+| Maßeinheiten | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 5 KB |  ![](Images/tick.png) |
+| HISTKULT Stempel | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 15 KB |  ![](Images/tick.png) |
+| HISTKULT Abbildungen | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 4 KB |  ![](Images/tick.png) |
+| HISTKULT Bezugsnummern | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 16 KB |  ![](Images/tick.png) |
+| Universität Wien Objektidentifikatoren | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 7 KB |  ![](Images/tick.png) |
+| Medium - Book Reiter | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| info-eu-repo-AccessRights | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
+| info-eu-repo-Version-type | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 4 KB |  ![](Images/tick.png) |
+| Metadata quality check | http://phaidra.org/phvoc | Phaidra's DB | MySQL | 3 KB |  ![](Images/tick.png) |
 
 
 
-## Phaidra's custom classification - local
+## Phaidra's custom classifications - local
 
 | **Name** | **uriSpace and sparqlGraph** | ** Source** |**Format** | **Size** | **Works** |
 | -- | -- | -- | -- | -- | -- |
