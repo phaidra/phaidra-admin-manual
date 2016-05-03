@@ -57,9 +57,19 @@ Main features:
 * Export to WXP (WordPress XML)
 * Import and export data in Skos-core
 
+## SKOS Shuttle
+SKOS Shuttle supports you in building, maintaining and operating taxonomies, thesauri and ontologies. It allows operating on basically any external cloud based RDF SESAME compliant repositories and editing of Triples directly. SKOS Shuttle integrates a REST API to create, manage, navigate thesauri. It uses internal and also external RDF repositories (e.g. blazegraph), and accesses securely all information through SSL/DIGEST. It provides comprehensive security (Rights, Groups, User and Project Management) and a very smart Orphan Concept Analysis and direct “deorphanization” without SPARQL. RDF Import/Exportis possible in 6 different formats (…).
+Systematic Assistant helps you with different descriptor systems.
+The SKOS Shuttle API provides a full REST API that can be embedded into any application. The API requires authentication to provide online services.
+
+
 ## PoolParty
 
-(commercial)
+PoolParty [https://www.poolparty.biz/] is a commercial world-class semantic technology suite that offers sharply focused solutions to your knowledge organization and content business. 
+As a semantic middleware, PoolParty enriches your information with valuable metadata and links your business and content assets automatically.
+The PoolParty Taxonomy & Thesaurus Manager is a world-class tool to build and maintain your information architecture. It differentiates from other market solutions for taxonomy management through powerful capabilities like corpus analysis that can be extended gradually.
+The PoolParty thesaurus manager enables practitioners to start their work with limited training. Subject matter experts can model their fields of expertise without IT support.
+PoolParty taxonomy management software applies SKOS, knowledge graphs and APIs. With PoolParty, you can import existing taxonomies and thesauri (e.g. from Excel) and export them in different standard formats.
 
 ## GINCO (CeCiLL v2 license)
 
@@ -83,15 +93,17 @@ Main features:
  * support for ANSI/NISO relationships
  * user defined relationships and comment fields for an unlimited number of thesauri (both monolingual and multilingual)
 
-## TermTree 2000 is a Windows-based tool
+## TermTree 2000 
 
+* Windows-based tool
 * uses Access, SQL Server, or Oracle for data storage.
 * it can import and export
   * TRIM thesauri (a format used by the Towers Records Information Management system),
   * a defined TermTree 2000 tag format.
 
-## WebChoir is a family of client-server Web applications
+## WebChoir 
 
+* is a family of client-server Web applications
 * that provides different utilities for thesaurus management in multiple DBMS platforms,
 * is a hierarchical information organizing and searching tool that enables one to create and search varieties of hierarchical subject categories, controlled vocabularies, and taxonomies based on either predefined standards or a 
 user defined structure, and is then exported to an XML-based format.
