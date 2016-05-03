@@ -19,8 +19,43 @@
 * Require PHP, MySql and HTTP Web server.
 * Web application for management formal representations of knowledge, thesauri, taxonomies and multilingual vocabularies
   * one can export and publish controlled vocabulary and in many metadata schemas (SKOS-COre, Dublin Core, MADS, JSON, etc.)
-  * List of features can be seen here
 * latest version (TemaTres 2.0) was modified at 2015-08-26, can be downloaded from [here](http://sourceforge.net/projects/tematres/files/latest/download)
+
+Main features:
+* SPARQL endpoint (SPARQL Protocol and RDF Query Language)
+* Meta-terms: define facets, collections or arrays of terms
+* Support for multilingual thesaurus
+* Expose vocabularies with powerful web services
+* Search terms suggestion (did you mean...?)
+* Display terms in multiple deep levels in the same screen
+* Search expansion
+* Vocabulary harmonization features: equivalent, no equivalent and partial terms with other vocabularies
+* Relationship between terms (BT/NT, USE/UF, RT)
+* No limits to number of terms, alternative labels, levels of hierarchy, etc
+* Systematic or alphabetic navigation
+* Search
+* Complete export in XML format (Zthes, TopicMaps, MADS, Dublin Core,VDEX, BS 8723, SiteMap, SQL)
+* Complete export in RDF format (Skos-Core)
+* Complete export in txt
+* Scope notes, Historical and Bibliographical notes
+* User management
+* Terms and user supervision
+* Duplicates terms control
+* Free terms control
+* Quality assurance functions (Duplicates and free terms, ilegal relations)
+* Multilingual interface
+* Easy Install
+* Utility to import thesauri from tabulated textfiles
+* Unique code for each term
+* "Edit in place" features for terms and codes.
+* Terminology mapping, multilingual terminology mapping
+* Term reports for editors
+* Workflow: candidate, accepted and rejected terms
+* Allow to create user-defined relationships
+* Relationships between terms and web entities
+* Allow to define published and hidden labels
+* Export to WXP (WordPress XML)
+* Import and export data in Skos-core
 
 ## PoolParty
 
