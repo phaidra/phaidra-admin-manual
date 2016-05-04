@@ -153,7 +153,10 @@ terms, related terms, synonyms, and so on).
 
 (see [protégé](http://protege.stanford.edu/))
 
-* is a free, open-source ontology editor and framework
+Protégé  is a free, open-source ontology editor and framework  for building intelligent systems. 
+Protégé is supported by a strong community of academic, government, and corporate users, who use Protégé to build knowledge-based solutions in areas as diverse as biomedicine, e-commerce, and organizational modelling.
+WebProtégé is an ontology development environment for the Web that makes it easy to create, upload, modify, and share ontologies for collaborative viewing and editing. WebProtégé fully supports the latest OWL 2 Web Ontology Language. The highly configurable user interface creates the perfect environment for beginners and experts alike. Collaboration features abound, including sharing and permissions, threaded notes and discussions, watches and email notifications. RDF/XML, Turtle, OWL/XML, OBO, and other formats available for ontology upload and download.
+
 * too complex for editing and visualizing such a simple model as SKOS.
 * provides too many options not specifically adapted to the type of relations in SKOS.
 
@@ -163,8 +166,26 @@ terms, related terms, synonyms, and so on).
 
 ## HIVE
 
+HIVE (Helping Interdisciplinary Vocabulary Engineering) is a system that assists in indexing of documents
+(Greenberg et al., 2011; White et al., 2013). The system is pre­loaded with multiple SKOS vocabularies.
+The web user interface of HIVE provides concept search and browsing facilities as well as an automated
+indexing tool which, when given a text document, suggests concepts from a user­selectable subset of the
+vocabularies. The main focus of the tool is on the automated indexing aspect, which is implemented using
+the KEA++ algorithm (Medelyan, 2009). 
+
 ## iQvoc
 
+iQvoc is a vocabulary management tool that supports editing and publishing of SKOS datasets (Bandholtz et al., 2010; Bandholtz et al., 2011). Originally built for the maintenance of German environmental vocabularies, it has since evolved into a general purpose multi­user SKOS and SKOS XL editing tool. For
+unauthenticated users, it provides search and browsing access to concepts in the vocabulary. In the
+following, we will only concentrate on the publishing aspect of iQvoc. The system is developed by innoQ
+Deutschland GmbH, a commercial company, but available as open source software.
+
 ## CATCH
+
+The CATCH demonstrator (van der Meij, 2010) is a SKOS­based vocabulary and alignment repository. It
+consists of middleware providing vocabulary­oriented access services and APIs. One of the components is
+a vocabulary and alignment browser that can be used to search for concepts, for example to support manual indexing of documents. In the following, we concentrate on the browsing tool of CATCH. 
+* the online demonstrator of the tool was not functional, and the source code is not available for local testing
+
 
 ## OpenSKOS
