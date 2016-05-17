@@ -20,8 +20,6 @@
 
 ###[Getting and setting vocabularies](Classification_server/getting_and_setting_vocabularies.md)
 
-
-
 ###[Current Phaidra-related service of Skosmos](Classification_server/current_phaidra_related_service_of_skosmos.md)
 
 ###[Non Phaidra-related services of Skosmos](Classification_server/non_phaidra-related_services_of_skosmos.md)
@@ -30,5 +28,5 @@
 
 ###[Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
 
-###Connecting Phaidra to the Classification Server
+###[Connecting Phaidra to the Classification Server](Classification_server/connecting_to_phaidra.md)
 
