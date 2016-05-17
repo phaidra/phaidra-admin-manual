@@ -29,3 +29,5 @@
 ###[Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md)
 
 ###[Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
+
+###Connecting Phaidra to the Classification Server
