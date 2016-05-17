@@ -4,7 +4,11 @@
 
 ###[Introduction to classification](Classification_server/introduction_to_classification.md)
 
+###Knowledge Organisation Systems and Linked Data
+
 ###[Requirements of the Classification server](Classification_server/requirements_of_the_classification_server.md)
+
+###Application of the Classification Server
 
 ###[Available tools for classification](Classification_server/available_tools_for_classification.md)
 
