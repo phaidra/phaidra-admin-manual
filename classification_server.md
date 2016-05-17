@@ -8,7 +8,7 @@
 
 ###[Requirements of the Classification server](Classification_server/requirements_of_the_classification_server.md)
 
-###[Application of the Classification Server](Classification_server/
+###[Application of the Classification Server](Classification_server/application_of_the_classification_server.md)
 
 ###[Available tools for classification](Classification_server/available_tools_for_classification.md)
 
