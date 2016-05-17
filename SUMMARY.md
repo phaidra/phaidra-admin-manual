@@ -19,4 +19,5 @@
        * [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md)
        * [Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
        * [Application of the Classification Server](Classification_server/application_of_the_classification_server.md)
+       * References
 
