@@ -1,4 +1,4 @@
-# Connecting to Phaidra
+# Connecting Phaidra to the Classification Server 
 
 Phaidra will require the Classification Server when the user ingests new items and wants to add metadata to this from a controlled vocabulary, as well as when the user searches for some documents classified with some metadata from a controlled vocabulary and wants to display or resolve them.
 
