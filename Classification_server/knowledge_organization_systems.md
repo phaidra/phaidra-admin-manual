@@ -1,9 +1,9 @@
 # Knowledge Organization Systems
-Classifications can be considered as a collection of organized knowledge, therefore the technical background of classification is based on knowledge organisation systems. In knowledge organisation systems we usually store the knowledge in form of triplets, as object-predicate-subject, or object-attribute-value.
+Classifications can be considered as a collection of organized knowledge, therefore the technical background of classification is based on knowledge organization systems. In knowledge organization systems we usually store the knowledge in form of triplets, as object-predicate-subject, or object-attribute-value.
 
-Classifications can be represented in Simple Knowledge Organisation Systems (SKOS) [3] as a Resource Description Framework (RDF) vocabulary. Simple Knowledge Organization System (SKOS) is a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, subject-heading systems, or any other type of structured controlled vocabulary.
+Classifications can be represented in Simple Knowledge Organization Systems (SKOS) [3] as a Resource Description Framework (RDF) vocabulary. Simple Knowledge Organization System (SKOS) is a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, subject-heading systems, or any other type of structured controlled vocabulary.
 
-Using RDF allows knowledge organization systems to be used in distributed, decentralised metadata applications. Decentralised metadata is becoming a typical scenario, where service providers want to add value to metadata harvested from multiple sources. [4]
+Using RDF allows knowledge organization systems to be used in distributed, decentralized metadata applications. Decentralized metadata is becoming a typical scenario, where service providers want to add value to metadata harvested from multiple sources. [4]
 
 Each SKOS concept is defined as an RDF resource, and each concept can have RDF properties attached, which include one or more preferred terms, alternative terms or synonyms, and language specific definitions and notes. Established semantic relationships are expressed in SKOS and intended to emphasize concepts rather than terms/labels. [5]
 
