@@ -20,5 +20,5 @@
        * [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md)
        * [Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
        * [References](Classification_server/references.md)
-       * Connecting to Phaidra
+       * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
 
