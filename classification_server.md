@@ -4,7 +4,7 @@
 
 ###[Introduction to classification](Classification_server/introduction_to_classification.md)
 
-###Knowledge Organization Systems and Linked Data
+###[Knowledge Organization Systems and Linked Data](Classification_server/knowledge_organization_systems.md)
 
 ###[Requirements of the Classification server](Classification_server/requirements_of_the_classification_server.md)
 
