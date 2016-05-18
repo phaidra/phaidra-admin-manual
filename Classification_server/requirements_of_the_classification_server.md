@@ -4,14 +4,15 @@
 
 ## General
 
-* it should support classifications and controlled vocabularies
-* resolving the URIs of the terms
-  * support for multiple languages
-  * support for multiple versions
-  * should return the list of subterms
-  
-* Phaidra independent
-* no assumptions from Phaidra about the contents (set of classifications can differ on instances, its locally managed)
+The Classification Server should
+* support classifications and controlled vocabularies
+* resolve the URIs of different terms
+* support multiple languages (the “official” languages in Phaidra are English, German, Italian and Serbian)
+* support for multiple versions of classifications
+* return the list of subterms (narrower concepts)
+* be Phaidra independent
+
+no assumptions from Phaidra about the contents (set of classifications can differ on instances, its locally managed)
 * no too much development needed
 * [some background](https://docs.google.com/presentation/d/1RfvU-vwlAN_slJbziEtGO53BMtzENBe4HLAywnWUPOI/edit#slide=id.gb49f17f5f_0_0)
 
