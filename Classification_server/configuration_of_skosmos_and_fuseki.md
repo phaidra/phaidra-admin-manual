@@ -3,7 +3,13 @@
 ## Configuration of Skosmos
 
 Skosmos can be configured basically in two files, config.inc for setting some general parameters, and vocabularies.ttl is used to configure the vocabularies shown in Skosmos. 
+
 In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index  ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
+
+In Windows you have to edit the config.inc file additionaly as follow:
+1. change the TEMPLATE_CACHE setting like this: ```define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
+2. add this line to the bottom of file:
+define("BASE_HREF", "http://localhost/skosmos/");
 
 Vocabularies are managed in the RDF store accessed by Skosmos via SPARQL. The available vocabularies are configured in the vocabularies.ttl file that is an RDF file in Turtle syntax.
 
@@ -123,14 +129,7 @@ If you give it several GB it should be able to handle a 400MB file upload just f
 
 ### 6. Configure Skosmos
 
-Create config.inc file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named config.inc.dist that you can rename/copy as starting point.
 
-Edit the config.inc file:
-1. change the TEMPLATE_CACHE setting like this: define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
-2. check the default SPARQL endpoint setting and change that to match your SPARQL endpoint: 
-define("DEFAULT_ENDPOINT", "http://localhost:3030/ds/sparql");
-3. add this line to the bottom of file:
-define("BASE_HREF", "http://localhost/skosmos/");
 
 (See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
