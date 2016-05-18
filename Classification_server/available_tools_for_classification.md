@@ -64,40 +64,40 @@ Skosmos provides a multilingual user interface for browsing vocabularies. The la
 Skosmos provides an easy to use REST API for read only access to the vocabulary data. The return format is mostly JSON-LD, but some methods return RDF/XML, Turtle, RDF/JSON with the appropriate MIME type. These methods can be used to publish the vocabulary data as Linked Data. The API can also be used to integrate vocabularies into third party software. For example, the search method can be used to provide autocomplete support and the lookup method can be used to convert term references to concept URIs. [6]
 The developers of Skosmos recommend using the Jena Fuseki  triple store with the jena text index for large vocabularies. In addition to using a text index, caching of requests to the SPARQL endpoint with a standard HTTP proxy cache such as Varnish can be used to achieve better performance for repeated queries, such as those used to generate index view. 
 
-The software was tested by unipd, report is attached (onki_light_report.pdf).
+The previous version of the software (ONKI Light) was tested by UNIPD (see onki_light_report.pdf).
   
-
-## GINCO (CeCiLL v2 license)
-
-* GINCO is a free software developed by the French Ministry of Culture and Communication for managing vocabularies. 
-* It implements the principles defined in the ISO standard on "Thesauri and interoperability with other vocabularies" particularly on "Thesauri for information retrieval".
-* From [this GitHub repository](https://github.com/culturecommunication/ginco) can be downloaded, and could be tested.
-* The given links to the [Installation](http://culturecommunication.github.io/ginco/doc/INSTALL.md) and [Demo guides](http://culturecommunication.github.io/ginco/doc/VM_INSTALL.md) are not working.
-
 ## OCLC Terminology Services 
 
-* seems to be a finished research project with limited outputs
-* latest prototype was updated in 2012-11, but *no software downloads are available*
-* available outputs are:
-  *[ one-page-long overview](http://www.oclc.org/content/dam/research/activities/termservices/resources/termservices-overview.pdf)
-  * [resources webpage](http://tspilot.oclc.org/resources/index.html), where some technical and vocabulary resources are available
-  * some [presentations](http://tspilot.oclc.org/resources/overview.pdf) and [articles](https://journals.tdl.org/jodi/index.php/jodi/article/view/114/113)
+http://www.oclc.org/research/themes/data-science/termservices.html
 
-## MultiTes
+Seems to be a closed research project of OCLC with limited outputs. The latest prototype was updated in 2012-11, but *no software downloads are available*. Available outputs are a  [one-page-long overview](http://www.oclc.org/content/dam/research/activities/termservices/resources/termservices-overview.pdf), a [resources webpage](http://tspilot.oclc.org/resources/index.html), where some technical and vocabulary resources are available, as well as some [presentations](http://tspilot.oclc.org/resources/overview.pdf) and [articles](https://journals.tdl.org/jodi/index.php/jodi/article/view/114/113).
 
-* is a Windows based tool that provides
- * support for ANSI/NISO relationships
- * user defined relationships and comment fields for an unlimited number of thesauri (both monolingual and multilingual)
+## MultiTes Pro
+
+http://www.multites.com/
+
+MultiTes is a Windows based tool to create and manage thesauri, taxonomies and other types of controlled vocabularies. It supports:
+* ANSI/NISO standard relationships (USE, UF, BT, NT, RT, SN)
+* user-defined relationships, classifications, languages and note/comment fields
+* polyhierarchies (i.e. multiple BT's)
+* multilingual thesauri
+* validation of conflicting relationships
+* automatic generation of reciprocal relationships
+* complete hierarchy display.
+* advanced search by string in term, note content, categories, flags, status and TNR.
+* export to different formats, including plain text, XML, SKOS/RDF, RTF, XML, CSV, HTML and user configurable formats
+* export to HTML creates a simple web site of your thesaurus.
+* import terms, relationships, or fully-featured thesauri from text files or from clipboard
 
 ## TermTree 2000 
 
-* Windows-based tool
-* uses Access, SQL Server, or Oracle for data storage.
-* it can import and export
-  * TRIM thesauri (a format used by the Towers Records Information Management system),
-  * a defined TermTree 2000 tag format.
+http://www.termtree.com.au/
+
+TermTree 2000 is a Windows-based tool that uses MS uses Access, SQL Server, or Oracle for data storage. The tool verifies the validity of links as the thesaurus is created and automatically constructs all required reverse relationship links. It can import and export TRIM thesauri (a format used by the Towers Records Information Management system), as well as a defined TermTree 2000 tag format.
 
 ## WebChoir 
+
+http://webchoir.com
 
 * is a family of client-server Web applications
 * that provides different utilities for thesaurus management in multiple DBMS platforms,
