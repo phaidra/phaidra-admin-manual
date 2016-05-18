@@ -12,8 +12,9 @@ The Classification Server should
 * return the list of subterms (narrower concepts)
 * be Phaidra independent
 
-no assumptions from Phaidra about the contents (set of classifications can differ on instances, its locally managed)
-* no too much development needed
+Phaidra should have no assumptions about the contents, which means that the set of classifications can differ on instances that are locally managed. 
+We were looking for solutions that do not require too much development efforts and have lower costs.
+
 * [some background](https://docs.google.com/presentation/d/1RfvU-vwlAN_slJbziEtGO53BMtzENBe4HLAywnWUPOI/edit#slide=id.gb49f17f5f_0_0)
 
 ## Technical
