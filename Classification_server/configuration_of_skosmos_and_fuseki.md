@@ -1,35 +1,34 @@
 # Configuration of Skosmos and Fuseki
 
-## Checking the jena-text configuration
+## Configuration of Skosmos
 
-1. You have this line in config.inc: 
-define("DEFAULT_SPARQL_DIALECT", "JenaText"); 
+Skosmos can be configured basically in two files, config.inc for setting some general parameters, and vocabularies.ttl is used to configure the vocabularies shown in Skosmos. 
+In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index ( ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
 
-2. You are using a Fuseki assembler configuration with jena-text, i.e. the one from here: 
-https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText 
+Vocabularies are managed in the RDF store accessed by Skosmos via SPARQL. The available vocabularies are configured in the vocabularies.ttl file that is an RDF file in Turtle syntax.
 
-3. You have built the jena-text index using jena.textindexer: 
-http://jena.staging.apache.org/documentation/query/text-query.html#step-2-build-the-text-index 
+Each vocabulary is expressed as a skosmos:Vocabulary instance (subclass of void:Dataset). The local name of the instance determines the vocabulary identifier used within Skosmos (e.g. as part of URLs). The vocabulary instance has the following properties: title of vocabulary (in different languages), the URI namespace for vocabulary objects, language(s) and the default language that the vocabulary supports, URI of the SPARQL endpoint containing the vocabulary, and the name of the graph within the SPARQL endpoint containing the data of the individual vocabulary.
 
-## Data files of Fuseki
-
-Fuseki stores data in files. It is also possible to configure Fuseki for in-memory only, but with a large dataset, that will require a lot of memory. The in-memory use of Fuseki is usually faster.
-
-The jena-text enabled configuration file specifies directories where Fuseki stores its data. If you have not modified the configuration, those will be /tmp/tdb and /tmp/lucene. You need to clear/remove these directories if you want to flush the Fuseki data. 
+In addition to vocabularies, the vocabularies.ttl file also contains a classification for the vocabularies expressed as SKOS. The categorization is used to group the vocabularies shown in the front page of Skosmos. You can also set the content of the About page in about.inc, and add additional boxes to the left or to the right of the front page in left.inc or right.inc.
 
 
-For Skosmos unit tests this configuration was used:
-https://github.com/NatLibFi/Skosmos/blob/master/tests/fuseki-assembler.ttl
-where **tdb:location** and **text:directory** settings are the relevant ones. 
+## Configuration of Fuseki
 
-## Using text index
+Fuseki stores data in files. It is also possible to configure Fuseki for in-memory use only, but with a large dataset, this will require a lot of memory. The in-memory use of Fuseki is usually faster.
 
-The jena-text extension can be used for faster text search. 
+The jena text enabled configuration file specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
 
-If you start fuseki in the tdb with ```./fuseki-server --config config.ttl```then it will run using text index.
-For that in config.ttl (see e.g. jena-text-config.ttl) you have to configure 
-* for TDB: ```tdb:location "/var/www/skosmos/jena-fuseki1-1.3.0/tdb" ;```
-* for jena-text:```text:directory <file:/var/www/skosmos/jena-fuseki1-1.3.0/lucene> ;```
+
+### Using text index
+
+The jena text extension can be used for faster text search, and Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is a few thousand concepts, depending on the performance of the endpoint / triple store and how much latency is acceptable to the users.
+
+If you start fuseki in the TDB with ```./fuseki-server --config config.ttl```then it will run using text index.
+
+To use Fuseki in TDB, you have to configure in config.ttl the TDB location:
+```tdb:location "/var/www/skosmos/jena-fuseki1-1.3.0/tdb" ;```
+and for jena text index, and the lucene text directory:
+```text:directory <file:/var/www/skosmos/jena-fuseki1-1.3.0/lucene> ;```
 
 If you start fuseki in the memory with ```./fuseki-server --update --mem /ds```, then there is no text indexing by default.
 
@@ -38,26 +37,22 @@ It is also possible to use in-memory TDB and text index, but you need a Fuseki c
 * for jena-text: ```text:directory "mem"; ```
 
 By default Skosmos uses text index, but it can be switched off by 
-
 * either setting DEFAULT_SPARQL_DIALECT to "Generic" (instead of "JenaText") in config.inc (this affects all 
 vocabularies):
 ```define("DEFAULT_SPARQL_DIALECT", "Generic")```;
 * or setting ```skosmos:sparqlDialect "Generic"``` (instead of "JenaText") for just the certain vocabularies in vocabularies.ttl.
 
-
 ## Timeout settings
 
-If there is more data than Skosmos is made to handle, so some queries can take a very long time. 
+If there is more data than Skosmos is made to handle, so some queries can take very long time. 
 The slow queries are probably the statistical queries (number of concepts per type, number of labels per language) as well as the alphabetical index. (The statistical queries will be optimized in Skosmos 1.5 but this is not yet implemented, see https://github.com/NatLibFi/Skosmos/issues/413 )
 
 Short execution timeout for PHP scripts can trigger Runtime IO Exception.
 
 ### PHP and Apache timeout settings
 
-(to be clarified)
-
 See php.ini max_execution_time and Apache's TimeOut directive the settings. 
-It is worth finding the setting and changing it to a higher value (say 5 or 10 minutes):  
+It is highly recommended to find this setting and change it to a higher value (say to 5 or 10 minutes):  
 
 * /etc/httpd/conf/snippets/timeout.conf: Timeout 60 -> 600)
 * time.ini  
@@ -70,14 +65,16 @@ It is worth finding the setting and changing it to a higher value (say 5 or 10 m
 
 ### Skosmos timeout setting
 
-Skosmos has a HTTP_TIMEOUT setting in config.inc, you could see if increasing that to a large value helps. It should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
+Skosmos also has a HTTP_TIMEOUT setting in config.inc, that should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
 
 ### EasyRdf HTTP client timeout
 
-Also the EasyRdf HTTP client has a default timeout of 10 seconds. 
-It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on, but at least we know where the timeout is being set) 
+The EasyRdf HTTP client has a default timeout of 10 seconds. It is also recommended to change this value. 
+It is set in /var/www/skosmos/vendor/easyrdf/easyrdf/lib/EasyRdf/Http/Client.php near the top of the class definition. (If you change this then an update of EasyRdf might revert your changes later on)
 
 ### Checking the browsers' timing out. 
+
+It is suggested to change the timeout value from the browsers where you are planning to access Skosmos.
 
 #### IE Timeout setting
 
@@ -103,7 +100,6 @@ There are two ways to do this. You can extend your timeout, or you can totally d
 #### Chrome Timeout setting
 
 You can't change the timeout setting of Google Chrome. 
-Google has been ignoring requests to implement this feature for over six years.
 
 ### Varnish
 
