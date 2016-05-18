@@ -99,46 +99,40 @@ TermTree 2000 is a Windows-based tool that uses MS uses Access, SQL Server, or O
 
 http://webchoir.com
 
-* is a family of client-server Web applications
-* that provides different utilities for thesaurus management in multiple DBMS platforms,
-* is a hierarchical information organizing and searching tool that enables one to create and search varieties of hierarchical subject categories, controlled vocabularies, and taxonomies based on either predefined standards or a 
-user defined structure, and is then exported to an XML-based format.
-* it has two subsystems:
-  * *LinkChoir* that allows indexers to describe information sources using terminology organized in TermChoir.
-  * *SeekChoir* is a retrieval system that enables users to browse thesaurus descriptors and their references (broader 
+WebChoir is a family of client-server Web applications that provides different utilities for thesaurus management in multiple DBMS platforms. It is a hierarchical information organizing and searching tool that enables one to create and search varieties of hierarchical subject categories, controlled vocabularies, and taxonomies based on either predefined standards or a user defined structure, and is then exported to an XML-based format.
+It has two subsystems:
+ * *LinkChoir* that allows indexers to describe information sources using terminology organized in TermChoir.
+ * *SeekChoir* is a retrieval system that enables users to browse thesaurus descriptors and their references (broader 
 terms, related terms, synonyms, and so on).
 
 ## Synaptica 
 
-* is a client-server Web application
-* that can be installed locally on a client’s intranet or extranet server,
-* thesaurus data is stored in a SQL server or Oracle database,
-* the application supports the creation of electronic thesauri in compliance with the ANSI/NISO standard,
-* the application allows the exchange of thesauri in CSV (comma separated values) text format.
+http://www.synaptica.com
 
+Synaptica is is a client-server Web application that can be installed locally on a client’s intranet or extranet server. Thesaurus data is stored in a SQL server or Oracle database.  The application supports the creation of electronic thesauri in compliance with the ANSI/NISO standard. Synaptica allows the exchange of thesauri in CSV (comma separated values) text format.
 
 ## HIVE
 
-HIVE (Helping Interdisciplinary Vocabulary Engineering) is a system that assists in indexing of documents
-(Greenberg et al., 2011; White et al., 2013). The system is pre­loaded with multiple SKOS vocabularies.
+http://cci.drexel.edu/mrc/projects/hive/
+
+HIVE (Helping Interdisciplinary Vocabulary Engineering) is a system that assists in indexing of documents. The system is preloaded with multiple SKOS vocabularies.
 The web user interface of HIVE provides concept search and browsing facilities as well as an automated
-indexing tool which, when given a text document, suggests concepts from a user­selectable subset of the
+indexing tool which, when given a text document, suggests concepts from a user-selectable subset of the
 vocabularies. The main focus of the tool is on the automated indexing aspect, which is implemented using
-the KEA++ algorithm (Medelyan, 2009). 
+the KEA++ algorithm. 
 
 ## iQvoc
 
-iQvoc is a vocabulary management tool that supports editing and publishing of SKOS datasets (Bandholtz et al., 2010; Bandholtz et al., 2011). Originally built for the maintenance of German environmental vocabularies, it has since evolved into a general purpose multi­user SKOS and SKOS XL editing tool. For
-unauthenticated users, it provides search and browsing access to concepts in the vocabulary. In the
-following, we will only concentrate on the publishing aspect of iQvoc. The system is developed by innoQ
+http://iqvoc.net/
+
+iQvoc is a vocabulary management tool that supports editing and publishing of SKOS datasets. Originally was built for the maintenance of German environmental vocabularies, it has since evolved into a general purpose multi-user SKOS and SKOS XL editing tool. For unauthenticated users, it provides search and browsing access to concepts in the vocabulary. In the following, we will only concentrate on the publishing aspect of iQvoc. The system is developed by innoQ
 Deutschland GmbH, a commercial company, but available as open source software.
 
 ## CATCH
 
-The CATCH demonstrator (van der Meij, 2010) is a SKOS­based vocabulary and alignment repository. It
-consists of middleware providing vocabulary­oriented access services and APIs. One of the components is
-a vocabulary and alignment browser that can be used to search for concepts, for example to support manual indexing of documents. In the following, we concentrate on the browsing tool of CATCH. 
-* the online demonstrator of the tool was not functional, and the source code is not available for local testing
+http://www.cs.vu.nl/STITCH/repository/
+
+The CATCH demonstrator is a SKOS-based vocabulary and alignment repository. It consists of middleware providing vocabulary oriented access services and APIs. One of the components is a vocabulary and alignment browser that can be used to search for concepts, for example to support manual indexing of documents. In the following, we concentrate on the browsing tool of CATCH. 
+The online demonstrator of the tool was not functional, and the source code is not available for local testing.
 
 
-## OpenSKOS
