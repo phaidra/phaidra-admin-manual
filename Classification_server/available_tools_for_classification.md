@@ -17,60 +17,55 @@ Available vocabularies in ThManager include AGROVOC, DCType, GEMET, ISO639, and 
 Unfortunately, the latest version of ThManager was launched in 2006, and we cannot expect any updates. Another drawback of ThManager is that it does not provide a SPARQL endpoint for accessing the managed vocabularies.
 
 
-##**ONKI**
-
-* Finnish Ontology Library Service for a collection of several ontologies and vocabularies
-* Implementation: Onki Light (now Skosmos)
-  * With very nice REST API, build on top of php and[ Apache Jena](http://jena.apache.org/) (a free and open source Java framework for building Semantic Web and Linked Data applications).
-  * Open source - MIT license.
-  * The software was tested by unipd, report is attached (onki_light_report.pdf).
-  * Currently, this software is used also by FAO/AGROVOC
-
 ## **TemaTres**
 
 http://www.vocabularyserver.com/
 
-
-* Relationship between terms (BT/NT, USE/UF, RT)
-* No limits to number of terms, alternative labels, levels of hierarchy, etc
-* Systematic or alphabetic navigation
-* Search
-* Complete export in XML format (Zthes, TopicMaps, MADS, Dublin Core,VDEX, BS 8723, SiteMap, SQL)
-* Complete export in RDF format (Skos-Core)
-* Complete export in txt
-* Scope notes, Historical and Bibliographical notes
-* User management
-* Terms and user supervision
-* Duplicates terms control
-* Free terms control
-* Quality assurance functions (Duplicates and free terms, ilegal relations)
-* Multilingual interface
-* Easy Install
-* Utility to import thesauri from tabulated textfiles
-* Unique code for each term
-* "Edit in place" features for terms and codes.
-* Terminology mapping, multilingual terminology mapping
-* Term reports for editors
-* Workflow: candidate, accepted and rejected terms
-* Allow to create user-defined relationships
-* Relationships between terms and web entities
-* Allow to define published and hidden labels
-* Export to WXP (WordPress XML)
-* Import and export data in Skos-core
+TemaTres is an open source vocabulary server developed in Argentina. It includes a web application to manage and exploit vocabularies, thesauri, taxonomies and formal representations of knowledge stored in a MySQL database, and provides the created thesauri in SKOS format. TemaTres  requires PHP, MySql MySQL and a HTTP Web server.
+TemaTres provides a SPARQL endpoint. Exporting and publishing controlled vocabularies is possible in many metadata schemas (SKOS-Core, Dublin Core, MADS, JSON, etc.). It can import data in SKOS-Core format and has a utility to import thesauri from tabulated text files.
+It has an advanced search with search terms suggestions, and a systematic or alphabetic navigation. TemaTres has a special vocabulary harmonization feature where it can find equivalent, no equivalent, and partial terms against other vocabularies.
+It supports multilingual thesaurus, multilingual terminology mapping, and includes a multilingual interface. It exposes vocabularies with powerful web services. TemaTres displays terms in multiple deep levels in the same screen. It also provides quality assurance functions (duplicates and free terms, illegal relations). The main drawback of TemaTres is that not all documentation is available in English.
 
 ## SKOS Shuttle
-SKOS Shuttle supports you in building, maintaining and operating taxonomies, thesauri and ontologies. It allows operating on basically any external cloud based RDF SESAME compliant repositories and editing of Triples directly. SKOS Shuttle integrates a REST API to create, manage, navigate thesauri. It uses internal and also external RDF repositories (e.g. blazegraph), and accesses securely all information through SSL/DIGEST. It provides comprehensive security (Rights, Groups, User and Project Management) and a very smart Orphan Concept Analysis and direct “deorphanization” without SPARQL. RDF Import/Exportis possible in 6 different formats (…).
-Systematic Assistant helps you with different descriptor systems.
-The SKOS Shuttle API provides a full REST API that can be embedded into any application. The API requires authentication to provide online services.
 
+https://skosshuttle.ch/
+
+SKOS Shuttle  is a multi-user/multi-tenant online Thesaurus Service developed by Semweb LLC (Switzerland). It supports building, maintaining and operating of SKOS thesauri. SKOS Shuttle allows operating on an internal own RDF repository and on any external SESAME compliant RDF repositories and it easily allows direct editing of RDF statements (triples) without restrictions. 
+The user interface is intuitive. SKOS Shuttle also integrates a full REST API to create, manage and navigate thesauri. It accesses securely all information through SSL transported authentication. It provides industrial security (Rights, Groups, User and Project Management) and a smart "Orphan Concept Analysis" together with an assistant for direct concept “deorphanization” without using one single line of SPARQL code. 
+With its “systematics assistant”, several base URI’s can be used inside one single thesaurus. RDF Import/Export and whole RDF snapshots are possible in 6 different formats (N3, N-Triples, TRIG, Turtle, NQuads, RDF/XML). 
+SKOS Shuttles allows to download/upload a full RDF snapshot preserving versioning of each thesaurus. SKOS language tags can be added/removed “on the fly” while editing the thesaurus, speeding up maintenance tasks. SKOS Shuttle allows quick filtering on any thesaurus language, and also during concepts navigation, this permits to find out missing labels during navigation.
+The SKOS Shuttle REST API provides a full range of selections / commands that are embeddable into any application using three output formats: JSON, XML and YAML. The API access requires the same secured authentication as the application to provide online services. 
+SKOS Shuttle seems to be a very promising tool. SKOS Shuttle is available as a service and is already being used by several Universities. SKOS Shuttle is not an open source product. Pricing is not yet known but SKOS Shuttle will be provided as a commercial service for small thesauri and as a free service for universities (up to a larger extent).
 
 ## PoolParty
 
-PoolParty [https://www.poolparty.biz/] is a commercial world-class semantic technology suite that offers sharply focused solutions to your knowledge organization and content business. 
-As a semantic middleware, PoolParty enriches your information with valuable metadata and links your business and content assets automatically.
-The PoolParty Taxonomy & Thesaurus Manager is a world-class tool to build and maintain your information architecture. It differentiates from other market solutions for taxonomy management through powerful capabilities like corpus analysis that can be extended gradually.
-The PoolParty thesaurus manager enables practitioners to start their work with limited training. Subject matter experts can model their fields of expertise without IT support.
-PoolParty taxonomy management software applies SKOS, knowledge graphs and APIs. With PoolParty, you can import existing taxonomies and thesauri (e.g. from Excel) and export them in different standard formats.
+https://www.poolparty.biz/
+
+PoolParty is a commercial semantic technology suite, developed by Semantic Web Company that offers solutions to your knowledge organization and content business problems. 
+As a semantic middleware, PoolParty enriches your information with metadata and automatically links your business and content assets.
+The PoolParty Taxonomy & Thesaurus Manager is a powerful tool to build and maintain your information architecture. The PoolParty thesaurus manager enables practitioners to start their work with limited training. Subject matter experts can model their fields of expertise without IT support.
+PoolParty taxonomy management software applies SKOS knowledge graphs. With PoolParty, you can import existing taxonomies and thesauri (e.g. from Excel) and export them in different standard formats. In addition to basic SKOS querying, the API also supports the import of RDF data, SPARQL update and a service to push candidate terms into a thesaurus.
+
+## Protégé
+
+http://protege.stanford.edu/
+
+Protégé  is a free, open-source ontology editor and framework for building intelligent systems. Protégé was developed by the Stanford Center for Biomedical Informatics Research at the Stanford University School of Medicine. Protégé is supported by a strong community of academic, government, and corporate users, who use Protégé to build knowledge-based solutions in areas as diverse as biomedicine, e-commerce, and organizational modelling.
+With the web-based ontology development environment of Protégé, called WebProtégé, it is easy to create, upload, modify, and share ontologies for collaborative viewing and editing. The highly configurable user interface provides suitable environment for beginners and experts. Collaboration features abound, including sharing and permissions, threaded notes and discussions, watches and e-mail notifications. RDF/XML, Turtle, OWL/XML, OBO, and other formats are available for ontology upload and download.
+Although it is a very good tool, it is too complex for editing and visualizing such a simple model as SKOS, and provides too many options not specifically adapted for the type of relationships used in SKOS.
+
+##**Skosmos**
+
+http://skosmos.org/
+
+Skosmos, developed by the National Library of Finland, is an open source web application for browsing controlled vocabularies. Skosmos was built on the basis of prior development (ONKI, ONKI Light) for developing vocabulary publishing tools in the FinnONTO (2003̄–2012) research initiative from the Semantic Computing Research Group.
+Skosmos is a web-based tool for accessing controlled vocabularies used by indexers describing documents, and by users searching for suitable keywords. Vocabularies are accessed via SPARQL endpoints containing SKOS vocabularies.
+Skosmos provides a multilingual user interface for browsing vocabularies. The languages currently supported in the user interface are English, Finnish, German, Norwegian, and Swedish. However, vocabularies in any language can be searched, browsed and visualized, as long as proper language tags for labels and documentation properties have been provided in the data. 
+Skosmos provides an easy to use REST API for read only access to the vocabulary data. The return format is mostly JSON-LD, but some methods return RDF/XML, Turtle, RDF/JSON with the appropriate MIME type. These methods can be used to publish the vocabulary data as Linked Data. The API can also be used to integrate vocabularies into third party software. For example, the search method can be used to provide autocomplete support and the lookup method can be used to convert term references to concept URIs. [6]
+The developers of Skosmos recommend using the Jena Fuseki  triple store with the jena text index for large vocabularies. In addition to using a text index, caching of requests to the SPARQL endpoint with a standard HTTP proxy cache such as Varnish can be used to achieve better performance for repeated queries, such as those used to generate index view. 
+
+The software was tested by unipd, report is attached (onki_light_report.pdf).
+  
 
 ## GINCO (CeCiLL v2 license)
 
@@ -121,16 +116,6 @@ terms, related terms, synonyms, and so on).
 * the application supports the creation of electronic thesauri in compliance with the ANSI/NISO standard,
 * the application allows the exchange of thesauri in CSV (comma separated values) text format.
 
-## Protégé
-
-(see [protégé](http://protege.stanford.edu/))
-
-Protégé  is a free, open-source ontology editor and framework  for building intelligent systems. 
-Protégé is supported by a strong community of academic, government, and corporate users, who use Protégé to build knowledge-based solutions in areas as diverse as biomedicine, e-commerce, and organizational modelling.
-WebProtégé is an ontology development environment for the Web that makes it easy to create, upload, modify, and share ontologies for collaborative viewing and editing. WebProtégé fully supports the latest OWL 2 Web Ontology Language. The highly configurable user interface creates the perfect environment for beginners and experts alike. Collaboration features abound, including sharing and permissions, threaded notes and discussions, watches and email notifications. RDF/XML, Turtle, OWL/XML, OBO, and other formats available for ontology upload and download.
-
-* too complex for editing and visualizing such a simple model as SKOS.
-* provides too many options not specifically adapted to the type of relations in SKOS.
 
 ## HIVE
 
