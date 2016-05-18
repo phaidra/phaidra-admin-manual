@@ -3,7 +3,7 @@
 ## Configuration of Skosmos
 
 Skosmos can be configured basically in two files, config.inc for setting some general parameters, and vocabularies.ttl is used to configure the vocabularies shown in Skosmos. 
-In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index ( ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
+In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index  ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
 
 Vocabularies are managed in the RDF store accessed by Skosmos via SPARQL. The available vocabularies are configured in the vocabularies.ttl file that is an RDF file in Turtle syntax.
 
@@ -135,9 +135,3 @@ define("BASE_HREF", "http://localhost/skosmos/");
 (See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
 
-### 7. Configure PHP (optional)
-
-The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
-
-* Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
-* If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
