@@ -1,12 +1,6 @@
 # Installation of Skosmos and Fuseki
 
-Installation of Skosmos: https://github.com/NatLibFi/Skosmos/wiki/Installation 
-
-Installation of Jena Fuseki with the jena-text extension: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
-
-## On a Windows 7 machine 
-
-Installation on Windows 7 (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11) environment.
+Skosmos and Fuseki require Apache and PHP running on the server. We have installed them on a Windows 7 environment (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11), as well as on a CENTOS 6.5 virtual machine (Intel Xeon CPU E5-2670 0 @ 2.60GHz), but we are going to implement the final version on Ubuntu 16.04.
 
 ### 1. Install XAMPP
 
@@ -54,24 +48,14 @@ The jena-text extension can be used for faster text search.)
 (More details on installing Fuseki with the jena-text extension can be seen at https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText)
 
 
-### 6. Configure Skosmos
-
-Create config.inc file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named config.inc.dist that you can rename/copy as starting point.
-
-Edit the config.inc file:
-1. change the TEMPLATE_CACHE setting like this: define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
-2. check the default SPARQL endpoint setting and change that to match your SPARQL endpoint: 
-define("DEFAULT_ENDPOINT", "http://localhost:3030/ds/sparql");
-3. add this line to the bottom of file:
-define("BASE_HREF", "http://localhost/skosmos/");
-
-(See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
 
-### 7. Configure PHP (optional)
+## On Linux
 
-The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
+### 
 
-* Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
-* If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
+Installation of Skosmos: https://github.com/NatLibFi/Skosmos/wiki/Installation 
 
+Installation of Jena Fuseki with the jena-text extension: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText## On a Windows 7 machine 
+
+Installation on Windows 7 (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11) environment.
