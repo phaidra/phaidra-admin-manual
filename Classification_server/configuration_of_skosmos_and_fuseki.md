@@ -122,3 +122,26 @@ For example Setting JVM heap to 8 GB:
 **export JVM_ARGS=-Xmx8000M**
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
+
+******************
+
+### 6. Configure Skosmos
+
+Create config.inc file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named config.inc.dist that you can rename/copy as starting point.
+
+Edit the config.inc file:
+1. change the TEMPLATE_CACHE setting like this: define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
+2. check the default SPARQL endpoint setting and change that to match your SPARQL endpoint: 
+define("DEFAULT_ENDPOINT", "http://localhost:3030/ds/sparql");
+3. add this line to the bottom of file:
+define("BASE_HREF", "http://localhost/skosmos/");
+
+(See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
+
+
+### 7. Configure PHP (optional)
+
+The default PHP configuration provided by your distribution is probably fine for Skosmos, but you may want to check php.ini anyway. Here are some things to check:
+
+* Make sure you have the date.timezone setting configured, otherwise you may get errors displaying date values.
+* If you use vocabularies with potentially a large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
