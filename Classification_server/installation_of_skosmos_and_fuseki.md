@@ -2,6 +2,11 @@
 
 Skosmos and Fuseki require Apache and PHP running on the server. We have installed them on a Windows 7 environment (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11), as well as on a CENTOS 6.5 virtual machine (Intel Xeon CPU E5-2670 0 @ 2.60GHz), but we are going to implement the final version on Ubuntu 16.04.
 
+A detailed installation guide of Skosmos can be found on: https://github.com/NatLibFi/Skosmos/wiki/Installation 
+and installation of Jena Fuseki with the jena-text extension on: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText , but but there are some deviations on the Windows version, as well as there are some important issues that are worth highlighting. 
+
+## Installation on Windows
+
 ### 1. Install XAMPP
 
 (Apache web server of XAMPP is required in order to run PHP.)
@@ -37,7 +42,7 @@ Result: c:\xampp\htdocs\skosmos contains index.php and other files and folders.
 
 If you download a new version of Skosmos (in case of by starting Skosmos you receive the error message: "Error: Dependencies managed by Composer missing. Please run "php composer.phar install"), that requires to set up PHP dependencies again.
 
-### 5. Install Jena Fuseki (later with jena-text extension)
+### 5. Install Jena Fuseki
 
 (Jena Fuseki is a SPARQL server and RDF triple store which is the recommended backend for Skosmos. 
 The jena-text extension can be used for faster text search.)
@@ -45,17 +50,27 @@ The jena-text extension can be used for faster text search.)
 1. Download the latest Fuseki distribution jena-fuseki-*.zip from http://jena.apache.org/download/#apache-jena-fuseki
 2. Unpack the downloaded file (apache-jena-fuseki-2.3.0.zip) to c:\apache-jena-fuseki-2.3.0
 
-(More details on installing Fuseki with the jena-text extension can be seen at https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText)
+## Installation on Linux
 
+### 1. Check and set Apache
 
+Before installing Skosmos, it is advisable to make sure that Apache works and PHP is enabled. After installing PHP, you may need to restart Apache.
 
+It may be required to set up Apache to access Skosmos under http://localhost/skomos by adding a symbolic link to the skosmos folder (e.g. opt/skosmos) into the DocumentRoot (e.g. /var/www/) and/or also you will need to give Apache permissions to perform network connections to allow Skosmos access to SPARQL endpoints.
 
-## On Linux
+### 2. Get Skosmos
 
-### 
+You can either clone the code of Skosmos from Github  or download the zipped version. It is worth using the current stable version (maintenance branch), and it is better to clone from Github because you can then easily upgrade to newer versions using ```git pull```.
 
-Installation of Skosmos: https://github.com/NatLibFi/Skosmos/wiki/Installation 
+### 3. Install Dependency Manager for PHP
 
-Installation of Jena Fuseki with the jena-text extension: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText## On a Windows 7 machine 
+Skosmos requires several PHP libraries which will be installed using a dependency manager called Composer . For this, you have to first download the Composer, and then install the dependencies with the ```install --no-dev``` option. After downloading a new version of Skosmos you may need to update the dependencies with the ```update --no-dev``` option.  
 
-Installation on Windows 7 (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11) environment.
+### 4. Chec and set PHP configuration
+
+The default PHP configuration is probably sufficient for Skosmos, but you may want to check php.ini just in case. Make sure that the date.timezone setting is configured correctly, otherwise Skosmos pages displaying date values may not work at all. If you use vocabularies with potentially large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
+
+### 5. Install Jena Fuseki
+
+JenaFuseki is a SPARQL server and triple store, which is the recommended backend for Skosmos. The jena text extension can be used for faster text search. Simply download the latest Fuseki distribution and unpack the downloaded file to the intended folder of Fuseki.
+
