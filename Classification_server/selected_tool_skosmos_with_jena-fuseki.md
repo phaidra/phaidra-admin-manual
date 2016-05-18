@@ -1,24 +1,11 @@
 # Selected tool: Skosmos with Jena-Fuseki
 
-(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos)
 
-## Links
+All of the tested tools have advantages and disadvantages, but the most important selection criteria for us were to find an open source tool that is based on the stable and widespread Jena technology which can also provide a SPARQL Endpoint and access via REST API. 
+For these selection criteria, Skosmos with Jena Fuseki seemed to be the best solution, therefore we have selected it for implementing our Classification Server.
 
-* [1] https://github.com/natlibfi/skosmos
+The classification server will be implemented using Skosmos as a frontend for handling SKOS vocabularies, and Jena Fuseki as a SPARQL Endpoint storing the SKOS vocabulary data (see Fig.1.).
+Alternatively, we could use any other SPARQL 1.1 compliant RDF store, but the performance will likely not be very good with large vocabularies since there is no text index support in generic SPARQL 1.1.
 
-* [2] http://skosmos.org/
+![Fig.1. System architecture ](Figure_1.png)
 
-## Requirements of Skosmos
-
-* one or more SKOS vocabularies
-* PHP capable web server
-* SPARQL triple store (we recommend Apache Jena Fuseki with jena-text)
-* HTTP cache (e.g. Varnish) - optional but recommended
-
-## SPARQL
-
-* http://www.w3.org/wiki/SparqlImplementations
-
-## Demo
-
-* Skosmos demo is available [here](http://skosmos.dev.finto.fi/en/)
