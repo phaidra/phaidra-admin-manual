@@ -1,6 +1,21 @@
 # Available tools for classification
 
-(source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services#candidates)
+(original source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Terminology_services#candidates)
+
+##ThManager
+
+http://thmanager.sourceforge.net/
+
+ThManager  is an open source tool for creating and visualizing SKOS RDF vocabularies. ThManager was developed by the Advanced Information Systems Laboratory of the University of Zaragoza. It was implemented in Java using Apache Jena, and facilitates the management of thesauri and other types of controlled vocabularies such as taxonomies or classification schemes. ThManager allows for selecting and filtering the thesauri stored in the local repository. Description of thesauri by means of metadata is in compliance with a Dublin Core based application profile for thesaurus.
+
+ThManager runs on Windows and Unix, and only requires having a Java Virtual Machine installed on the system. The application is multilingual. The application supports out of the box Spanish and English languages, but with little effort other languages can be implemented.
+
+The main features include the visualization of thesaurus concepts (alphabetically, in hierarchical structure, properties of selected concepts), ability to search concepts ("equals", "starts with" and "contains"), editing thesaurus content (creation of concepts, deletion of concepts, and update of concept properties), export of thesauri (including thesaurus metadata) in SKOS format. 
+
+Available vocabularies in ThManager include AGROVOC, DCType, GEMET, ISO639, and UNESCO.
+
+Unfortunately, the latest version of ThManager was launched in 2006, and we cannot expect any updates. Another drawback of ThManager is that it does not provide a SPARQL endpoint for accessing the managed vocabularies.
+
 
 ##**ONKI**
 
@@ -11,25 +26,11 @@
   * The software was tested by unipd, report is attached (onki_light_report.pdf).
   * Currently, this software is used also by FAO/AGROVOC
 
-## **TemaTres** GPUv2 
+## **TemaTres**
 
-* [wiki](http://r020.com.ar/tematres/wiki/doku.php) in spanish with a lot of information
-* [Demo here](http://vogon.cab.unipd.it/tematres/) in Padua (is not) available (login: yuri.carrer@unipd.it password: tematres )
-* TemaTres is an open source vocabulary server, web application to manage and exploit vocabularies, thesauri, taxonomies and formal representations of knowledge, that are stored in a MySQL database, and provides the created thesauri in SKOS (or Zthes) format
-* Require PHP, MySql and HTTP Web server.
-* Web application for management formal representations of knowledge, thesauri, taxonomies and multilingual vocabularies
-  * one can export and publish controlled vocabulary and in many metadata schemas (SKOS-COre, Dublin Core, MADS, JSON, etc.)
-* latest version (TemaTres 2.0) was modified at 2015-08-26, can be downloaded from [here](http://sourceforge.net/projects/tematres/files/latest/download)
+http://www.vocabularyserver.com/
 
-Main features:
-* SPARQL endpoint (SPARQL Protocol and RDF Query Language)
-* Meta-terms: define facets, collections or arrays of terms
-* Support for multilingual thesaurus
-* Expose vocabularies with powerful web services
-* Search terms suggestion (did you mean...?)
-* Display terms in multiple deep levels in the same screen
-* Search expansion
-* Vocabulary harmonization features: equivalent, no equivalent and partial terms with other vocabularies
+
 * Relationship between terms (BT/NT, USE/UF, RT)
 * No limits to number of terms, alternative labels, levels of hierarchy, etc
 * Systematic or alphabetic navigation
@@ -120,35 +121,6 @@ terms, related terms, synonyms, and so on).
 * the application supports the creation of electronic thesauri in compliance with the ANSI/NISO standard,
 * the application allows the exchange of thesauri in CSV (comma separated values) text format.
 
-## **ThManager**
-
-* is an Open Source Tool, for creating and visualizing SKOS RDF vocabularies
-* Windows executable, source, manuals, etc. can be downloaded from [here](http://sourceforge.net/projects/thmanager/)
-* the latest version of ThManager was launched in 2006, so it was not tested in a Windows 7 environment
-* developed by the Advanced Information Systems Laboratory of the University of Zaragoza
-* implemented in Java using [Apache Jena](http://jena.apache.org/) API
-* facilitates the management of thesauri and other types of controlled vocabularies, such as taxonomies or classification schemes
-* Multi-platform (Windows, Unix) with the minimum requirement of having installed a Java virtual machine
-* Multilingual (developed following the Java internationalization methodology), Spanish and English versions are available, but with little effort, other languages could be supported
-* Selection and filtering of the thesauri stored in the local repository
-* Description of thesauri by means of metadata is in compliance with a Dublin Core based application profile for thesaurus
-* Main features:
-  * Visualization of thesaurus concepts (alphabetically, in hierarchical structure, properties of selected concepts)
-  * Search of concepts ("equals", "starts with" and "contains")
-  * Edition of thesaurus content (creation of concepts, deletion of concepts, and update of concept properties)
-  * Export of thesauri (including thesaurus metadata) according to SKOS format
-  * Extraction of related concepts in WordNet
-
-* Available vocabularies in ThManager:
-  * AGROVOC
-  * DCType
-  * GEMET
-  * ISO639
-  * UNESCO
-  * etc.
-
-* ThManager does not provide any SPARQL endpoint!
-
 ## Protégé
 
 (see [protégé](http://protege.stanford.edu/))
@@ -159,10 +131,6 @@ WebProtégé is an ontology development environment for the Web that makes it ea
 
 * too complex for editing and visualizing such a simple model as SKOS.
 * provides too many options not specifically adapted to the type of relations in SKOS.
-
-## SKOS Play
-
-(to be added)
 
 ## HIVE
 
