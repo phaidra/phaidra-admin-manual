@@ -108,51 +108,55 @@ If you run Fuseki in the TDB, then the uploads and updates will remain there eve
 
 In a SPARQL triple store there is a default (unnamed) graph, and there can be multiple named graphs. In other words, there is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. The URI namespaces can be used as graph names. E.g. http://vocab.getty.edu/tgn/ would store Getty's TGN data.
 
-
-
 ### Uploading files online
 
 To upload online you can use the control panel of the web interface of Fuseki or you can use command line instructions. 
 
 When uploading datasets online to Fuseki through its control panel, you can set the Graph to “default” or provide a graph name.
 
-
 If you use a graph name when uploading a dataset to Fuseki, you have to make sure of giving the same graph name to this dataset in skosmos:sparqlGraph (e.g. http://vocab.getty.edu/tgn/) by setting Skomos vocabularies in vocabularies.ttl.
 
-### Using the web interface of Fuseki
+#### Using the web interface of Fuseki
 
-1. start Fuseki server (see [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md))
+1. start Fuseki server
 2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
 3. Select Server Management / Control Panel
 4. Select Dataset: /ds
 5. File upload / Choose Files
 
-#### To the default graph
+##### To the default graph
 
 1. Graph: default
 2. Upload
 
-#### To a named graph
+##### To a named graph
 
 1. Graph: *write here the graph name according to the skosmos:sparqlGraph parameter in vocabularies.ttl*
 2. Upload
 
-### From the command line in Fuseki's folder on Linux
+#### From the command line in Fuseki's folder on Linux
 
-#### On-line 
+If you want to upload datasets online to Fuseki from the command line, you have two options: the s-put and s-post utilities, which are part of Fuseki. 
+
+The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena text index). It can to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). If you give several GB memory to Fuseki (for example Setting JVM heap to 8 GB: export JVM_ARGS=-Xmx8000M) it should be able to upload large (several hundreds of MB) files, though it might take a while and you may want to restart Fuseki afterwards to free some memory.
+
+##### s-put 
+
+You can use s-put, if you want to add a single data file. Note that s-put clears the dataset first, that is why it may happen that you overwrite the previous data when loading a new file.
 
 1. Start Fuseki server (with text index) from its directory:
-  * **./fuseki-server --config jena-text-config.ttl**
-2. use the command line utility s-put or s-post, that comes with Fuseki:
-  * use **s-put** if you want to add single data file:
-    * ./s-put *SPARQL-server* *Graph-name* *data-to-be-uploaded*
-    * e.g.: ./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl 
+  ```./fuseki-server --config jena-text-config.ttl```
+2. ```./s-put *SPARQL-server* *Graph-name* *data-to-be-uploaded*```
+    * e.g.: ```./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl ```
 
-    Note: s-put does - it clears the graph first. It may happen, that you overwrite the previous data when loading a new file.
+##### s-post
 
-  * use **s-post** if you want to add new data files to existing data without clearing it:
-    * ./s-post *SPARQL-server* *Graph-name* *data-to-be-uploaded*
-    * e.g.: ./s-post http://localhost:3030/ds/data http://vocab.getty.edu/aat/ ./vocabularies/skos.rdf
+If you want to add new data files to existing data without clearing it, you should use the s-post utility.
+
+1. Start Fuseki server (with text index) from its directory:
+  ```./fuseki-server --config jena-text-config.ttl```
+2. ```./s-post *SPARQL-server* *Graph-name* *data-to-be-uploaded*```
+    * e.g.: ```./s-post http://localhost:3030/ds/data http://vocab.getty.edu/aat/ ./vocabularies/skos.rdf```
 
 ### Uploading files offline
 
