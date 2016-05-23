@@ -264,23 +264,25 @@ SELECT (COUNT(*) AS ?count) {
 
 (The vocabularies to show in Skosmos are configured in the file `vocabularies.ttl` which is an RDF file in Turtle syntax.)
 
-1. create a vocabularies.ttl file in the Skosmos directory (c:\xampp\htdocs\skosmos). There are example files named vocabularies.ttl.dist that you can rename/copy to vovabularies.ttl as starting point. In this file
-2. create a new session starting with the line: 
-:id a skosmos:Vocabulary, void:Dataset ;
-where id is just an identifier. It will be used in the URL after /skosmos/.
-3. set the following required parameters:
+First, you need to create a vocabularies.ttl file in the Skosmos directory. 
+In this file after defining the prefixes (like rdf, skos, dc) you have to create new sessions for each vocabulary starting with the line :id a skosmos:Vocabulary, void:Dataset; where id is just an identifier that will be used in the URL after /skosmos/.
+In vocabularies.ttl you have to set the following required parameters:
 
-  * the title of the vocabulary in different languages: **dc:title "title_of_the_vocabulary"@ language ;** where language can be: en, fi, sv, etc.
-  * the category of the vocabulary: **dc:subject : category ;** where category can be: **cat_general**. The categories have to be defined in vocabularies.ttl file. For the skosmos.dev.finto.fi demo site, there have been defined six categories (loosely based on the UDC top level categories). You need to copy the category definitions to your file as well, or change everything to cat_general.
-  * the URI namespace for vocabulary objects (these may not overlap): **void:uriSpace " URI_namespace ";** When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting. 
-  * the language(s) that the vocabulary supports: **skosmos:language " language ", " language ", ... ;** where language can be: en, fi, sv, etc.
-  * the default language of the vocabulary, if the vocabulary supports multiple languages: **skosmos:defaultLanguage " language ";**  where language can be: en, fi, sv, ?
-  * the URI of the SPARQL endpoint containing this vocabulary **void:sparqlEndpoint < URI_SPARQL_endpoint > ;** URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
-  * Skosmos relies on **hasTopConcept** but it is only necessary if you enable the **showTopConcepts** setting. Setting **skosmos:showTopConcepts true** should display the top level hierarchy - assuming that the dataset contains the **skos:hasTopConcept** and/or **skos:topConceptOf** relationships that are necessary for this to work. If you want to enable the *Hierarchy tab* showing top-level concepts on the vocabulary home page: **skosmos:showTopConcepts** "true";
-  * *Group index* is meant for thematic groupsClass of resources to display as concept groups,  or as arrays (subdivisions) of sibling concepts (typical values are **skos:Collection** or **isothes:ConceptGroup**): **skosmos:groupClass isothes:ConceptGroup ;** If you don't need this tab, simply drop the **skosmos:groupClass** setting.
-  * if you do not want Skosmos to query the mapping concept URIs for labels if they haven't been found at the configured SPARQL endpoint: **skosmos:loadExternalResources "false";**
-  * URI of the main **skos:ConceptScheme** (instance of the current vocabulary) should be specified if the vocabulary contains multiple **skos:ConceptScheme** instances **skosmos:mainConceptScheme < _main_Concept_Scheme_URI_ >**.
-  * if the vocabulary is relatively small (eg. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time: **skosmos:fullAlphabeticalIndex "true";**. It is not recommended to use **fullAlphabeticalIndex** for large vocabularies
+1.	the title of the vocabulary in different languages: dc:title "title_of_the_vocabulary"@ language; where language can be: en, de, it, etc.
+2.	the category of the vocabulary: dc:subject : category; where category can be: cat_general, or other defined categories in vocabularies.ttl expressed as SKOS. The categorization is used to group the vocabularies shown in the front page. 
+3.	the URI namespace for vocabulary objects (these may not overlap): void:uriSpace "URI_namespace"; When you represent your data as RDF, the best practice is to coin a new URI namespace for your data set. Then use that as the value of the uriSpace setting.
+4.	the language(s) the vocabulary supports: skosmos:language " language ", " language ", ... ; where language can be: : en, de, it, etc.
+5.	the URI of the SPARQL endpoint containing this vocabulary void:sparqlEndpoint <URI_SPARQL_endpoint> ;URI_SPARQL_endpoint can be http://localhost:3030/ if you want to use the vocabulary locally, or the URL of the SPARQL endpoint of the remote vocabulary
+
+It is recommended to set the following optional parameters:
+1.	the default language of the vocabulary, if the vocabulary supports multiple languages: skosmos:defaultLanguage " language "; where language can be: : en, de, it, etc.
+2.	setting skosmos:showTopConcepts true should display the top level hierarchy - assuming that the dataset contains the skos:hasTopConcept and/or skos:topConceptOf relationships that are necessary for this to work. If you want to enable the Hierarchy tab showing top-level concepts on the vocabulary home page: skosmos:showTopConcepts should be set to "true";
+3.	Group index is meant for thematic groupsClass of resources to display as concept groups, or as arrays (subdivisions) of sibling concepts (typical values are skos:Collection or isothes:ConceptGroup): skosmos:groupClass isothes:ConceptGroup; If you don't need this tab, simply remove the skosmos:groupClass setting.
+4.	if you do not want Skosmos to query the mapping concept URIs for labels if they haven't been found at the configured SPARQL endpoint: skosmos:loadExternalResources "false";
+5.	URI of the main skos:ConceptScheme (instance of the current vocabulary) should be specified if the vocabulary contains multiple skos:ConceptScheme instances skosmos:mainConceptScheme <main_Concept_Scheme_URI>.
+6.	if the vocabulary is relatively small (e.g. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time: skosmos:fullAlphabeticalIndex "true";. It is not recommended to use fullAlphabeticalIndex for large vocabularies
+
+ 
 
 (See more details of configuring the vocabularies.ttl here: https://github.com/NatLibFi/Skosmos/wiki/Vocabularies)
 
