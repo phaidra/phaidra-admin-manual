@@ -282,8 +282,6 @@ It is recommended to set the following optional parameters:
 5.	URI of the main skos:ConceptScheme (instance of the current vocabulary) should be specified if the vocabulary contains multiple skos:ConceptScheme instances skosmos:mainConceptScheme <main_Concept_Scheme_URI>.
 6.	if the vocabulary is relatively small (e.g. 100 concepts) you can show the alphabetical index with all the concepts instead of showing only the concepts of one letter at a time: skosmos:fullAlphabeticalIndex "true";. It is not recommended to use fullAlphabeticalIndex for large vocabularies
 
- 
-
 (See more details of configuring the vocabularies.ttl here: https://github.com/NatLibFi/Skosmos/wiki/Vocabularies)
 
 ## Individual vocabularies
