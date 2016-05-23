@@ -20,6 +20,8 @@
 
 ###[Getting and setting vocabularies](Classification_server/getting_and_setting_vocabularies.md)
 
+[](Classification_server/some_examples_and_problems_with_individual_vocab.md)
+
 ###[Current Phaidra-related service of Skosmos](Classification_server/current_phaidra_related_service_of_skosmos.md)
 
 ###[Non Phaidra-related services of Skosmos](Classification_server/non_phaidra-related_services_of_skosmos.md)
