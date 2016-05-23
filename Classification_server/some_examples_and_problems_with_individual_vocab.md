@@ -56,30 +56,15 @@ Skosmos needs to have a text index to work with vocabularies of medium to large 
 ### COAR Resource Type Vocabulary
 
 
-COAR only represents labels using SKOS XL properties. Skosmos doesn't support SKOS XL currently (see issue #109 in the GitHub Issues section, e.g. https://github.com/NatLibFi/Skosmos/issues/109 ).
+COAR Resource Type Vocabulary  defines concepts to identify the genre of a resource. Such resources, like publications, research data, audio and video objects, are typically deposited in institutional and thematic repositories or published in journals.
 
-The remote endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) can not be used. Skosmos requires the data to follow SKOS Core. The COAR endpoint data currently is not SKOS Core. 
+The main problem with COAR is that it only represents labels using SKOS XL properties. Skosmos doesn't support SKOS XL currently. 
 
-If you want to use COAR data locally, so you will first need to convert the data to SKOS Core labels ("plain SKOS"). One tool that can do this for you is here: http://art.uniroma2.it/owlart/documentation/utilities.jsf#skos_utilities
+Unfortunately, the remote SPARQL endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) cannot be used either, because the COAR endpoint data currently is not SKOS Core, but SKOS-XL. Since we wanted to use COAR data in our Classification Server, we have converted to SKOS Core labels using owlart converter (see Getting and setting vocabularies). 
 
-#### 1. Configure in vocabularies.ttl:
+We have also tried this SPARQL Update query that converted SKOS XL labels into SKOS Core labels:
 
-     :coarrt a skosmos:Vocabulary, void:Dataset ;
-        dc:title "COAR Resource Type Vocabulary - PL - load dataset first!"@en ;
-        dc:subject :cat_general ;
-        void:uriSpace "http://purl.org/coar/resource_type/";
-        skosmos:language "en";
-        skosmos:showTopConcepts "true";
-        skosmos:loadExternalResources "true";
-        skosmos:fullAlphabeticalIndex "true";
-        #skosmos:arrayClass isothes:ThesaurusArray ;
-        void:sparqlEndpoint <http://localhost:3030/ds/sparql>;
-        #skosmos:sparqlGraph <http://purl.org/coar/resource_type/>;
-        .
-#### 2. Start Fuseki
-#### 3. Load COAR Resource Type Vocabulary
-If you have it in SKOS XL format only, then execute this SPARQL Update query that converts SKOS XL labels into SKOS Core labels:
-
+```
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
     PREFIX skos:   <http://www.w3.org/2004/02/skos/core#> 
     PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
@@ -98,38 +83,11 @@ If you have it in SKOS XL format only, then execute this SPARQL Update query tha
       UNION 
        { ?c skos:definition/rdf:value ?def }  
      } 
+     
+```
 
-### ÖFOS - 2012
+### ÖFOS
 
-(to be edited)
-
-You need to represent your classification using the SKOS data model. For some guidance, see 
-the SKOS Primer [1] and introductory articles [2,3]. An excellent general introduction to RDF and Linked Data is given for example in the Linked Data book [4] available for free online. For specifics on what aspects of SKOS and other RDF vocabularies Skosmos supports, see the wiki page Data Model [5]. 
-[1] https://www.w3.org/TR/skos-primer/ 
-[2] http://www.dataversity.net/introduction-to-skos/ 
-[3] http://www.ala.org/alcts/resources/z687/skos 
-[4] http://linkeddatabook.com/ 
-[5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model 
-
-### Examples
-
-(to be edited and completed)
-
-#### For "COAR-Resource Type Vocabulary" set the properties as follow:
-
-dc:title "COAR - Resource Type Vocabulary"@en ;
-dc:subject :cat_general ;
-void:uriSpace "http://purl.org/coar/resource_type/";
-skosmos:language "en";
-void:sparqlEndpoint <http://localhost:3030/ds/sparql> ;
-.
-
-#### For sample record of "Getty TGN vocabulary" set the properties as follow:
-
-dc:title "Getty TGN Vocabulary"@en ;
-dc:subject :cat_general ;
-void:uriSpace "http://vocab.getty.edu/tgn/7011179";
-skosmos:language "en";
-void:sparqlEndpoint <http://localhost:3030/> ;
-.
-
+ÖFOS is the Austrian version of the Field of Science and Technology Classification (FOS 2007), maintained by Statistics Austria. The Austrian classification scheme for branches of science (1-character and 2-character) is a further development modified for Austrian data.
+ÖFOS can be downloaded in PDF and CSV format, but neither in SKOS structure (in xml/rdf, turtle or N-Triples) format, nor Linked Open Data through a SPARQL Endpoint is available.
+Since we have received it directly from Statistics Austria in Excel format, the simplest way of converting it to SKOS was using VBA macros. These macros simply reads the content of the Excel file, extend them with the appropriate RDF and SKOS labels, and writes the to the desired xml/rdf or ttl format.
