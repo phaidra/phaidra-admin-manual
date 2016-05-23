@@ -1,2 +1,2 @@
-# Some examples and problems with individual vacabularies
+# Some examples and problems with individual vocabularies
 
