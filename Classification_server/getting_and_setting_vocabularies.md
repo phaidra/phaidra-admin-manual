@@ -164,11 +164,18 @@ If you have several and large files to upload to Fuseki, and there are memory pr
 
 The dataset and the index can be built in two steps using command line tools: 
 
-1. Build the RDF dataset in TDB with tdbloader
+#### 1. Build the RDF dataset in TDB with tdbloader
 
-```java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file
-```
+```java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file```
 
+E.g.:
+
+```$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf```
+  
+  where
+  * jena-text-config.ttl is a configuration file 
+  *  --graph=http://vocab.getty.edu/aat/ is the named graph according to the skosmos:sparqlGraph parameter in vocabularies.ttl 
+  
 Using the tbdloader you have to shut down Fuseki (since only one process can use the TDB at the same time). For the tdbloader you have to provide a configuration file, the graph name with which you want access the vocabulary, and the file name you want to upload. You can use tdbloader for several files in sequence, then you can build the text index as a separate step with the jena text indexer tool.
 If you allow updates to the dataset through Fuseki, the configured index will be automatically updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
 
@@ -184,31 +191,21 @@ Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
 https://jena.apache.org/documentation/assembler/index.html
 https://jena.apache.org/documentation/assembler/assembler-howto.html
 
-Build the text-index from the existing RDF dataset 
+#### 2. Build the text-index from the existing RDF dataset 
 
-You can  build the text index with the jena.textindexer tool:
+You can build the text index with the jena.textindexer tool:
 
-**java -cp ./fuseki-server.jar jena.textindexer --desc=jena-text-config.ttl**
-
-(java -cp $FUSEKI_HOME/fuseki-server.jar jena.textindexer --desc=assembler_file)
+```java -cp $FUSEKI_HOME/fuseki-server.jar jena.textindexer --desc=assembler_file```
 
 Because a Fuseki assembler description can have several datasets descriptions, and several text indexes, it may be necessary to extract a single dataset and index description into a separate assembler file for use in loading.
 
-*Updating the index*
+A short tutorial of this is included in the jena-text documentation:  https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+
+#### Updating the text index
 
 If you allow updates to the dataset through Fuseki, the configured index will automatically be updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
 
-Using the tbdloader you have to shut down Fuseki (since only one process can use the TDB at the same time) and 
 
-1. <a name="tbdloader"></a>Using the tdbloader command line utilities in Fuseki's folder to create the TDB and load the RDF data.  
-  **$java -cp ./fuseki-server.jar tdb.tdbloader --tdb=jena-text-config.ttl --graph=http://vocab.getty.edu/aat/ ./vocabularies/ontology.rdf**
-  where 
-    * jena-text-config.ttl is a configuration file (to be described)
-    *  --graph=http://vocab.getty.edu/aat/ is the named graph according to the skosmos:sparqlGraph parameter in vocabularies.ttl
-
-2. then you will still need to generate the text index as a separate step. A short tutorial of this is included in the jena-text documentation
-
-  https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
 
 
 ### Adding vocabularies to Fuseki server on Windows
@@ -217,7 +214,7 @@ In order to add vocabularies to the Fuseki server use the control panel of the F
 
 1. click on the "add data" button in the middle
 2. on the next page (Upload files) click on the "+ select files" button in the middle
-3. select the vocabulary (e.g. checked_resource_types.xml or checked_tgn_7011179.rdf) file from the c:\xampp\htdocs\skosmos\vocabularies dictionary
+3. select the vocabulary (e.g. checked_resource_types.xml) file from the c:\xampp\htdocs\skosmos\vocabularies dictionary
 4. click on the "upload now" button
 
 
@@ -225,38 +222,43 @@ In order to add vocabularies to the Fuseki server use the control panel of the F
 
 These SPARQL queries that you could execute in the Fuseki user interface could help to see if there are any problems: 
 
-### 1. The amount of triples 
+#### The amount of triples 
 
-* in named graph 
+* in a named graph 
 
+```
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { ?s ?p ?o } 
-} 
+}
+```
 
-* in default graph 
+* in the default graph 
 
-SELECT (COUNT(*) AS ?count) { ?s ?p ?o } 
+```SELECT (COUNT(*) AS ?count) { ?s ?p ?o } ```
 
 This should be a large number, maybe 10 or 20 times the number of concepts. 
 
-### 2. The number of SKOS concepts 
+#### The number of SKOS concepts 
 
+```
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { 
      ?s a skos:Concept 
    } 
 }
+```
 
-### 3. The number of SKOS prefLabels 
+#### The number of SKOS prefLabels 
 
+```
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 SELECT (COUNT(*) AS ?count) { 
    GRAPH <http://vocab.getty.edu/aat/> { 
      ?s skos:prefLabel ?label 
    } 
 }
-
+```
 
 ## Setting vocabularies
 
