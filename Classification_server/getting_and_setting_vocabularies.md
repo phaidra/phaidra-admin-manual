@@ -160,40 +160,33 @@ If you want to add new data files to existing data without clearing it, you shou
 
 ### Uploading files offline
 
-To upload offline you can upload datasets directly to the TDB. 
+If you have several and large files to upload to Fuseki, and there are memory problems by uploading, it might be better to do it when Fuseki is offline. 
 
-*** itt tartok ***
-#### Off-line 
+The dataset and the index can be built in two steps using command line tools: 
 
-(when Fuseki is not running)
-  
-If there are memory problems by uploading (several, large) files to Fuseki, it is worth to use offline loading up the data. You can do it with tdbloader, which is part of the Jena distribution which you will need to download separately. A tutorial for using tdbloader with the text index is here: 
-https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
-Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
-https://jena.apache.org/documentation/assembler/index.html
-https://jena.apache.org/documentation/assembler/assembler-howto.html
+1. Build the RDF dataset in TDB with tdbloader
 
-You will use a set of RDF vocabularies to write RDF describing how you want TDB to ingest your data. That will be your assembler file.
+```java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file
+```
 
-**Building a TDBB dataset and Text Index**
+Using the tbdloader you have to shut down Fuseki (since only one process can use the TDB at the same time). For the tdbloader you have to provide a configuration file, the graph name with which you want access the vocabulary, and the file name you want to upload. You can use tdbloader for several files in sequence, then you can build the text index as a separate step with the jena text indexer tool.
+If you allow updates to the dataset through Fuseki, the configured index will be automatically updated on every modification. This means that you do not have to run the above mentioned jena.textindexer after updates, only when you want to rebuild the index from scratch.
 
-The index and the dataset can be built using command line tools in two steps: first load the RDF data, second create an index from the existing RDF dataset.
-
-*Step 1 - Building a TDB dataset*
-
-Build the TDB dataset:
-**java -cp $FUSEKI_HOME/fuseki-server.jar tdb.tdbloader --tdb=assembler_file data_file**
-
-using the copy of TDB included with Fuseki.
 You can use the same .ttl file (/var/www/skosmos/jena-fuseki1-1.3.0/jena-text-config.ttl)
 that you used for the Fuseki database and text index configuration, i.e. the one documented here:
 https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText#configuration
 Alternatively, use one of the TDB utilities tdbloader or tdbloader2 which are better for bulk loading:
 $JENA_HOME/bin/tdbloader --loc=directory  data_file
 
-*Step 2 - Build the Text Index*
+A tutorial for using tdbloader with the text index can be found here: 
+https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
+Jena Assemblers are recipes (written in RDF) for constructing RDF stores:
+https://jena.apache.org/documentation/assembler/index.html
+https://jena.apache.org/documentation/assembler/assembler-howto.html
 
-You can then build the text index with the jena.textindexer tool:
+Build the text-index from the existing RDF dataset 
+
+You can  build the text index with the jena.textindexer tool:
 
 **java -cp ./fuseki-server.jar jena.textindexer --desc=jena-text-config.ttl**
 
