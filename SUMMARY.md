@@ -21,5 +21,5 @@
        * [Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
-       * Some examples and problems with individual vacabularies
+       * [Some examples and problems with individual vacabularies](Classification_server/some_examples_and_problems_with_individual_vocab.md)
 
