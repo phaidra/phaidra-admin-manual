@@ -1,6 +1,13 @@
 # Getting and setting vocabularies
 
-## Getting vocabularies (if you want to use certain vocabularies locally)
+The basic usage of our Classification Server is to store the classifications locally (if its access time is acceptable), and we also provide the links to the remote SPARQL endpoints of the classifications, if they are available.
+If you want to use certain vocabularies locally, you have to get it in the right format, and upload it to the local SPARQL server, that is to Jena Fuseki.
+
+## Downloading and converting vocabularies 
+
+Vocabularies can be downloaded from the original dataset provider (e.g. from Getty, COAR, Statistics Austria, etc.), or in case of a small dataset, it can be created manually. The vocabulary needs to be expressed using SKOS Core representation in order to publish it via Skosmos, but SKOS-XL representation or even files in Excel can be also easily converted to SKOS Core. 
+
+### Downloading vocabularies in Windows
 
 (source: https://redmine.phaidra.org/redmine/projects/labtech/wiki/Skosmos#vocabularies)
 
@@ -8,8 +15,9 @@
 2. Open a browser and go to the vocabulary that you want to use (e.g. COAR - Resource Type Vocabulary or Getty TGN voabulary
 3. Download (save) the vocabulary as an RDF file (in XML, Turtle, or N-Triples syntax) (e.g. resource_types.xml or tgn_7011179.rdf) into c:\xampp\htdocs\skosmos\vocabularies
 
-## Converting SKOS-XL to plain SKOS core fomat
+### Converting SKOS-XL to plain SKOS Core fomat using owlart
 
+For the SKOS-XL to SKOS Core conversion you can use for example the owlart (https://bitbucket.org/art-uniroma2/owlart/downloads) converter.
 
 1. Download library 'owlart-2.3-dist.zip' from https://bitbucket.org/art-uniroma2/owlart/downloads
 
@@ -45,30 +53,73 @@ java -classpath ".:dependency/commons-codec-1.2.jar:dependency/commons-httpclien
 6. Result skos file is in workbench/output/resultSkos.rdf
 7. tested in java version "1.8.0_72"
 
-## Skosify the downloaded vocabularies (optional)
+### Converting SKOS-XL to plain SKOS Core fomat using SPARQL Update query
 
-(Check if the downloaded files (e.g. resource_types.xml or tgn_7011179.rdf) is in correct SKOS format using the Skosify tool.)
+You can also convert SKOS-XL labels to SKOS Core labels by executing this SPARQL Update query:
 
-Online version of the Skosify tool used to be available here: https://code.google.com/p/skosify/, and use as follows
+```
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos:   <http://www.w3.org/2004/02/skos/core#> 
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
+INSERT { 
+   ?c skos:prefLabel ?pref . 
+   ?c skos:altLabel ?alt . 
+   ?c skos:hiddenLabel ?hidden . 
+   ?c skos:definition ?def . 
+} 
+WHERE { 
+   { ?c skosxl:prefLabel/skosxl:literalForm ?pref } 
+   UNION 
+   { ?c skosxl:altLabel/skosxl:literalForm ?alt } 
+   UNION 
+   { ?c skosxl:hiddenLabel/skosxl:literalForm ?hidden } 
+  UNION 
+   { ?c skos:definition/rdf:value ?def }  
+ } 
+ ```
+
+### Skosify the downloaded vocabularies (optional)
+
+When the SKOS file was downloaded from external resources or it has been converted from other formats, it is recommended that you pre-process your vocabularies using a SKOS proofing tool, like Skosify . This will ensure, e.g., that the broader/narrower relations work in both directions, and that related relationships are symmetric. Skosify will report and try to correct lots of potential problems in SKOS vocabularies. It can also be used to convert non-SKOS RDF data into SKOS. 
+
+An online version of the Skosify tool used to be available here: https://code.google.com/p/skosify/, and use as follows
 1. Select the vocabulary to be checked as input
 2. Leave the default options as they are
 3. Click on the Process button
-After successful process you will get a Processed vocabulary that you can download and rename (e.g. as checked_resource_types.xml or checked_tgn_7011179.rdf) into the folder c:\xampp\htdocs\skosmos\vocabularies
-You can find a recent versions of the Skosify tool here 
-Unfortunately there is currently no recent online version available. 
-Skosify requires Python (2.x or 3.x) and the rdflib library. It should run fine on Windows after those installed.
+After successful conversion process you will get a processed vocabulary that you can download and rename (e.g. as checked_resource_types.xml) into a local folder.
+
+The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
 
 ## Uploading files to Fuseki
 
+If you want to use Skosmos for accessing classifications in your local SPARQL triple store you have to upload the datasets to Fuseki. First, you have to consider if Fuseki will run either in memory or in a predefined folder, usually called TDB. 
+You also have to consider that in a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. 
+You can upload datasets to Fuseki online, when Fuseki is running, or offline, when Fuseki is not running.
+
+### Running Fuseki in the memory
+
+If you run Fuseki in memory, then all uploads and updates (if you allow that) will be temporary.
+
+### Runing Fuseki in the TDB
+
+If you run Fuseki in the TDB, then the uploads and updates will remain there even if we exit from Fuseki and restart it.
+
 ### Named and default graph in SPARQL triple store
 
-In a SPARQL triple store there is always a default (unnamed) graph, and there can also be multiple named graphs. In other words, there is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. The URI namespaces can be used as graph names. E.g. <http://vocab.getty.edu/tgn/> would store Getty's TGN data. 
+In a SPARQL triple store there is a default (unnamed) graph, and there can be multiple named graphs. In other words, there is only one default graph (with no name), but there can be any number of named graphs on a SPARQL endpoint/dataset. The URI namespaces can be used as graph names. E.g. http://vocab.getty.edu/tgn/ would store Getty's TGN data.
 
-For exapmle if you have put the UNESCO thesaurus in the default graph and configured Skosmos to use a named graph, or vice versa, then that could explain why you don't see any content. To solve the problem you can put the UNESCO thesaurus in a named graph e.g. <http://skos.um.es/unescothes/>. You can upload it to Fuseki with the command line utility s-put that comes with Fuseki, or the Fuseki web interface can be used to do the same, just make sure you upload to the correct named graph (see below). 
 
-Then you should have the correct named graph in skosmos:sparqlGraph setting vocabularies.ttl.  
 
-### Using the web interface of Fuseki On Linux
+### Uploading files online
+
+To upload online you can use the control panel of the web interface of Fuseki or you can use command line instructions. 
+
+When uploading datasets online to Fuseki through its control panel, you can set the Graph to “default” or provide a graph name.
+
+
+If you use a graph name when uploading a dataset to Fuseki, you have to make sure of giving the same graph name to this dataset in skosmos:sparqlGraph (e.g. http://vocab.getty.edu/tgn/) by setting Skomos vocabularies in vocabularies.ttl.
+
+### Using the web interface of Fuseki
 
 1. start Fuseki server (see [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md))
 2. open Fuseki's web interface on [http://skosmos.phaidra.org:3030/](http://skosmos.phaidra.org:3030/)
@@ -103,6 +154,11 @@ Then you should have the correct named graph in skosmos:sparqlGraph setting voca
     * ./s-post *SPARQL-server* *Graph-name* *data-to-be-uploaded*
     * e.g.: ./s-post http://localhost:3030/ds/data http://vocab.getty.edu/aat/ ./vocabularies/skos.rdf
 
+### Uploading files offline
+
+To upload offline you can upload datasets directly to the TDB. 
+
+*** itt tartok ***
 #### Off-line 
 
 (when Fuseki is not running)
