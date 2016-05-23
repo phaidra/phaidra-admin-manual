@@ -17,6 +17,7 @@ Each vocabulary is expressed as a skosmos:Vocabulary instance (subclass of void:
 
 In addition to vocabularies, the vocabularies.ttl file also contains a classification for the vocabularies expressed as SKOS. The categorization is used to group the vocabularies shown in the front page of Skosmos. You can also set the content of the About page in about.inc, and add additional boxes to the left or to the right of the front page in left.inc or right.inc.
 
+(See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
 ## Configuration of Fuseki
 
@@ -125,12 +126,5 @@ For example Setting JVM heap to 8 GB:
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
 
-******************
-
-### 6. Configure Skosmos
-
-
-
-(See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
 
