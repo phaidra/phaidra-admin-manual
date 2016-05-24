@@ -2,7 +2,7 @@
 
 Skosmos and Fuseki require Apache and PHP running on the server. We have installed them for test purposes on a Windows 7 environment (Professional 64 bit, Service Pack 1, Intel Core i7-56000 CPU, 2.6 GHz, 16 GB RAM) using Java 1.8 (jre1.8.0_40), with installed XAMPP (xampp-win32-1-8-3-4-VC11), as well as on a CENTOS 6.5 virtual machine (Intel Xeon CPU E5-2670 0 @ 2.60GHz).
 
-The final version will work on Ubuntu 16.04. (GenuieIntel 6-45 @ 2.60 GHz; 250 GB disk space)
+The final version will work on Ubuntu 16.04. (Intel Xeon CPU E5-2670 0 @ 2.60GHz).
 
 A detailed installation guide of Skosmos can be found on: https://github.com/NatLibFi/Skosmos/wiki/Installation 
 and installation of Jena Fuseki with the jena-text extension on: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText , but but there are some deviations on the Windows version, as well as there are some important issues that are worth highlighting. 
