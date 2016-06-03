@@ -1,5 +1,5 @@
 # Knowledge Organization Systems
-Classifications can be considered as a collection of organized knowledge, therefore the technical background of classification is based on knowledge organization systems. In knowledge organization systems we usually store the knowledge in form of triplets, as object-predicate-subject, or object-attribute-value.
+Classifications can be considered as a collection of organized knowledge, therefore the technical background of classification is based on knowledge organization systems. In knowledge organization systems we usually store the knowledge in form of triplets, as subject-predicate-object, or object-attribute-value.
 
 Classifications can be represented in Simple Knowledge Organization Systems (SKOS) [1] as a Resource Description Framework (RDF) vocabulary. Simple Knowledge Organization System (SKOS) is a W3C recommendation designed for representation of thesauri, classification schemes, taxonomies, subject-heading systems, or any other type of structured controlled vocabulary.
 
