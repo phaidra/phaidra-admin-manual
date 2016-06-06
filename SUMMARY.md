@@ -23,4 +23,5 @@
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
    * Search engine
+       * Solr
 
