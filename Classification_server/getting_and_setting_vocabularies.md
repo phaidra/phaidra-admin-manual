@@ -585,6 +585,11 @@ You can build the text index with the jena.textindexer tool:
 
 ```java -cp $FUSEKI_HOME/fuseki-server.jar jena.textindexer --desc=assembler_file```
 
+E.g.:
+
+```$java -cp ./fuseki-server.jar jena.textindexer --desc=jena-text-config.ttl```
+
+
 Because a Fuseki assembler description can have several datasets descriptions, and several text indexes, it may be necessary to extract a single dataset and index description into a separate assembler file for use in loading.
 
 A short tutorial of this is included in the jena-text documentation:  https://jena.apache.org/documentation/query/text-query.html#building-a-text-index 
