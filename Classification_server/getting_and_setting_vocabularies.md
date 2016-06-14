@@ -77,6 +77,394 @@ WHERE {
    { ?c skos:definition/rdf:value ?def }  
  } 
  ```
+ 
+ ### Converting MS Excel format to SKOS/TTL
+ 
+ For converting the MS Excel format to SKOS file in Turtel format we have created and apllied the followin VBA Macro:
+ 
+``` 
+Sub Create_ttl()
+'
+' Create_ttl Macro
+' Create ttl file
+'
+' Keyboard Shortcut: Ctrl+t
+'
+
+
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Select
+Dim startCell As String
+startCell = ActiveCell.Address
+
+'1-digit-concept
+
+Dim startCode As Integer
+startCode = CInt(ActiveCell.Value)
+
+Worksheets("ttl").Activate
+ActiveSheet.Range("A1").Select
+
+ActiveCell.FormulaR1C1 = "oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = startCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = "rdf:type skos:Concept;"
+ActiveCell.Offset(1, -2).Select
+
+ActiveCell.FormulaR1C1 = "skos:notation"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = startCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@de;"
+    
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@en;"
+ActiveCell.Offset(1, -2).Select
+
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(2, -2).Select
+
+Dim three_digitCell As String
+three_digitCell = ActiveCell.Address
+  
+Do
+     
+    If ActiveCell.Value > 100 And ActiveCell.Value < 1000 Then
+        
+        Selection.Copy
+        Worksheets("ttl").Activate
+        ActiveCell.Select
+        ActiveCell.FormulaR1C1 = "skos:narrower oefos:"
+        ActiveCell.Offset(0, 1).Select
+        ActiveSheet.Paste
+        ActiveCell.Offset(0, 1).Select
+        ActiveCell.FormulaR1C1 = ";"
+        ActiveCell.Offset(1, -2).Select
+     End If
+    
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(1, 0).Select
+    
+Loop Until (ActiveCell.Value = startCode + 1)
+
+Worksheets("ttl").Activate
+ActiveCell.Select
+ActiveCell.FormulaR1C1 = "skos:inScheme oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = 0
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+ActiveCell.Offset(1, -2).Select
+        
+ActiveCell.FormulaR1C1 = "skos:topConceptOf oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = 0
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = "."
+ActiveCell.Offset(1, -2).Select
+
+ActiveCell.FormulaR1C1 = ""
+ActiveCell.Offset(1, 0).Select
+
+'3-digit-concepts
+
+Dim three_digitCode As Integer
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+Range(three_digitCell).Select
+three_digitCode = CInt(ActiveCell.Value)
+
+Dim four_digitCell As String
+four_digitCell = Range(three_digitCell).Offset(1, 0).Address
+
+Dim new_three_digits As Boolean
+new_three_digits = True
+
+Do '3-digit-concepts
+
+If new_three_digits Then
+
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+Range(three_digitCell).Select '?
+
+Worksheets("ttl").Activate
+
+ActiveCell.FormulaR1C1 = "oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = three_digitCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = "rdf:type skos:Concept;"
+ActiveCell.Offset(1, -2).Select
+
+ActiveCell.FormulaR1C1 = "skos:notation"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = three_digitCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@de;"
+    
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@en;"
+
+Worksheets("ttl").Activate
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:broader oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = startCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+ActiveCell.Offset(1, -2).Select
+        
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(1, -2).Select
+         
+Do
+      
+    If ActiveCell.Value > 1000 And ActiveCell.Value < 10000 Then
+        
+       Selection.Copy
+       Worksheets("ttl").Activate
+       ActiveCell.Select
+       ActiveCell.FormulaR1C1 = "skos:narrower oefos:"
+       ActiveCell.Offset(0, 1).Select
+       ActiveSheet.Paste
+       ActiveCell.Offset(0, 1).Select
+       ActiveCell.FormulaR1C1 = ";"
+       ActiveCell.Offset(1, -2).Select
+       
+    End If
+    
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(1, 0).Select
+      
+Loop While (ActiveCell.Value > 1000 Or ActiveCell.Value = "")
+        
+Worksheets("ttl").Activate
+ActiveCell.Offset(-1, 2).Select
+ActiveCell.FormulaR1C1 = "."
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = ""
+ActiveCell.Offset(1, 0).Select
+
+
+End If 'new_three_digits
+
+'4-digit-concepts
+
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+
+Range(four_digitCell).Select
+
+Dim four_digitCode As Integer
+four_digitCode = CInt(ActiveCell.Value)
+
+
+Worksheets("ttl").Activate
+ActiveCell.FormulaR1C1 = "oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = four_digitCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = "rdf:type skos:Concept;"
+ActiveCell.Offset(1, -2).Select
+
+ActiveCell.FormulaR1C1 = "skos:notation"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = four_digitCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@de;"
+    
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:prefLabel """
+ActiveCell.Offset(0, 1).Select
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(0, 1).Select
+Selection.Copy
+Worksheets("ttl").Activate
+ActiveSheet.Paste
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = """@en;"
+
+Worksheets("ttl").Activate
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = "skos:broader oefos:"
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = three_digitCode
+ActiveCell.Offset(0, 1).Select
+ActiveCell.FormulaR1C1 = ";"
+ActiveCell.Offset(1, -2).Select
+        
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(1, -2).Select
+
+Dim j As Integer
+
+j = 0
+
+Do
+    Selection.Copy
+
+    Worksheets("ttl").Activate
+    ActiveCell.Select
+    ActiveCell.FormulaR1C1 = "skos:narrower oefos:"
+    ActiveCell.Offset(0, 1).Select
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = ";"
+    ActiveCell.Offset(1, -2).Select
+
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(1, 0).Select
+
+    j = j + 1
+
+Loop Until IsEmpty(ActiveCell)
+
+Worksheets("ttl").Activate
+ActiveCell.Offset(-1, 2).Select
+ActiveCell.FormulaR1C1 = "."
+ActiveCell.Offset(1, -2).Select
+ActiveCell.FormulaR1C1 = ""
+ActiveCell.Offset(1, 0).Select
+
+'6-digit-concepts
+
+Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+ActiveCell.Offset(-j - 1, 0).Select
+
+Dim code As String
+code = ActiveCell.Value
+
+ActiveCell.Offset(1, 0).Select
+
+Dim i As Integer
+
+For i = 1 To j
+
+    Selection.Copy
+
+    Worksheets("ttl").Activate
+
+    ActiveCell.Select
+    ActiveCell.FormulaR1C1 = "oefos:"
+    ActiveCell.Offset(0, 1).Select
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = "rdf:type"
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = "skos:Concept;"
+
+    ActiveCell.Offset(1, -3).Select
+    ActiveCell.FormulaR1C1 = "skos:notation"
+    ActiveCell.Offset(0, 1).Select
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = ";"
+
+    ActiveCell.Offset(1, -2).Select
+    ActiveCell.FormulaR1C1 = "skos:prefLabel """
+    ActiveCell.Offset(0, 1).Select
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(0, 1).Select
+    Selection.Copy
+    Worksheets("ttl").Activate
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = """@de;"
+
+    ActiveCell.Offset(1, -2).Select
+    ActiveCell.FormulaR1C1 = "skos:prefLabel """
+    ActiveCell.Offset(0, 1).Select
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(0, 1).Select
+    Selection.Copy
+    Worksheets("ttl").Activate
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = """@en;"
+
+    ActiveCell.Offset(1, -2).Select
+    ActiveCell.FormulaR1C1 = "skos:broader oefos:"
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = code
+    ActiveCell.Offset(0, 1).Select
+    ActiveCell.FormulaR1C1 = "."
+
+    ActiveCell.Offset(1, -2).Select
+    ActiveCell.FormulaR1C1 = ""
+
+    ActiveCell.Offset(1, 0).Select
+
+    Worksheets("TeilA_2012_Deutsch_Englisch").Activate
+    ActiveCell.Offset(1, -2).Select
+
+Next i
+
+ActiveCell.Offset(1, 0).Select
+
+new_three_digits = False
+If ActiveCell.Value > 100 And ActiveCell.Value < 1000 Then
+    three_digitCell = ActiveCell.Address
+    three_digitCode = CInt(ActiveCell.Value)
+    new_three_digits = True
+    ActiveCell.Offset(1, 0).Select
+End If
+
+    four_digitCell = ActiveCell.Address
+    ''four_digitCode = CInt(ActiveCell.Value)
+   
+
+Loop Until (ActiveCell.Value = startCode + 1) '3-digit-concepts
+
+End Sub
+```
 
 ### Skosify the downloaded vocabularies (optional)
 
