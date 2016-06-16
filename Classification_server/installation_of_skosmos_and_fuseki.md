@@ -58,17 +58,52 @@ The jena-text extension can be used for faster text search.)
 
 Before installing Skosmos, it is advisable to make sure that Apache works and PHP is enabled. After installing PHP, you may need to restart Apache.
 
-It may be required to set up Apache to access Skosmos under http://localhost/skomos by adding a symbolic link to the skosmos folder (e.g. opt/skosmos) into the DocumentRoot (e.g. /var/www/) and/or also you will need to give Apache permissions to perform network connections to allow Skosmos access to SPARQL endpoints.
-
 ### 2. Get Skosmos
 
 You can either clone the code of Skosmos from Github  or download the zipped version. It is worth using the current stable version (maintenance branch), and it is better to clone from Github because you can then easily upgrade to newer versions using ```git pull```.
 
+Go to the parent directory:
+
+```cd /var/www```
+ 
+```git clone -b v1.6-maintenance https://github.com/NatLibFi/Skosmos.git skosmos'''
+
 ### 3. Install Dependency Manager for PHP
 
-Skosmos requires several PHP libraries which will be installed using a dependency manager called Composer . For this, you have to first download the Composer, and then install the dependencies with the ```install --no-dev``` option. After downloading a new version of Skosmos you may need to update the dependencies with the ```update --no-dev``` option.  
+Skosmos requires several PHP libraries which will be installed using a dependency manager called Composer. For this, you have to first download the Composer to the directory of Skosmos:
 
-### 4. Chec and set PHP configuration
+```cd skosmos```
+
+```wget https://getcomposer.org/composer.phar```
+
+, and then install the dependencies with the ```install --no-dev``` option:
+
+```php composer.phar install --no-dev```
+
+After downloading a new version of Skosmos you may need to update the dependencies with the ```update --no-dev``` option
+
+```php composer.phar update --no-dev```
+
+### 4. Setup Apache
+
+It may be required to set up Apache to access Skosmos under http://localhost/skomos by adding a symbolic link to the skosmos folder (e.g. var/www/skosmos) into the DocumentRoot (e.g. /var/www/html):
+
+```cd /var/www/html```
+
+```ln -s /var/www/skosmos skosmos```
+
+Now you should be able to access the front page of Skosmos using the URL http://myhost/skosmos. If not, check the following:
+
+Check that ```mod_rewrite``` is enabled in the Apache configuration
+Check that ```AllowOverride All``` is set for the ```DocumentRoot``` (or the directory where you installed Skosmos)
+
+and/or also you will need to give Apache permissions to perform network connections to allow Skosmos access to SPARQL endpoints:
+
+```setsebool -P httpd_can_network_connect on```
+
+
+
+### 4. Check and set PHP configuration
 
 The default PHP configuration is probably sufficient for Skosmos, but you may want to check php.ini just in case. Make sure that the date.timezone setting is configured correctly, otherwise Skosmos pages displaying date values may not work at all. If you use vocabularies with potentially large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
 
