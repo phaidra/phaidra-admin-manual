@@ -92,12 +92,36 @@ It may be required to set up Apache to access Skosmos under http://localhost/sko
 
 ```ln -s /var/www/skosmos skosmos```
 
-Now you should be able to access the front page of Skosmos using the URL http://myhost/skosmos. If not, check the following:
+Now you should be able to access the front page of Skosmos using the URL http://myhost/skosmos. (E.g.: http://vocab.phaidra.org/skomos) If not, check the following:
 
-Check that ```mod_rewrite``` is enabled in the Apache configuration
+Check that ```mod_rewrite``` is enabled in the Apache configuration:
+Type ```<?php phpinfo(); ?>``` in a php file and save it and run that file in the server, and check if mod_rewrite is among the loaded modules:
+
+(E.g.: ```http://vocab.phaidra.org/phpinfo.php```)
+
+(If not, then you can enable mode_rewrite in Apache2 on Ubuntu as follow:
+
+```sudo a2enmod rewrite```
+
+This will activate the module or alert you that the module is already in effect. To put these changes into effect, restart Apache:
+
+```sudo service apache2 restart``` 
+
+)
+
 Check that ```AllowOverride All``` is set for the ```DocumentRoot``` (or the directory where you installed Skosmos)
 
-and/or also you will need to give Apache permissions to perform network connections to allow Skosmos access to SPARQL endpoints:
+(E.g. in Apache2 on Ubuntu check /etc/apache2/apache2.conf:
+```
+<Directory /var/www/>
+        ...
+        AllowOverride All
+        ...
+</Directory>
+```
+)
+
+If you are using SELinux (e.g. RHEL/CentOS) you will also need to give Apache permissions to perform network connections to allow Skosmos access to SPARQL endpoints:
 
 ```setsebool -P httpd_can_network_connect on```
 
