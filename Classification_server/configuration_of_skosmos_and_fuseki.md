@@ -6,6 +6,21 @@ Skosmos can be configured basically in two files, config.inc for setting some ge
 
 In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index  ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
 
+Regarding the interface languages you have to provide the system locales. E.g.:
+```
+$LANGUAGES = array(
+  'de' => 'de_DE.utf8',
+  'en' => 'en_US.utf8',
+  'it' => 'it_IT.utf8',
+);
+
+```
+If the required locales are missing (you can check it with the ```locale -a``` command), you generate it with ```sudo locale-gen language[_country][.charset]```. 
+For example ```sudo locale-gen it_IT.utf8```.
+
+The translations of Skosmos menus are stored in the folder ```skosmos/resource/translations/``` in skomos_*language*.po and .mo files. If the translation file of a certain language is missing, then instead of the menu items in the added and generated language the text "in_this_language" will appear.
+
+
 In Windows you have to edit the config.inc file additionaly as follow:
 1. change the TEMPLATE_CACHE setting like this: ```define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
 2. add this line to the bottom of file:
