@@ -478,6 +478,17 @@ After successful conversion process you will get a processed vocabulary that you
 
 The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
 
+## Creating our own classifications
+
+If you want to create your classifications from scratch you have to represent your classification using the SKOS data model. SKOS, which stands for Simple Knowledge Organization System, is a W3C standard, based on other Semantic Web standards (RDF and OWL), that provides a way to represent controlled vocabularies, taxonomies and thesauri. Specifically, SKOS itself is an OWL ontology and it can be written out in any RDF syntax.
+
+For some guidance, see the SKOS Primer [1] and introductory articles [2,3]. An excellent general introduction to RDF and Linked Data is given for example in the Linked Data book [4] available for free online. For specifics on what aspects of SKOS and other RDF vocabularies Skosmos supports, see the wiki page Data Model [5]. 
+
+[1] https://www.w3.org/TR/skos-primer/ 
+[2] http://www.dataversity.net/introduction-to-skos/
+[3] http://www.ala.org/alcts/resources/z687/skos 
+[4] http://linkeddatabook.com/ 
+[5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model
 ## Uploading files to Fuseki
 
 If you want to use Skosmos for accessing classifications in your local SPARQL triple store you have to upload the datasets to Fuseki. First, you have to consider if Fuseki will run either in memory or in a predefined folder, usually called TDB. 
