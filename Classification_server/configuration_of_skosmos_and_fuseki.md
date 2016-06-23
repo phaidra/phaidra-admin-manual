@@ -18,6 +18,8 @@ $LANGUAGES = array(
 If the required locales are missing (you can check it with the ```locale -a``` command), you generate it with ```sudo locale-gen language[_country][.charset]```. 
 For example ```sudo locale-gen it_IT.utf8```.
 
+It is important, that after generating new locales, Apche should be restarted (on Ubuntu: ```sudo service apache2 restart```, on CENTOS: ```sudo service httpd restart```)  
+
 The translations of Skosmos menus are stored in the folder ```skosmos/resource/translations/``` in skomos_*language*.po and .mo files. If the translation file of a certain language is missing, then instead of the menu items in the added and generated language the text "in_this_language" will appear.
 
 
