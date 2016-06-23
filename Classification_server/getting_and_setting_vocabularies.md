@@ -478,7 +478,7 @@ After successful conversion process you will get a processed vocabulary that you
 
 The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
 
-## Creating our own classifications
+## Creating your own classifications
 
 If you want to create your classifications from scratch you have to represent your classification using the SKOS data model. SKOS, which stands for Simple Knowledge Organization System, is a W3C standard, based on other Semantic Web standards (RDF and OWL), that provides a way to represent controlled vocabularies, taxonomies and thesauri. Specifically, SKOS itself is an OWL ontology and it can be written out in any RDF syntax.
 
