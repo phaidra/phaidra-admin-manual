@@ -4,7 +4,15 @@
 
 Skosmos can be configured basically in two files, config.inc for setting some general parameters, and vocabularies.ttl is used to configure the vocabularies shown in Skosmos. 
 
-In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect if you want to use Jena text index  ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
+### Config.inc
+
+In config.inc you can set the name of the vocabularies file, change the timeout settings, set interface languages, set the default SPARQL endpoint, and set the SPARQL dialect, etc.
+
+#### SPARQL dialect
+
+if you want to use Jena text index  ```define("DEFAULT_SPARQL_DIALECT", "JenaText");``` ).
+
+#### Interface languages
 
 Regarding the interface languages you have to provide the system locales. E.g.:
 ```
@@ -18,15 +26,24 @@ $LANGUAGES = array(
 If the required locales are missing (you can check it with the ```locale -a``` command), you generate it with ```sudo locale-gen language[_country][.charset]```. 
 For example ```sudo locale-gen it_IT.utf8```.
 
-It is important, that after generating new locales, Apche should be restarted (on Ubuntu: ```sudo service apache2 restart```, on CENTOS: ```sudo service httpd restart```)  
+It is important, that after generating new locales, Apache should be restarted (on Ubuntu: ```sudo service apache2 restart```, on CENTOS: ```sudo service httpd restart```)  
 
 The translations of Skosmos menus are stored in the folder ```skosmos/resource/translations/``` in skomos_*language*.po and .mo files. If the translation file of a certain language is missing, then instead of the menu items in the added and generated language the text "in_this_language" will appear.
 
+#### feedback address
+
+You can set the default e-mail address to where the the feedback from the user can be sent from the Feedback menu:
+
+```define("FEEDBACK_ADDRESS", "mymail@univie.ac.at");```
+
+#### config.inc in Windows
 
 In Windows you have to edit the config.inc file additionaly as follow:
 1. change the TEMPLATE_CACHE setting like this: ```define("TEMPLATE_CACHE", "c:/xampp/tmp/skosmos-template-cache");
 2. add this line to the bottom of file:
 define("BASE_HREF", "http://localhost/skosmos/");
+
+### vocabularies.ttl
 
 Vocabularies are managed in the RDF store accessed by Skosmos via SPARQL. The available vocabularies are configured in the vocabularies.ttl file that is an RDF file in Turtle syntax.
 
@@ -69,7 +86,7 @@ vocabularies):
 ## Timeout settings
 
 If there is more data than Skosmos is made to handle, so some queries can take very long time. 
-The slow queries are probably the statistical queries (number of concepts per type, number of labels per language) as well as the alphabetical index. (The statistical queries will be optimized in Skosmos 1.5 but this is not yet implemented, see https://github.com/NatLibFi/Skosmos/issues/413 )
+The slow queries are probably the statistical queries (number of concepts per type, number of labels per language) as well as the alphabetical index. 
 
 Short execution timeout for PHP scripts can trigger Runtime IO Exception.
 
@@ -89,7 +106,10 @@ It is highly recommended to find this setting and change it to a higher value (s
 
 ### Skosmos timeout setting
 
-Skosmos also has a HTTP_TIMEOUT setting in config.inc, that should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects. 
+Skosmos also has a HTTP_TIMEOUT setting in config.inc, that should only be used for external URI requests, not for regular SPARQL queries, but there may be unknown side-effects:
+
+```define("HTTP_TIMEOUT", 600); // external HTTP request timeout in seconds```
+
 
 ### EasyRdf HTTP client timeout
 
