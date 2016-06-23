@@ -489,6 +489,7 @@ For some guidance, see the SKOS Primer [1] and introductory articles [2,3]. An e
 [3] http://www.ala.org/alcts/resources/z687/skos 
 [4] http://linkeddatabook.com/ 
 [5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model
+
 ## Uploading files to Fuseki
 
 If you want to use Skosmos for accessing classifications in your local SPARQL triple store you have to upload the datasets to Fuseki. First, you have to consider if Fuseki will run either in memory or in a predefined folder, usually called TDB. 
