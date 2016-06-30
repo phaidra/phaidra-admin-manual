@@ -127,11 +127,28 @@ If you are using SELinux (e.g. RHEL/CentOS) you will also need to give Apache pe
 
 
 
-### 4. Check and set PHP configuration
+### 5. Check and set PHP configuration
 
 The default PHP configuration is probably sufficient for Skosmos, but you may want to check php.ini just in case. Make sure that the date.timezone setting is configured correctly, otherwise Skosmos pages displaying date values may not work at all. If you use vocabularies with potentially large number of triples, you may need to adjust the memory_limit setting. The default is usually 128M but the recommended setting is 256M.
 
-### 5. Install Jena Fuseki
+### 6. Download and install Jena Fuseki
 
 JenaFuseki is a SPARQL server and triple store, which is the recommended backend for Skosmos. The jena text extension can be used for faster text search. Simply download the latest Fuseki distribution and unpack the downloaded file to the intended folder of Fuseki.
+
+Look for the newest jena-fuseki-*-distribution.tar.gz: http://www.apache.org/dist/jena/binaries/
+
+In linux use the
+
+```
+wget http://www.apache.org/dist/jena/binaries/jena-fuseki-*-distribution.tar.gz
+
+tar xvzf jena-fuseki-*-distribution.tar.gz
+
+rm jena-fuseki-*-distribution.tar.gz
+
+```
+
+If all went well, you should be able to test Fuseki by running ```./fuseki-server --mem /ds```
+
+See for details: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
 
