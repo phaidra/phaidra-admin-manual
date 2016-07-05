@@ -1,4 +1,4 @@
-#Classification server
+#Classification Server
 
 ##Content
 
