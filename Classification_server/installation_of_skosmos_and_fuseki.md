@@ -142,7 +142,7 @@ In linux use the
 ```
 wget http://www.apache.org/dist/jena/binaries/jena-fuseki-*-distribution.tar.gz
 
-tar xvzf jena-fuseki-*-distribution.tar.gz
+tar xzf jena-fuseki-*-distribution.tar.gz
 
 rm jena-fuseki-*-distribution.tar.gz
 
