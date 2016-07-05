@@ -5,7 +5,7 @@
    * [Fedora](fedora.md)
        * [Oaiprovider](oaiprovider.md)
 * [Modules](modules.md)
-   * [Classification server](classification_server.md)
+   * [Classification Server](classification_server.md)
        * [Introduction to classification](Classification_server/introduction_to_classification.md)
        * [Knowledge Organization Systems](Classification_server/knowledge_organization_systems.md)
        * [Application of the Classification Server](Classification_server/application_of_the_classification_server.md)
