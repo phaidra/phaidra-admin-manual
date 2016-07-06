@@ -1,4 +1,4 @@
-# Current Phaidra-related service of Skosmos
+# Current Phaidra-related services of Skosmos
 
 ##General classifications
 ###Thesauri
