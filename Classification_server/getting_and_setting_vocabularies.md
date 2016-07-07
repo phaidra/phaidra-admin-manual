@@ -25,7 +25,8 @@ For the SKOS-XL to SKOS Core conversion you can use for example the owlart (http
 3. create in 'workbench/output' directory output file e.g. 'resultSkos.rdf'
 4. make config file in workbench/config dir e.g. workbench/config/skosxl2skos.config and set 'baseuri', 'namespace', and 'defaultScheme' according to your project settings.
 Here is an example of the config file:
-<code>
+
+```
 ###ModelFactory Implementation: required
 modelFactoryImplClassName=it.uniroma2.art.owlart.sesame2impl.factory.ARTModelFactorySesame2Impl
 
@@ -40,7 +41,7 @@ modelDataDir=workbench/storage
 baseuri=http\://purl.org/coar/resource_type/
 namespace=http\://phaidra.org/
 defaultScheme=http\://phaidra.org/
-</code>
+```
 5. run library with dependencies in project root directory(dir above workbench directory):
 5.1. windows:
 
