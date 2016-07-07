@@ -467,18 +467,6 @@ Loop Until (ActiveCell.Value = startCode + 1) '3-digit-concepts
 End Sub
 ```
 
-### Skosify the downloaded vocabularies (optional)
-
-When the SKOS file was downloaded from external resources or it has been converted from other formats, it is recommended that you pre-process your vocabularies using a SKOS proofing tool, like Skosify . This will ensure, e.g., that the broader/narrower relations work in both directions, and that related relationships are symmetric. Skosify will report and try to correct lots of potential problems in SKOS vocabularies. It can also be used to convert non-SKOS RDF data into SKOS. 
-
-An online version of the Skosify tool used to be available here: https://code.google.com/p/skosify/, and use as follows
-1. Select the vocabulary to be checked as input
-2. Leave the default options as they are
-3. Click on the Process button
-After successful conversion process you will get a processed vocabulary that you can download and rename (e.g. as checked_resource_types.xml) into a local folder.
-
-The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
-
 ## Creating your own classifications
 
 If you want to create your classifications from scratch you have to represent your classification using the SKOS data model. SKOS, which stands for Simple Knowledge Organization System, is a W3C standard, based on other Semantic Web standards (RDF and OWL), that provides a way to represent controlled vocabularies, taxonomies and thesauri. Specifically, SKOS itself is an OWL ontology and it can be written out in any RDF syntax.
@@ -490,6 +478,20 @@ For some guidance, see the SKOS Primer [1] and introductory articles [2,3]. An e
 [3] http://www.ala.org/alcts/resources/z687/skos 
 [4] http://linkeddatabook.com/ 
 [5] https://github.com/NatLibFi/Skosmos/wiki/Data-Model
+
+## Skosify the downloaded, converted, created classifications (optional)
+
+In any way the SKOS file was downloaded from external resources, or it has been converted from other formats, or was created from scratch, it is recommended to pre-process the vocabularies using a SKOS proofing tool, like Skosify. This will ensure, e.g., that the broader/narrower relations work in both directions, and that related relationships are symmetric. Skosify will report and try to correct lots of potential problems in SKOS vocabularies. It can also be used to convert non-SKOS RDF data into SKOS. 
+
+An online version of the Skosify tool is (usually) available here: https://code.google.com/p/skosify/, and use as follows
+1. Select the vocabulary to be checked as input
+2. Leave the default options as they are
+3. Click on the Process button
+After successful conversion process you will get a processed vocabulary that you can download and rename (e.g. as checked_resource_types.xml) into a local folder.
+
+The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
+
+If there are special characters (e.g. ä, Ä, ü, Ü, ö, Ö, etc.) in the SKOS file to be skosified, the Skosify tool may decode them to an unusable format.
 
 ## Uploading files to Fuseki
 
