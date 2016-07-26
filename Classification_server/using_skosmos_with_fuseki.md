@@ -19,7 +19,7 @@ It is worth extending the JVM heap to 8 GB
 
 ### 3. Start Jena Fuseki
 
-1. Open a command prompt and cd into apache-jena-fuseki directory (cd /var/www/skosmos/jena-fuseki1-1.3.0)
+1. Open a command prompt and cd into apache-jena-fuseki directory (e.g. /var/www/fuseki)
 2. Run Fuseki Server from the command prompt: ./fuseki-server
 
 #### Options for starting Fuseki
