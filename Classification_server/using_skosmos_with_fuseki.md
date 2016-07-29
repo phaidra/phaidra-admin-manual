@@ -22,9 +22,13 @@ It is worth extending the JVM heap to 8 GB
 1. Open a command prompt and cd into apache-jena-fuseki directory (e.g. /var/www/fuseki)
 2. Run Fuseki Server from the command prompt: ./fuseki-server
 
+It is very important to change the directory to the fuseki folder before starting fuseki, otherwise fuseki will not run correctly (E.g. by starting the web UI of fuseki "Error 404: Not Found" message can be expected.)  
+
+Other solution is to set the variable FUSEKI_BASE (see http://jena.apache.org/documentation/fuseki2/fuseki-run.html).
+
 #### Options for starting Fuseki
 
-Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too.
+Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too. 
 
 * The --mem /ds  option is a shorthand for running Fuseki without a configuration file (--file is similar too) and data set will be in the memory
 * If you need a configuration file to use jena-text you must use the --config config-file (e.g --config jena-text-config.ttl) option
