@@ -32,7 +32,7 @@
 | **Name** | **uriSpace and sparqlGraph** | **sparqlEndpoint / Source to download** |**Format** | **Text-index / TDB Size** | **Works** |
 | -- | -- | -- | -- | -- | -- |
 | **COAR - Resource Type Vocabulary** |  http://purl.org/coar/resource_type/ | http://vocabularies.coar-repositories.org/sparql/repositories/coar | *SKOS-XL* | ![](Images/question_mark.png) | online ![](Images/delete.png) |
-| | | http://vocabularies.coar-repositories.org/pubby/page/ resource_type.xml | SKOS-XL | 60 MB  | local ![](Images/tick.png) |
+| | | http://vocabularies.coar-repositories.org/pubby/page/resource_type.xml OR online: http://vocabularies.coar-repositories.org/documentation/resource_types| SKOS-XL | 60 MB  | local ![](Images/tick.png) |
 
 
 ## Phaidra's classifications
