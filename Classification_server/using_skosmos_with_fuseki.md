@@ -14,13 +14,15 @@ If we have to restart, then use: **$service httpd restart**
 
 ### 2. Extending the heap for the JVM
 
-It is worth extending the JVM heap to 8 GB
+It is worth extending the JVM heap to 8 GB or to 16 Gb
 **$export JVM_ARGS=-Xmx8000M**
+or 
+**$export JVM_ARGS=-Xmx16000M**
 
 ### 3. Start Jena Fuseki
 
-1. Open a command prompt and cd into apache-jena-fuseki directory (e.g. /var/www/fuseki)
-2. Run Fuseki Server from the command prompt: ./fuseki-server
+1. Open a command prompt and cd into apache-jena-fuseki directory (e.g. ```cd /var/www/fuseki```)
+2. Run Fuseki Server from the command prompt: ```./fuseki-server``` (or ```java -jar ./fuseki-server.jar```)
 
 It is very important to change the directory to the fuseki folder before starting fuseki, otherwise fuseki will not run correctly (E.g. by starting the web UI of fuseki "Error 404: Not Found" message can be expected.)  
 
