@@ -59,17 +59,32 @@ Fuseki stores data in files. It is also possible to configure Fuseki for in-memo
 
 The jena text enabled configuration file specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
 
+If you want to run Fuseki using a TDB dataset for RDF storage and query (see https://jena.apache.org/documentation/tdb/), you have to create a folder in Fuseki folder (e.g.: /var/www/fuseki/tdb) where the dataset will be stored. 
+
+You have to set the locations of the tdb folder in the configuration file of fuseki (e.g. ```config-tdb-text.ttl```), as follow:
+
+```
+<#dataset> rdf:type      tdb:DatasetTDB ;
+    tdb:location "DB" ;
+    tdb:unionDefaultGraph true ;
+    .
+``` 
 
 ### Using text index
 
 The jena text extension can be used for faster text search, and Skosmos simply needs to have a text index to work with vocabularies of medium to large size. The limit is a few thousand concepts, depending on the performance of the endpoint / triple store and how much latency is acceptable to the users.
 
-If you start fuseki in the TDB with ```./fuseki-server --config config.ttl```then it will run using text index.
+If you want to use indexed test search applying Apache Lucene, then you have to create a folder (e.g.: ```/var/www/fuseki/lucene```) where you want to keep the Lucene index.
 
-To use Fuseki in TDB, you have to configure in config.ttl the TDB location, e.g.:
-```tdb:location "/var/www/fuseki/tdb" ;```
-and for jena text index, and the lucene text directory:
-```text:directory <file:/var/www/skosmos/jena-fuseki1-1.3.0/lucene> ;```
+You have to set the locations of the lucene folder in the configuration file of fuseki (e.g. ```config-tdb-text.ttl```), as follow:
+
+```
+<#indexLucene> a text:TextIndexLucene ;
+    text:directory <file:/var/www/fuseki/lucene> ;
+    text:entityMap <#entMap> ;
+    .
+``` 
+If you start fuseki in the TDB with ```./fuseki-server --config config.ttl```then it will run using text index.
 
 If you start fuseki in the memory with ```./fuseki-server --update --mem /ds```, then there is no text indexing by default.
 
@@ -157,8 +172,8 @@ You can try giving Fuseki more memory. See for some tips:
 
 **https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning** 
 
-For example Setting JVM heap to 8 GB:
-**export JVM_ARGS=-Xmx8000M**
+For example Setting JVM heap to 16 GB:
+**export JVM_ARGS=-Xmx16000M**
 
 If you give it several GB it should be able to handle a 400MB file upload just fine, though it might take a while and you may want to restart Fuseki afterwards to free some memory. 
 
