@@ -55,9 +55,17 @@ In addition to vocabularies, the vocabularies.ttl file also contains a classific
 
 ## Configuration of Fuseki
 
-Fuseki stores data in files. It is also possible to configure Fuseki for in-memory use only, but with a large dataset, this will require a lot of memory. The in-memory use of Fuseki is usually faster.
+A Fuseki server can be set up using a configuration file. The configuration is an RDF graph. One graph consists of one server description, with a number of services, and each service offers a number of endpoints over a dataset.
 
-The jena text enabled configuration file specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
+There are some prepared configuration files (e.g. config.ttl) in the Fuseki folder that can be modified.
+
+First of all you have to set the prefixes. In order to enable of skos you have to add to the prfeix session the following line:
+
+```@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .```
+
+The jena text enabled configuration file (config-tdb-text.ttl) specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
+
+Fuseki stores data in files in a TDB folder. It is also possible to configure Fuseki for in-memory use only, but with a large dataset, this will require a lot of memory. The in-memory use of Fuseki is usually faster.
 
 If you want to run Fuseki using a TDB dataset for RDF storage and query (see https://jena.apache.org/documentation/tdb/), you have to create a folder in Fuseki folder (e.g.: /var/www/fuseki/tdb) where the dataset will be stored. 
 
