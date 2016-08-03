@@ -66,8 +66,8 @@ The jena text extension can be used for faster text search, and Skosmos simply n
 
 If you start fuseki in the TDB with ```./fuseki-server --config config.ttl```then it will run using text index.
 
-To use Fuseki in TDB, you have to configure in config.ttl the TDB location:
-```tdb:location "/var/www/skosmos/jena-fuseki1-1.3.0/tdb" ;```
+To use Fuseki in TDB, you have to configure in config.ttl the TDB location, e.g.:
+```tdb:location "/var/www/fuseki/tdb" ;```
 and for jena text index, and the lucene text directory:
 ```text:directory <file:/var/www/skosmos/jena-fuseki1-1.3.0/lucene> ;```
 
@@ -149,7 +149,6 @@ You can't change the timeout setting of Google Chrome.
 
 It is worth setting up **Varnish** (first_byte_timeout and between_bytes_timeout) in between Skosmos/Apache and Fuseki. It doesn't help with the first request, but subsequent ones will be answered very quickly from the cache. The statistical queries are always the same so they can be cached very well. 
 See https://github.com/NatLibFi/Skosmos/wiki/FusekiTuning#http-caching 
-
 
 ## Memory problems by uploading files to Fuseki
 
