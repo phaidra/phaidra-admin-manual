@@ -150,5 +150,27 @@ rm jena-fuseki-*-distribution.tar.gz
 
 If all went well, you should be able to test Fuseki by running ```./fuseki-server --mem /ds```
 
+If you want to run Fuseki using a TDB dataset for RDF storage and query (see https://jena.apache.org/documentation/tdb/), you have to create a folder in Fuseki folder (e.g.: /var/www/fuseki/tdb) where the dataset will be stored. 
+
+If you want to use indexed test search applying Apache Lucene, then you have to create a folder (e.g.: ```/var/www/fuseki/lucene```) where you want to keep the Lucene index.
+
+You have to set the locations of the tdb and lucene folder in the configuration file of fuseki (e.g. ```config-tdb-text.ttl```), as follow:
+
+```
+<#dataset> rdf:type      tdb:DatasetTDB ;
+    tdb:location "DB" ;
+    tdb:unionDefaultGraph true ;
+    .
+<#indexLucene> a text:TextIndexLucene ;
+    text:directory <file:/var/www/fuseki/lucene> ;
+    text:entityMap <#entMap> ;
+    .
+``` 
+
+You have to provide this configuration file when you start fuseki using the tdb (instead of the memory), as follows:
+
+```fuseki-server.jar --config config-tdb-textb.ttl```
+
+
 See for details: https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText
 
