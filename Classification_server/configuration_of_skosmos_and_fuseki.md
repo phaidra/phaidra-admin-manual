@@ -63,6 +63,16 @@ First of all you have to set the prefixes. In order to enable of skos you have t
 
 ```@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .```
 
+Then you can set the services of Fuseki. If you want to run Fuseki as a read-only service, you have to set services as follow:
+
+```
+<#service> rdf:type fuseki:Service ;
+    fuseki:name                     "/ds" ;   # http://host:port/ds
+    fuseki:serviceQuery             "query" ;    # SPARQL query service
+    fuseki:serviceReadGraphStore    "data" ;     # SPARQL Graph store protocol (read only)
+    fuseki:dataset           <#dataset> ;
+```
+
 The jena text enabled configuration file (config-tdb-text.ttl) specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
 
 Fuseki stores data in files in a TDB folder. It is also possible to configure Fuseki for in-memory use only, but with a large dataset, this will require a lot of memory. The in-memory use of Fuseki is usually faster.
