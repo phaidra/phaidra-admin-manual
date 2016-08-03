@@ -33,7 +33,7 @@ Other solution is to set the variable FUSEKI_BASE (see http://jena.apache.org/do
 Basically, there are two options for starting Fuseki, depending on the location where the dataset will be stored and handled. The dataset can be either in the memory or in a separate directory (usually called tdb). If the dataset is in a separate directory, the index files are stored in a separate folder (usually called lucene), too. 
 
 * The --mem /ds  option is a shorthand for running Fuseki without a configuration file (--file is similar too) and data set will be in the memory
-* If you need a configuration file to use jena-text you must use the --config config-file (e.g --config jena-text-config.ttl) option
+* If you need a configuration file to use jena-text you must use the --config config-file (e.g --config config-tdb-text.ttl) option
 * The --update option is allowing updates 
 
 After starting the server the last INFO will tell us the port (e.g. 3030), where the server is available.
