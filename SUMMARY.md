@@ -22,6 +22,8 @@
        * [Upgrading Skosmos](Classification_server/upgrading_skosmos.md)
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
+   * [Imageserver](Imageserver.md)
+       * [Installation](Imageserver/Installation.md)
    * [Search engine](search_engine.md)
        * [Solr](solr.md)
 
