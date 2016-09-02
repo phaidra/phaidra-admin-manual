@@ -481,7 +481,7 @@ For some guidance, see the SKOS Primer [1] and introductory articles [2,3]. An e
 
 ## Skosify the downloaded, converted, created classifications (optional)
 
-In any way the SKOS file was downloaded from external resources, or it has been converted from other formats, or was created from scratch, it is recommended to pre-process the vocabularies using a SKOS proofing tool, like Skosify. This will ensure, e.g., that the broader/narrower relations work in both directions, and that related relationships are symmetric. Skosify will report and try to correct lots of potential problems in SKOS vocabularies. It can also be used to convert non-SKOS RDF data into SKOS. 
+If the SKOS file was downloaded from external resources, or it has been converted from other formats, or was created from scratch, it is recommended to pre-process the vocabularies using a SKOS proofing tool, like Skosify. This will ensure, e.g., that the broader/narrower relations work in both directions, and that related relationships are symmetric. Skosify will report and try to correct lots of potential problems in SKOS vocabularies. It can also be used to convert non-SKOS RDF data into SKOS. 
 
 An online version of the Skosify tool is (usually) available here: https://code.google.com/p/skosify/, and use as follows
 1. Select the vocabulary to be checked as input
