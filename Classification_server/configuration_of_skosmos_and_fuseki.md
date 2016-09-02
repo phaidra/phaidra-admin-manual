@@ -53,6 +53,15 @@ In addition to vocabularies, the vocabularies.ttl file also contains a classific
 
 (See other settings of Skosmos in https://github.com/NatLibFi/Skosmos/wiki/Configuration.)
 
+### favicons
+
+In some istances of Skosmos favicons (favicon.ico or custom-favicon.ico) appears if only you add the following line into the  ```light.twig``` file (in the ```view``` folder) right after the opening ```<head>``` tag:
+
+```<link rel="shortcut icon" href="favicon.ico">```
+
+If you want to use your own custom favicon put a favicon file using the ```custom-favicon.ico``` filename in the root folder of the Skosmos install, then it will be used instead of the default Skosmos favicon.
+
+
 ## Configuration of Fuseki
 
 A Fuseki server can be set up using a configuration file. The configuration is an RDF graph. One graph consists of one server description, with a number of services, and each service offers a number of endpoints over a dataset.
