@@ -285,12 +285,17 @@ download: http://aix-pm.cvs.sourceforge.net/viewvc/aix-pm/modules/util/?view=tar
   * instance name and 
   * a secret from config 
  
-are used to create a hash under which the image is saved on filesystem. When the user accesses the imageserver through the phaidra-api, the objects is checked to see if it allows read access for the calling user (or anonymous, if no credentials are provided). If the user has the read rights, phaidra-api uses the secret to generate the hash used for accessing the image on the imageserver and proxies the answer.
+are used to create a hash under which the image is saved on filesystem.
+
+User should access the imageserver through the phaidra-api. The phaidra-api checks the object for read access. If the object is worldwide open, no authentication is necessary. If user has the read rights, phaidra-api uses the secret to generate the hash used for accessing the image on the imageserver and proxies the answer.
 
 ```
 [user] get <pid> ---> [api] get <hash> ---> [imageserver]
 [imageserver] return <hash> ---> [api] return <pid> ---> [user]
 ```
+
+Attention: The response from the imageserver is not inspected. If it contains the hash of the image, user will be able to access this image using this hash even if he no longer has access rights. When changing access rights for an image, it is recommended to re-process (re-hash) it again to inavalidate access with the previous hash.
+In any case, the imageserver (if used through the phaidra-api) in principle provides 'share by url' access. Anyone who knows the correct hash (or server's secret) can read the image. Imageserver does not check authentiation or authorization.
  
 Two stanzas need to be configured in the phaidra-api config. PAF mongo db and 'imageserver':
  
