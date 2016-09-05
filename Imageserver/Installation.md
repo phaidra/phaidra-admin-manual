@@ -271,3 +271,46 @@ download: http://aix-pm.cvs.sourceforge.net/viewvc/aix-pm/modules/util/?view=tar
  ```bash
  csv.pl	CVS  example1.csv  t_csv.pl  Util
  ```
+ 
+ ## phaidra-api
+ 
+ 
+ The functionality provided by phaidra-api is:
+ * generating a job for imageserver to process OCTETS of a particular pid
+ * proxying access the imageserver API hashing the pid in the background
+ 
+ 
+ When the image is saved into imageserver, it's
+  * pid
+  * instance name and 
+  * a secret from config 
+ 
+are used to create a hash under which the image is saved on filesystem. When the user accesses the imageserver through the phaidra-api, the objects is checked to see if it allows read access for the calling user (or anonymous, if no credentials are provided). If the user has the read rights, phaidra-api uses the secret to generate the hash used for accessing the image on the imageserver and proxies the answer.
+
+```
+[user] get <pid> ---> [api] get <hash> ---> [imageserver]
+[imageserver] return <hash> ---> [api] return <pid> ---> [user]
+```
+ 
+Two stanzas need to be configured in the phaidra-api config. PAF mongo db and 'imageserver':
+ 
+ ```json
+     "paf_mongodb": {
+        "host" : "host",
+        "port" : "27017",
+        "username" : "username",
+        "password" : "secret",
+        "database" : "instance_db"
+    },
+
+    "imageserver": {
+        "image_server_root": "root dir as configured for vips; usually instance name (like 'sandbox')", 
+        "hash_secret": "some crazy secret",
+        "scheme": "https",
+        "host": "imageserver hostname (eg imageserver.phaidra.org)",
+        "path": "/iipsrv/iipsrv.fcgi"
+    },
+
+ ```
+ 
+ To see how to create an [processing request](https://github.com/phaidra/phaidra-api/wiki/Documentation#create-imageserver-job-for-one-pid) or a [imageserver request](https://github.com/phaidra/phaidra-api/wiki/Documentation#imageserver-api) see the [documentation](https://github.com/phaidra/phaidra-api/wiki/Documentation).
