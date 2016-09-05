@@ -240,3 +240,33 @@ libjson-pps-perl
 libjson-xs-perl
 ```
 
+Repo
+```
+https://github.com/phaidra/pixelgecko/blob/master/wrk_vips.pl
+```
+
+Run it in screen like
+```bash
+./wrk_vips.pl —config conf.json —watch
+```
+
+The two directories included as 'lib' at the beginning are:
+* /home/pige/work/phaidra/forge/perl 
+``` 
+https://svn.phaidra.univie.ac.at/phaidra/forge/perl 
+```
+ * ls
+ ```bash
+ FedoraCommons  PAF  Phaidra  README.textile  UniVie
+ ```
+ 
+* /home/pige/work/sf/aix-pm/modules/util 
+``` 
+home: https://sourceforge.net/projects/aix-pm/
+view: http://aix-pm.cvs.sourceforge.net/viewvc/aix-pm/modules/util/
+download: http://aix-pm.cvs.sourceforge.net/viewvc/aix-pm/modules/util/?view=tar
+```
+ * ls
+ ```bash
+ csv.pl	CVS  example1.csv  t_csv.pl  Util
+ ```
