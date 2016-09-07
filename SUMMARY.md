@@ -26,5 +26,5 @@
        * [Installation](Imageserver/Installation.md)
    * [Search engine](search_engine.md)
        * [Solr](solr.md)
-   * Phaidra Statistics
+   * [Phaidra Statistics](phaidra_statistics.md)
 
