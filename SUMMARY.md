@@ -26,5 +26,5 @@
        * [Installation](Imageserver/Installation.md)
    * [Search engine](search_engine.md)
        * [Solr](solr.md)
-   * Phaidra_Statistics/new_chapter
+   * Phaidra Statistics
 
