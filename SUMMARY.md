@@ -28,4 +28,5 @@
        * [Solr](solr.md)
    * [Phaidra Statistics](Phaidra_Statistics/phaidra_statistics.md)
    * Phaidra_Statistics/new_chapter
+   * Phaidra_Statistics/new_article
 
