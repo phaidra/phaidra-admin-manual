@@ -27,5 +27,4 @@
    * [Search engine](search_engine.md)
        * [Solr](solr.md)
    * Phaidra_Statistics/new_chapter
-   * Phaidra_Statistics/new_article
 
