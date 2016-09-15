@@ -9,5 +9,5 @@ You can find storage and download delivery (for Webevents type Download) related
 
 ##Webevent Downloads: Total Downloaded Gigabytes per Object
 You can see the Total of Downloaded Gigabytes (Download Delivery), or filter per Object, Owner, Content Model,etc
-![](webeventsdownloads.png)
+![](webeventsdownloads.jpg)
 
