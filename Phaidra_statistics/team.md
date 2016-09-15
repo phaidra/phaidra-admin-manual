@@ -10,7 +10,7 @@ Phaidra Statistics  was developed as a team effort of the Central Information Sy
 * Rastislav Hudak
 * Gerhard Gonter
 * Michal Folcan
-* Sandor Kopaczi
+* Sándor Kopácsi
 * José Luis Preza
 
 
