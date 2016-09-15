@@ -8,7 +8,7 @@
 
 
 ##Sample view
-![](phaidrastatistics.png)
+![](phaidrastatistics.jpg)
 
 
 
