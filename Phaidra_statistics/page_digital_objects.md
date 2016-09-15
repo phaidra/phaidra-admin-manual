@@ -10,7 +10,7 @@ Shows the inventory information of the Digital Objects in the selected repositor
 * 
 
 
-![](phaidrastatistics.png)
+![](phaidrastatistics.jpg)
 
 ##Drilldown
 By selecting a Content Model from the list on this page, is possible to drill down to more detailed information.
