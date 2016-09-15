@@ -11,8 +11,8 @@ The network is automatically generated from the concepts from Watson Text Analyt
 ##Categorisations performed by Watson
 ###Keywords
 
-![](watson-keywords.png)
+![](watson-keywords.jpg)
 ###Concepts
-![](watson-concepts.png)
+![](watson-concepts.jpg)
 ###Entities
-![](watson-entities.png)
+![](watson-entities.jpg)
