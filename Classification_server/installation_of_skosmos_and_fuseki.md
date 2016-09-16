@@ -50,7 +50,7 @@ If you download a new version of Skosmos (in case of by starting Skosmos you rec
 The jena-text extension can be used for faster text search.)
 
 1. Download the latest Fuseki distribution jena-fuseki-*.zip from http://jena.apache.org/download/#apache-jena-fuseki
-2. Unpack the downloaded file (apache-jena-fuseki-2.3.0.zip) to c:\apache-jena-fuseki-2.3.0
+2. Unpack the downloaded file (e.g. apache-jena-fuseki-2.3.0.zip) to the desired folder (e.g. c:\apache-jena-fuseki-2.3.0)
 
 ## Installation on Linux
 
