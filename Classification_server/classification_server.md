@@ -12,7 +12,7 @@
 
 ###[Selected tool: Skosmos with Jena-Fuseki](Classification_server/selected_tool_skosmos_with_jena-fuseki.md)
 
-###[Installation of Skosmos and Fuseki](Classification_server/installation_of_skosmos_and_fuseki.md)
+###[Installation of Skosmos and Fuseki](installation_of_skosmos_and_fuseki.md)
 
 ###[Configuration of Skosmos and Fuseki](Classification_server/configuration_of_skosmos_and_fuseki.md)
 
