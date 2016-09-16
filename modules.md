@@ -1,5 +1,5 @@
 # Modules
 ###[Classification Server](Classification_server/classification_server.md)
 ###Image Server
-###[Search Engines](search_engine.md)
-###Phaidra Statistics
+###[Search Engine](search_engine.md)
+###[Phaidra Statistics](Phaidra_statistics/phaidra_statistics.md)
