@@ -24,7 +24,7 @@
        * [References](Classification_server/references.md)
    * [Imageserver](Imageserver.md)
        * [Installation](Imageserver/Installation.md)
-   * [Search engine](search_engine.md)
+   * [Search Engine](search_engine.md)
        * [Solr](solr.md)
    * [Phaidra Statistics](Phaidra_statistics/phaidra_statistics.md)
        * [General Information](Phaidra_statistics/README.md)
