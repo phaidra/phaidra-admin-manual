@@ -1,6 +1,6 @@
 # Classification Server
 
-###[Introduction to classification](Classification_server/introduction_to_classification.md)
+###[Introduction to classification](introduction_to_classification.md)
 
 ###[Knowledge Organization Systems and Linked Data](Classification_server/knowledge_organization_systems.md)
 
