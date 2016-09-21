@@ -545,7 +545,7 @@ The Fuseki file upload handling is not very good at processing large files. It w
 
 ##### s-put 
 
-You can use s-put, if you want to add a single data file. Note that s-put clears the dataset first, that is why it may happen that you overwrite the previous data when loading a new file.
+You can use s-put, if you want to add a single data file to a dataset using a graph name (an URI) or using the default graph. If there is something already at that graph name (URI) or in the default graph, it will be replaced. 
 
 1. Start Fuseki server (with text index) from its directory:
   ```./fuseki-server --config jena-text-config.ttl```
@@ -554,7 +554,7 @@ You can use s-put, if you want to add a single data file. Note that s-put clears
 
 ##### s-post
 
-If you want to add new data files to existing data without clearing it, you should use the s-post utility.
+If you want to add new triples to an existing graph without clearing it, you should use the s-post utility.
 
 1. Start Fuseki server (with text index) from its directory:
   ```./fuseki-server --config jena-text-config.ttl```
