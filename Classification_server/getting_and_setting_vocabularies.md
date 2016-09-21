@@ -550,7 +550,7 @@ You can use s-put, if you want to add a single data file to a dataset using a gr
 1. Start Fuseki server (with text index) from its directory:
   ```./fuseki-server --config jena-text-config.ttl```
 2. ```./s-put *SPARQL-server* *Graph-name* *data-to-be-uploaded*```
-    * e.g.: ```./s-put http://localhost:3030/ds/data http://skos.um.es/unescothes/ unescothes.ttl ```
+    * e.g.: ```./s-put   http://skos.um.es/unescothes/ unescothes.ttl ```
 
 ##### s-post
 
