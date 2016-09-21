@@ -68,7 +68,7 @@ A Fuseki server can be set up using a configuration file. The configuration is a
 
 There are some prepared configuration files (e.g. config.ttl) in the Fuseki folder that can be modified.
 
-First of all you have to set the prefixes. In order to enable of skos you have to add to the prfeix session the following line:
+First of all you have to set the prefixes. In order to enable of SKOS you have to add to the prfeix session the following line:
 
 ```@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .```
 
@@ -81,6 +81,16 @@ Then you can set the services of Fuseki. If you want to run Fuseki as a read-onl
     fuseki:serviceReadGraphStore    "data" ;     # SPARQL Graph store protocol (read only)
     fuseki:dataset           <#dataset> ;
 ```
+
+It is very important, that if you disable the services, as follow
+
+```
+'#  fuseki:serviceUpdate            "update" ;
+'#  fuseki:serviceUpload            "upload" ;
+ ...
+'#  fuseki:serviceReadWriteGraphStore    "data" ;
+ ```
+you will not be able to execute either the ```Upload``` and ```Perform update``` commands from the control panel of Fuseki, or the SOH (SPARQL overHTTP) scripts (```s-put```,``` s-post```, ```s-get```, etc.) from the command line.
 
 The jena text enabled configuration file (config-tdb-text.ttl) specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
 
