@@ -66,7 +66,7 @@ If you want to use your own custom favicon put a favicon file using the ```custo
 
 A Fuseki server can be set up using a configuration file. The configuration is an RDF graph. One graph consists of one server description, with a number of services, and each service offers a number of endpoints over a dataset.
 
-There are some prepared configuration files (e.g. config.ttl) in the Fuseki folder that can be modified.
+There are some prepared configuration files (e.g. ```config.ttl```) in the Fuseki folder that can be modified. Currently we are using the ```config-tdb-text.ttl``` configuration file, when we make the Fuseki server run in the TDB. 
 
 First of all you have to set the prefixes. In order to enable of SKOS you have to add to the prfeix session the following line:
 
@@ -90,7 +90,7 @@ It is very important, that if you disable the services, as follow
  ...
 '#  fuseki:serviceReadWriteGraphStore    "data" ;
  ```
-you will not be able to execute either the ```Upload``` and ```Perform update``` commands from the control panel of Fuseki, or the SOH (SPARQL overHTTP) scripts (```s-put```,``` s-post```, ```s-get```, etc.) from the command line.
+you will not be able to execute either the ```Upload``` and ```Perform update``` commands from the control panel of Fuseki, or the SOH (SPARQL overHTTP) scripts (```s-put```,``` s-post```, ```s-get```, etc.) from the command line. By trying to upload to or update the dataset, you may get ```Error 404: Not Found``` message from Fuseki.
 
 The jena text enabled configuration file (config-tdb-text.ttl) specifies the directories where Fuseki stores its data. The default locations are /tmp/tdb and /tmp/lucene. To flush the data from Fuseki, simply clear/remove these directories. 
 
