@@ -1,2 +1,0 @@
-# Starting Fuseki and Skosmos
-
