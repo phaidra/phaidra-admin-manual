@@ -28,7 +28,7 @@
 
 ###[Using Skosmos with Fuseki](using_skosmos_with_fuseki.md)
 
-###[Using Skosmos online](using_skosmos_online.md)
+###[Using the Classification Server online](using_the_calssification_server_online.md)
 
 ###[Connecting Phaidra to the Classification Server](connecting_to_phaidra.md)
 
