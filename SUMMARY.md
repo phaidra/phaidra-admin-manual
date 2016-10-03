@@ -20,7 +20,7 @@
        * [Current Phaidra-related service of Skosmos](Classification_server/current_phaidra_related_service_of_skosmos.md)
        * [Non Phaidra-related services of Skosmos](Classification_server/non_phaidra-related_services_of_skosmos.md)
        * [Starting Fuseki and Skosmos](Classification_server/starting_fuseki_and_skosmos.md)
-       * [Using Skosmos online](Classification_server/using_skosmos_online.md)
+       * [Using Skosmos online](Classification_server/using_the_calssification_server_online.md)
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
    * [Image Server](imageservermd.md)
