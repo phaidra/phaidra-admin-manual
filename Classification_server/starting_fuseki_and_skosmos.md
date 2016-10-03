@@ -82,7 +82,7 @@ In order to read (preferably checked vocabularies (e.g. checked_resource_types.x
 3. select the vocabulary (e.g. checked_resource_types.xml or checked_tgn_7011179.rdf) file from the c:\xampp\htdocs\skosmos\vocabularies dictionary
 4. click on the "upload now" button
 
-### 4. Start Skosmos
+### 4. Start Skosmos locally
 Enter in the address bar of your web browser http://localhost/skosmos
 If you receive the error message: "Error: Dependencies managed by Composer missing. Please run "php composer.phar install", then set up PHP dependencies again. (It may happen after downloading a new version of Skosmos.)
 
