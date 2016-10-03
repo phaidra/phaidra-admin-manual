@@ -19,7 +19,7 @@
        * [Some examples and problems with individual vacabularies](Classification_server/some_examples_and_problems_with_individual_vocab.md)
        * [Current Phaidra-related service of Skosmos](Classification_server/current_phaidra_related_service_of_skosmos.md)
        * [Non Phaidra-related services of Skosmos](Classification_server/non_phaidra-related_services_of_skosmos.md)
-       * [Using Skosmos with Fuseki](Classification_server/using_skosmos_with_fuseki.md)
+       * [Starting Fuseki and Skosmos](Classification_server/using_skosmos_with_fuseki.md)
        * [Using Skosmos online](Classification_server/using_skosmos_online.md)
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
