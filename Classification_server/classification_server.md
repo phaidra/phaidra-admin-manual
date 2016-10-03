@@ -30,7 +30,6 @@
 
 ###[Using Skosmos online](using_skosmos_online.md)
 
-
 ###[Connecting Phaidra to the Classification Server](connecting_to_phaidra.md)
 
 
