@@ -23,6 +23,7 @@
        * [Using Skosmos online](Classification_server/using_the_calssification_server_online.md)
        * [Connecting to Phaidra](Classification_server/connecting_to_phaidra.md)
        * [References](Classification_server/references.md)
+       * Using the Classification Server online
    * [Image Server](imageservermd.md)
        * [Installation](Imageserver/Installation.md)
    * [Search Engine](search_engine.md)
