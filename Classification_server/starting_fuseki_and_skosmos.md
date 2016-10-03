@@ -1,4 +1,4 @@
-# Using Skosmos with Fuseki
+# Starting Fuseki and  Skosmos
 
 ## In Linux 
 
