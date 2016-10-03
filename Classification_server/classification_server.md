@@ -14,6 +14,8 @@
 
 ###[Installation of Skosmos and Fuseki](installation_of_skosmos_and_fuseki.md)
 
+###[Upgrading Skosmos](upgrading_skosmos.md)
+
 ###[Configuration of Skosmos and Fuseki](configuration_of_skosmos_and_fuseki.md)
 
 ###[Getting and setting vocabularies](getting_and_setting_vocabularies.md)
@@ -26,7 +28,8 @@
 
 ###[Using Skosmos with Fuseki](using_skosmos_with_fuseki.md)
 
-###[Upgrading Skosmos](upgrading_skosmos.md)
+###[Using Skosmos online](using_skosmos_online.md)
+
 
 ###[Connecting Phaidra to the Classification Server](connecting_to_phaidra.md)
 
