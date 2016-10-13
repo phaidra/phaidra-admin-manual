@@ -1,6 +1,6 @@
-# Using the Classification server online
+# Using the Classification Server online
 
-You can start the classification sever under the URL [http://vocab.phaidra.org](http://vocab.phaidra.org/skosmos/en/) from any web browser.  
+You can start the Classification Sever under the URL [http://vocab.phaidra.org](http://vocab.phaidra.org/skosmos/en/) from any web browser.  
 
 Currently you can access four general on-line classifications from external triple stores (AGROVOC, Eurovoc, STW, UNESCO), some other general local classifications (e.g. COAR Resource Type Vocabulary, GND, ÖFOS, etc.) and two local, Phaidra specific classifications.
 The local classifications have been previously  uploaded to our local triple store.
