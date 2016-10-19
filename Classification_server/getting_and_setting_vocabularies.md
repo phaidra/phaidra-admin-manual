@@ -19,11 +19,14 @@ Vocabularies can be downloaded from the original dataset provider (e.g. from Get
 
 For the SKOS-XL to SKOS Core conversion you can use for example the owlart (https://bitbucket.org/art-uniroma2/owlart/downloads) converter.
 
+Steps to be executed:
+
 1. Download library 'owlart-2.3-dist.zip' from https://bitbucket.org/art-uniroma2/owlart/downloads
 
 2. copy inputfile e.g. 'skosxl.xml' into workbench/rdf_files
 3. create in 'workbench/output' directory output file e.g. 'resultSkos.rdf'
 4. make config file in workbench/config dir e.g. workbench/config/skosxl2skos.config and set 'baseuri', 'namespace', and 'defaultScheme' according to your project settings.
+
 Here is an example of the config file:
 
 ```
@@ -42,6 +45,7 @@ baseuri=http\://purl.org/coar/resource_type/
 namespace=http\://phaidra.org/
 defaultScheme=http\://phaidra.org/
 ```
+
 5. run library with dependencies in project root directory(dir above workbench directory):
 5.1. windows:
 
