@@ -149,7 +149,7 @@ rm jena-fuseki-*-distribution.tar.gz
 
 ```
 
-Fuseki v1.3.0 onwards and Fuseki v2.3.0 onwards require Java 8, so from scretch you have to instal this version. 
+Fuseki v1.3.0 onwards and Fuseki v2.3.0 onwards require Java 8, so from scratch you have to install this version. 
 
 If you have not only Java 8 installed on your machine, before you start Fuseki, you have to check which is the currently used version:
 
