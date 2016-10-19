@@ -49,6 +49,10 @@ If you download a new version of Skosmos (in case of by starting Skosmos you rec
 1. Download the latest Fuseki distribution jena-fuseki-*.zip from http://jena.apache.org/download/#apache-jena-fuseki
 2. Unpack the downloaded file (e.g. apache-jena-fuseki-2.3.0.zip) to the desired folder (e.g. c:\apache-jena-fuseki-2.3.0)
 
+Fuseki v1.3.0 onwards and Fuseki v2.3.0 onwards require Java 8, so from scratch you have to install this version. 
+
+Theoretically you could set the ```JAVA_HOME``` sytem variable to the location of Java 8, but unfortunately fuseki-server script ignores JAVA_HOME variable while it executes the "java" command.
+
 ## 2. Installation on Linux
 
 ### 2.1 Check and set Apache
@@ -155,10 +159,8 @@ If it is not Java 8, then you can switch to Java 8 using:
 
 ```update-alternatives --config java```
 
-As an alternative, you can set the ```JAVA_HOME``` sytem variable to the location of Java 8. 
-
+Theoretically you could set the ```JAVA_HOME``` sytem variable to the location of Java 8, but unfortunately fuseki-server script ignores JAVA_HOME variable while it executes the "java" command.
 
 If all went well, you should be able to test Fuseki by running ```./fuseki-server --mem /ds```
-
 
 See for details: [https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText](https://github.com/NatLibFi/Skosmos/wiki/InstallFusekiJenaText)
