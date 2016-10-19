@@ -145,6 +145,19 @@ rm jena-fuseki-*-distribution.tar.gz
 
 ```
 
+Fuseki v1.3.0 onwards and Fuseki v2.3.0 onwards require Java 8, so from scretch you have to instal this version. 
+
+If you have not only Java 8 installed on your machine, before you start Fuseki, you have to check which is the currently used version:
+
+```java -version```
+
+If it is not Java 8, then you can switch to Java 8 using:
+
+```update-alternatives --config java```
+
+As an alternative, you can set the ```JAVA_HOME``` sytem variable to the location of Java 8. 
+
+
 If all went well, you should be able to test Fuseki by running ```./fuseki-server --mem /ds```
 
 
