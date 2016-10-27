@@ -60,7 +60,11 @@ COAR Resource Type Vocabulary  defines concepts to identify the genre of a resou
 
 The main problem with COAR is that it only represents labels using SKOS XL properties. Skosmos doesn't support SKOS XL currently. 
 
-Unfortunately, the remote SPARQL endpoint of COAR (http://vocabularies.coar-repositories.org/sparql/repositories/coar) cannot be used either, because the COAR endpoint data currently is not SKOS Core, but SKOS-XL. Since we wanted to use COAR data in our Classification Server, we have converted to SKOS Core labels using owlart converter (see Getting and setting vocabularies). 
+Unfortunately, the remote SPARQL endpoint of COAR ([http://vocabularies.coar-repositories.org/sparql/repositories/coar](http://vocabularies.coar-repositories.org/sparql/repositories/coar)) cannot be used either, because the COAR endpoint data currently is not SKOS Core, but SKOS-XL. 
+
+Since we wanted to use COAR data in our Classification Server, we have converted to SKOS Core labels using owlart converter (see Getting and setting vocabularies). 
+
+There were other problems with COAR Resource Type vocabulary. First of all the imported SKOS-XL version doesn't contain the skos:narrower tag, just the skos:broader, which is not enough for Skosmos. To solve the problem, we used the Skosify tool (see Getting and setting vocabularies), which checks the dependencies, and pairs the broader and narrower concepts. 
 
 We have also tried this SPARQL Update query that converted SKOS XL labels into SKOS Core labels:
 
