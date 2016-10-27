@@ -19,12 +19,12 @@ Vocabularies can be downloaded from the original dataset provider (e.g. from Get
 
 For the SKOS-XL to SKOS Core conversion you can use for example the owlart (https://bitbucket.org/art-uniroma2/owlart/downloads) converter.
 
-Steps to be executed ((supposed that you are using Workbanch for development)) :
+Steps to be executed supposed that you are using Workbanch for development:
 
 1. download library 'owlart-2.3-dist.zip' from [https://bitbucket.org/art-uniroma2/owlart/downloads](https://bitbucket.org/art-uniroma2/owlart/downloads)
-2. copy the file ((to be converted)) e.g. 'skosxl.xml' into workbench/rdf_files
-3. create in 'workbench/output' directory ((an)) output file e.g. 'resultSkos.rdf'
-4. make ((create??)) ((a?)) config file in workbench/config dir e.g. workbench/config/skosxl2skos.config, and set ((the)) 'baseuri', 'namespace', and 'defaultScheme' ((parameters)) according to your project settings.
+2. copy the file to be converted (e.g. 'skosxl.xml') into workbench/rdf_files
+3. create in 'workbench/output' directory an output file (e.g. 'resultSkos.rdf')
+4. create a config file in workbench/config dir (e.g. workbench/config/skosxl2skos.config), and set the 'baseuri', 'namespace', and 'defaultScheme' parameters according to your project settings.
 
 Here is an example of the config file:
 
@@ -45,16 +45,18 @@ namespace=http\://phaidra.org/
 defaultScheme=http\://phaidra.org/
 ```
 
-5. run library (((what doest it mean?))) with dependencies in project root directory (directory above workbench directory):
-5.1. ((in)) Windows:
+5. run ```it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter``` with the classpath below using the above mentioned config-, input-, and output files and dependencies in project root directory: 
+ 
+5.1. in Windows:
 
 java -classpath ".;dependency\commons-codec-1.2.jar;dependency\commons-httpclient-3.1.jar;dependency\commons-io-2.4.jar;dependency\commons-logging-1.0.4.jar;dependency\guava-15.0.jar;dependency\jackson-core-2.4.0.jar;dependency\log4j-1.2.16.jar;dependency\opencsv-2.0.jar;dependency\owlart-api-2.3.jar;dependency\owlart-sesame2impl-1.3.jar;dependency\sesame-onejar-2.7.10.jar;dependency\slf4j-api-1.6.1.jar;dependency\slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench\config\skosxl2skos.config workbench\rdf_files\skosxl.xml workbench\output\resultSkos.rdf false
 
-5.2. ((in)) Linux:
+5.2. in Linux:
 
 java -classpath ".:dependency/commons-codec-1.2.jar:dependency/commons-httpclient-3.1.jar:dependency/commons-io-2.4.jar:dependency/commons-logging-1.0.4.jar:dependency/guava-15.0.jar:dependency/jackson-core-2.4.0.jar:dependency/log4j-1.2.16.jar:dependency/opencsv-2.0.jar:dependency/owlart-api-2.3.jar:dependency/owlart-sesame2impl-1.3.jar:dependency/sesame-onejar-2.7.10.jar:dependency/slf4j-api-1.6.1.jar:dependency/slf4j-log4j12-1.6.1.jar" it.uniroma2.art.owlart.utilities.transform.SKOSXL2SKOSConverter workbench/config/skosxl2skos.config workbench/rdf_files/skosxl.xml workbench/output/resultSkos.rdf false
 
-6. Result skos file is ((will be)) in workbench/output/resultSkos.rdf
+6. The resulting core SKOS file will be in  workbench/output/resultSkos.rdf
+
 7. tested in java version "1.8.0_72"
 
 ### Converting SKOS-XL to plain SKOS Core fomat using SPARQL Update query
