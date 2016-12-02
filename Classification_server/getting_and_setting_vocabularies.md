@@ -1,4 +1,4 @@
-# Getting, uploading and setting vocabularies
+# Getting and setting vocabularies
 
 The basic usage of our Classification Server is to store the classifications locally (if its access time is acceptable), and we also provide the links to the remote SPARQL endpoints of the classifications, if they are available.
 If you want to use certain vocabularies locally, you have to get it in the right format, and upload it to the local SPARQL server, that is to Jena Fuseki.
