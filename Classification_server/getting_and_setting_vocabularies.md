@@ -548,18 +548,18 @@ If you want to upload datasets online to Fuseki from the command line, you have 
 
 The Fuseki file upload handling is not very good at processing large files. It will load them first into memory, only then to the on-disk TDB database (and also the Lucene/jena text index). It can to run out of memory on the first step ("OutOfMemoryError: java heap space" is a typical error message when this happens). If you give several GB memory to Fuseki (for example Setting JVM heap to 8 GB: export JVM_ARGS=-Xmx8000M) it should be able to upload large (several hundreds of MB) files, though it might take a while and you may want to restart Fuseki afterwards to free some memory.
 
-##### s-put 
+##### s-put (replace)
 
-You can use s-put, if you want to add a single data file to a dataset using a graph name (an URI) or using the default graph. If there is something already at that graph name (URI) or in the default graph, it will be replaced. 
+You can use s-put, if you want to add a single data file to a dataset using a graph name (an URI) or using the default graph. If there is something already at that graph name (URI) or in the default graph, it will be replaced. s-put replaces the graph only, default or named, and will not replace or delete the entire datset.
 
 1. Start Fuseki server (with text index) from its directory:
   ```./fuseki-server --config jena-text-config.ttl```
 2. ```./s-put *SPARQL-server* *Graph-name* *data-to-be-uploaded*```
     * e.g.: ```./s-put http://localhost:3030/ds/data  http://skos.um.es/unescothes/ unescothes.ttl ```
 
-##### s-post
+##### s-post (add triples)
 
-If you want to add new triples to an existing graph without clearing it, you should use the s-post utility.
+If you want to add new triples to an existing graph without clearing it, you should use the s-post utility. s-post is append-like, meaning "add RDF to a graph". 
 
 1. Start Fuseki server (with text index) from its directory:
   ```./fuseki-server --config jena-text-config.ttl```
