@@ -1,4 +1,4 @@
-# Getting and setting vocabularies
+cd# Getting and setting vocabularies
 
 The basic usage of our Classification Server is to store the classifications locally (if its access time is acceptable), and we also provide the links to the remote SPARQL endpoints of the classifications, if they are available.
 If you want to use certain vocabularies locally, you have to get it in the right format, and upload it to the local SPARQL server, that is to Jena Fuseki.
@@ -541,6 +541,8 @@ If you use a graph name when uploading a dataset to Fuseki, you have to make sur
 
 1. Graph: *write here the graph name according to the skosmos:sparqlGraph parameter in vocabularies.ttl*
 2. Upload
+
+Using the web interface of Fuseki works like the above mentioned s-post command, that is it adds new triples to an existing graph without clearing it.
 
 #### From the command line in Fuseki's folder on Linux
 
