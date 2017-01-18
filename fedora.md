@@ -1,10 +1,10 @@
 # Fedora
 
-Fedora is an acronym that means Flexible Extensible Digital Object Repository Architecture. Fedora is a robust, modular, open source repository system for the management and dissemination of digital content. It is especially suited for digital libraries and archives, both for access and preservation. It is also used to provide specialized access to very large and complex digital collections of historic and cultural materials as well as scientific data. Fedora has a worldwide installed user base that includes academic and cultural heritage organizations, universities, research institutions, university libraries, national libraries, and government agencies.
+The Fedora Repository open source software is a project supported by the DuraSpace not-for-profit organization. The software has its origins in the Flexible Extensible Digital Object Repository Architecture \(i.e., Fedora\) which was originally designed and developed by researchers at Cornell University. Fedora is a robust, modular, open source repository system for the management and dissemination of digital content. It is especially suited for digital libraries and archives, both for access and preservation. It is also used to provide specialized access to very large and complex digital collections of historic and cultural materials as well as scientific data. Fedora has a worldwide installed user base that includes academic and cultural heritage organizations, universities, research institutions, university libraries, national libraries, and government agencies.
 
 ## Digital Object Model in Fedora 3.8
 
-Fedora defines a generic digital object model that can be used to persist and deliver the essential characteristics for many kinds of digital content including documents, images, electronic books, multi-media learning objects, datasets, metadata and many others. This digital object model is a fundamental building block of the Content Model Architecture and all other Fedora-provided functionality.
+Fedora defines a generic digital object model that can be used to persist and deliver the essential characteristics for many kinds of digital content including documents, images, electronic books, multi-media learning objects, datasets, metadata and many others. This digital object model is a fundamental building block of the Content Model Architecture \(CMA\) and all other Fedora-provided functionality.
 
 Fedora uses a "compound digital object" design which aggregates one or more content items into the same digital object. Content items can be of any format and can either be stored locally in the repository, or stored externally and just referenced by the digital object. The Fedora digital object model is simple and flexible so that many different kinds of digital objects can be created, yet the generic nature of the Fedora digital object allows all objects to be managed in a consistent manner in a Fedora repository.
 
@@ -46,7 +46,7 @@ The basic properties that the Fedora object model defines for a Datastream are a
 * **MIME Type:**
   the MIME type of the Datastream \(required\)
 * **Format Identifier:**
-  an optional format identifier for the Datastream such as emerging schemes like PRONOM and the Global Digital Format Registry \(GDRF\)
+  an optional format identifier for the Datastream such as emerging schemes like PRONOM \(a web-based technical registry to support digital preservation services, developed by The National Archives of the United Kingdom\) and the Global Digital Format Registry \(GDRF\)
 * **Alternate Identifiers:**
   one or more alternate identifiers for the Datastream \(such identifiers could be local identifiers or global identifiers such as Handles or DOI\)
 * **Checksum:**
@@ -54,15 +54,7 @@ The basic properties that the Fedora object model defines for a Datastream are a
 * **Bytestream Content:**
   the content \(as a stream resource\) represented or encapsulated by the Datastream \(such as a document, digital image, video, metadata record\)
 * **Control Group:**
-  the approach used by the Datastream to represent or encapsulate the content as one of four types or control groups:
-  * _**Internal XML Content**_
-    - the content is stored as XML in-line within the digital object XML file
-  * _**Managed Content**_
-    - the content is stored in the repository and the digital object XML maintains an internal identifier that can be used to retrieve the content from storage
-  * _**Externally Referenced Content**_
-    - the content is stored outside the repository and the digital object XML maintains a URL that can be dereferenced by the repository to retrieve the content from a remote location. While the datastream content is stored outside of the Fedora repository, at runtime, when an access request for this type of datastream is made, the Fedora repository will use this URL to get the content from its remote location, and the Fedora repository will mediate access to the content. This means that behind the scenes, Fedora will grab the content and stream in out the the client requesting the content as if it were served up directly by Fedora. This is a good way to create digital objects that point to distributed content, but still have the repository in charge of serving it up.
-  * _**Redirect Referenced Content**_
-    - the content is stored outside the repository and the digital object XML maintains a URL that is used to redirect the client when an access request is made. The content is not streamed through the repository. This is beneficial when you want a digital object to have a Datastream that is stored and served by some external service, and you want the repository to get out of the way when it comes time to serve the content up. A good example is when you want a Datastream to be content that is stored and served by a streaming media server. In such a case, you would want to pass control to the media server to actually stream the content to a client \(e.g., video streaming\), rather than have Fedora in the middle re-streaming the content out.
+  the approach used by the Datastream to represent or encapsulate the content as one of four types or control groups \(Internal XML Content, Managed Content, Externally Referenced Content, Redirect Referenced Content\)
 
 ### Four Types of Fedora Digital Objects
 
@@ -70,19 +62,19 @@ Although every Fedora digital object conforms to the Fedora object model, as des
 
 #### Data Object
 
-In Fedora, a Data object is the type of object used to represent a digital content entity. Data objects are what we normally think of when we imagine a repository storing digital collections. Data objects can represent such varied entities as images, books, electronic texts, learning objects, publications, datasets, and many other entities. One or more Datastreams are used to represent the parts of the digital content. A Datastream is an XML element that describes the raw content \(a bitstream or external content\).
+In Fedora, a Data object is the type of object used to represent a digital content entity. Data objects are what we normally think of when we imagine a repository storing digital collections. Data objects can represent such varied entities as images, books, electronic texts, learning objects, publications, datasets, and many other entities. One or more Datastreams are used to represent the parts of the digital content. **A Datastream is an XML element that describes the raw content \(a bitstream or external content\).**
 
 #### Service Definition Object
 
-In Fedora, a _Service Definition object _or`SDef`is a special type of _control object _used to store a model of a Service. A Service contains an integrated set of _Operations _that a Data object supports. In object-oriented programming terms, the SDef defines an "interface" which lists the operations that are supported but does not define exactly how each operation is performed. This is also similar to approaches used in Web \(REST\) programming and in SOAP Web services.
+In Fedora, a Service Definition object or `SDef` is a special type of control object used to store a model of a Service. A Service contains an integrated set of Operations that a Data object supports. In object-oriented programming terms, the `SDef` defines an "interface" which lists the operations that are supported but does not define exactly how each operation is performed. This is also similar to approaches used in Web \(REST\) programming and in SOAP Web services.
 
 #### Service Deployment Object
 
-The Service Deployment object is a special type of control object that describes how a specific repository will deliver the Service Operations described in a SDef for a class of Data objects described in a CModel. The SDep is note executable code but instead it contains information that tells the Fedora repository how and where to execute the function that the SDep represents.
+The Service Deployment object or `SDep` is a special type of control object that describes how a specific repository will deliver the Service Operations described in a `SDef` for a class of Data objects described in a `CModel`. The `SDep` is not executable code but instead it contains information that tells the Fedora repository how and where to execute the function that the `SDep` represents.
 
 #### Content Model Object
 
-The Content Model object or CModel is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including Data, SDef, SDep, and CModel objects are organized into classes by the CModel object.
+The Content Model object or `CModel` is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including Data, SDef, SDep, and CModel objects are organized into classes by the CModel object.
 
 ## Metadata design patterns in Fedora 4
 
