@@ -88,3 +88,79 @@ Fedora 4 offers very limited support for the use of blank nodes in metadata. Whi
 
 RDF, as a graph, is inherently unordered, and this can lead to difficulty when forms of description that presuppose ordering are translated into it. The Fedora community is trying several methods for constructing order in a graph.
 
+
+
+##  An architecture for complex objects and their relationships
+
+Link: [https://arxiv.org/ftp/cs/papers/0501/0501012.pdf](https://arxiv.org/ftp/cs/papers/0501/0501012.pdf) 
+
+\(The article was written when the actual release of Fedora was version 2.0, which includes the semantic web integration that is important for us.\)
+
+This work uniquely integrates advanced content management with semantic web technology. It supports the representation of rich information networks, where the nodes are complex digital objects combining data and metadata with web services and the edges are ontology-based relationships among these digital objects.
+
+ The most familiar example is the need to express well-known management relationships among digital resources such as the organization of items in a collection and structural relationships such as the part-whole relationships between individual articles and a journal. While the relationships among digital objects in these familiar applications are mainly hierarchical, we are working with other applications where the relationships are more graph-like.
+
+There are a number of schemes for representing these relationships such as conventional relational databases and formalisms like conceptual graphs, the products of the semantic web initiative such as RDFS, OWL, and highly scalable triple-stores provide extensible open-source solutions for representation, manipulation, and querying these knowledge networks.
+
+ By providing both a model for digital objects and repository services to manage them, Fedora is distinguished from work focused on defining and promoting standard XML formats for representing and transmitting complex objects \(e.g., METS, MPEG-21 DIDL, IEEE LOM\). However, Fedora is compatible with these efforts since it has the ability to ingest and export digital objects that are encoded in such XML transmission formats . This allows Fedora to comfortably coexist in the archival framework defined by OAIS.
+
+ As a service-based architecture for complex digital objects, Fedora has some commonality with the aDORe architecture developed at the Los Alamos National Laboratory research library. The aDORe system provides a standards-based repository for managing and accessing complex digital objects. Objects are encoded in XML using DIDL and a limited set of object relationships can be expressed using RDF. Object dissemination services are available via OAI-PMH and OpenURL.
+
+### Fedora model for complex objects
+
+The Fedora object model supports the expression of many kinds of complex objects, including documents, images, electronic books, multi-media learning objects, datasets, computer programs, and other compound information entities. Fedora supports aggregation of any combination of media types into complex objects, and allows the association of services with objects that produce dynamic or computed content. The Fedora model also allows the assertion of relationships among objects so that a set of related Fedora objects can represent the items in a managed collection, the components of a structural object like the chapters of a book, or a set of resources that share common characteristics \(defined by semantic relationships\).
+
+Fedora defines a powerful object model for expressing this variety of complex content and their relationships. This object model can be understood from two perspectives: 
+
+1. The _representational_ perspective defines a simplified abstraction for understanding Fedora objects, where each object is modeled as a uniquely identified resource projecting one or more views, or representations. From this perspective the internal structure of a digital object is opaque; however, relationships among objects are observable. 
+
+2. The _functional_ perspective reveals the object components that underlie the representational perspective and provides the basis for understanding how the Fedora object model relates to the management services exposed in the Fedora repository architecture.
+
+####  Representational View
+
+ The representational perspective of the Fedora object model asserts that each digital object can disseminate one or more representations of itself, and that each object can be related to one or more other objects. A familiar example of digital object with multiple representations is a document or image where the content is available in multiple formats. All digital objects, and their individual representations, are identified with Uniform Resource Identifiers \(URIs\). This choice frees the architecture from ties with any identifier resolution system \(e.g., the Handle System\).
+
+This perspective hides complexity and exposes only the access points to content stored in a Fedora repository. The figure below depicts the representational view of three inter-related Fedora objects. The diagram shows a directed graph, where the larger nodes are digital objects, and the smaller nodes are representations of the digital objects. These nodes are linked by two types of arcs – relationship arcs connect digital objects, and representation arcs connect digital objects to their respective representations. **This graph can be expressed as RDF, stored in a triple store,** and queried.
+
+![](/assets/Representational View of Fedora Objects small.PNG)
+
+Each digital object in the diagram has at least one representation, related to its originating digital object by a “hasRep” arc. For example, the node labeled info:fedora/demo:11 is an image digital object with four representations, identified by their respective URIs:  
+- Dublin Core record, identified as info:fedora/demo:11/DC  
+- High-resolution image, identified as info:fedora/demo:11/HIGH  
+- Thumbnail image, identified as info:fedora/demo:11/THUMB  
+- Image with zoom/pan utility, as info:fedora/demo:11/bdef:2/ZPAN
+
+This figure also demonstrates an example of inter-object relationships. In this example, the node labeled info:fedora/demo:10 is a “collection” with two “items”, the nodes labeled info:fedora/demo:11 and info:fedora/demo:12. These collection-item relationships are expressed by the “hasMember“ arc that emanates from the collectionobject. The inverse “isMemberOf” relationships are not shown in the diagram for simplification.
+
+ This simple representational view forms the basis of Fedora’s REST-based access service \(i.e., API-A-LITE\), whereby digital object URIs and representation URIs can be easily converted to service request URLs upon Fedora repositories.
+
+####  Functional View I - Datastreams
+
+ While the representational perspective of the Fedora object model provides a simple, access-oriented overlay for digital resources and collections, the functional perspective provides a view of the core underlying data model for Fedora.
+
+In its simplest form a Fedora object is an aggregation of content items, where each content item maps to a representation. The Fedora object model defines a component known as a datastream to represent a content item. A datastream component either encapsulates bytestream content internally or references it externally. In either case that content may be in any media type.
+
+The figure below shows the digital object \(info:fedora/ demo:11\) as an aggregation of datastreams and the one-to-one correspondence of those datastreams to the representations of the digital object that are exposed to accessing clients. In this simple case, each representation of a Fedora object is a simple transcription of the content that lies behind a datastream component.
+
+![](/assets/Fedora Object with PID, Properties, and Datastreams.PNG)
+
+ As seen in the above diagram, a digital object has a unique identifier \(PID\) and a set of key descriptive properties. Each datastream contains information necessary to manage a content item in a Fedora repository. These are stored as properties of the datastream as shown in the figure below. 
+
+![](/assets/Properties of a Datastream Component.PNG)
+
+Three datastream properties deserve special attention. The FORMAT\_URI refines the media type definition and anticipates the emergence of a global digital format registry such as the GDFR. CONTROLGROUP defines whether the datastream represents either local or remote content. Datastreams with a control group of “Managed” are internal content bytestreams that are under the direct custodianship of the Fedora repository. Datastreams whose control group is “External” or “Redirected” represent content that is stored outside the repository. These datastreams have a CONTENT\_LOCAT property that is a URL pointing to a service point outside the repository that is responsible for providing the content. The ability to create digital objects that aggregate locally managed content with external content is a powerful feature of Fedora, and is useful in a variety of contexts. A good example of a hybrid local/remote object is an educational object where local content is an instructor’s syllabus, lecture notes, and exams, and remote content are primary resources included by-reference from other sites.
+
+#### Functional View II - Disseminators
+
+
+
+####  Functional View III – Object Integrity Components
+
+
+
+###  Relationships in Fedora
+
+
+
+
+
