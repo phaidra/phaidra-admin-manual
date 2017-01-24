@@ -174,15 +174,15 @@ t.b.c.
 
 ### Relationships in Fedora
 
-The Fedora object model can be abstractly viewed as a directed graph, consisting of internal arcs that relate digital objects nodes to their representation nodes and external arcs between digital objects.  
+The Fedora object model can be abstractly viewed as a directed graph, consisting of internal arcs that relate digital objects nodes to their representation nodes and external arcs between digital objects.
 
 The Fedora Resource Index module allows storage and query of the graph. This module builds on RDF \(Resource Description Framework\)  primitives.  The Fedora system defines a base relationship ontology that, in the fashion of any RDF properties, can co-exist with domain-specific ontologies from other namespaces. Each digital object’s relationships to other digital objects are expressed in RDF/XML \[20\] within a reserved datastream in the object. The Resource Index is a relationship graph over all digital objects in the repository that is derived by merging the relationships implied by the Fedora object model itself with the relationships explicitly stated in an object’s relationship datastream. The triples representing this graph are then stored in a triple-store providing the capability for searching over the graph.
 
 The combination of representing explicit relationships as RDF/XML in a datastream of a digital object and then mapping them to the Kowari triple store offers the “best of both worlds”. The explicit representation provides the basis for exporting, transporting, and archiving of the digital objects with their asserted relationships to other objects.  The mapping to \(Kowari\) triples provides a graph-based index of an entire repository and the basis for high-performance queries over the relationships. An  added advantage of the dual representation is that the entire triple store can be rebuilt by importing and parsing the XML-based digital objects.
 
-####  Representing object-to-object relationships
+#### Representing object-to-object relationships
 
- Fedora decomposes the structural units \(e.g.  book composed of chapters and diaries consisting of entries\) into separate digital objects. The units can then be reused in a variety of structural compositions. In addition, this lays the basis for expressing other types of non-structural relationships among digital objects such as:
+Fedora decomposes the structural units \(e.g.  book composed of chapters and diaries consisting of entries\) into separate digital objects. The units can then be reused in a variety of structural compositions. In addition, this lays the basis for expressing other types of non-structural relationships among digital objects such as:
 
 * The organization of individual resources into larger collection units, for the purpose of management, \(OAI-PMH\) harvesting, user browsing, and other uses.
 * The relationships among bibliographic entities.
@@ -195,27 +195,90 @@ All of these relationships, including structural relationships, should be expres
 
 The expression of arbitrary, inter-object relationships in Fedora is enabled by a reserved datastream known as the Relations datastream. This datastream allows for a restricted subset of RDF/XML where the subject of each statement must be the digital object within which the datastream is defined.
 
-Since predicates from any vocabulary can be used in Relations, the repository
-manager has considerable flexibility in the kinds of relationships that can be asserted.
-The code segment below shows an example Relations datastream in a Fedora digital object identified
-by the URI, `info:fedora/demo:11`. The RDF/XML refers to three different relationship
-vocabularies (hypothetical for the purpose of this example) and asserts the following
-relationships:
-• demo:11 is a member of the collection represented by the object demo:10,
-• demo:11 fulfills the state educational standard represented by the object
-demo:Standard5,
-• demo:11 is a manifestation of the expression represented by the object
-demo:Expression2. 
+Since predicates from any vocabulary can be used in Relations, the repository  
+manager has considerable flexibility in the kinds of relationships that can be asserted.  
+The code segment below shows an example Relations datastream in a Fedora digital object identified  
+by the URI, `info:fedora/demo:11`. The RDF/XML refers to three different relationship  
+vocabularies \(hypothetical for the purpose of this example\) and asserts the following  
+relationships:  
+• demo:11 is a member of the collection represented by the object demo:10,  
+• demo:11 fulfills the state educational standard represented by the object  
+demo:Standard5,  
+• demo:11 is a manifestation of the expression represented by the object  
+demo:Expression2.
+
 ```
-<rdf:RDF   xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"   xmlns:nsdl=”http://nsdl.org/std#”   xmlns:rel="http://example.org/rel#"   xmlns:frbr="http://example.org/frbr#">     <rdf:Description rdf:about="info:fedora/demo:11">       <rel:isMemberOf rdf:resource="info:fedora/demo:10"/>       <std:fulfillsStandard rdf:resource="info:fedora/demo:Standard5"/>
+<rdf:RDF
+   xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:nsdl=”http://nsdl.org/std#”
+   xmlns:rel="http://example.org/rel#"
+   xmlns:frbr="http://example.org/frbr#">
+     <rdf:Description rdf:about="info:fedora/demo:11">
+       <rel:isMemberOf rdf:resource="info:fedora/demo:10"/>
+       <std:fulfillsStandard rdf:resource="info:fedora/demo:Standard5"/>
        <frbr:isManifestionOf rdf:resource=
              "info:fedora/demo:Expression2"/>
      </rdf:Description>  
 </rdf:RDF>
 ```
 
-#### Object representations and properties in the Resource Index 
+#### Object representations and properties in the Resource Index
+
+A Fedora digital object consists of a number of core components such as datastreams and disseminators, which bind to BDefs and BMechs. In addition each Fedora digital object has system metadata or properties. The architecture provides a system-defined ontology to represent the relationships among these core components. For example, the relationships of an object to its representations is expressed using the `<fedora-model:disseminates `predicate as shown in the triple below:
+
+```
+<info:fedora/demo:11>
+ <fedora-model:disseminates>
+ <info:fedora/demo:11/HIGH> 
+```
+
+In addition to these relationships, the system-defined ontology also represents object data properties whose range contains date and boolean datatypes, as shown in the triple below:
+
+```
+<info:fedora/demo:11/HIGH>
+ <fedora-view:lastModifiedDate>
+ "2004-12-12T00:22:00"^^xsd:dateTime 
+```
+
+ Unlike the relationships expressed in the Relations datastream, these relationships are not explicitly asserted within the digital object. Instead they are derived from the structure of the object itself and mapped into the Resource Index, alongside the relationships represented in the Relations datastreams.
+
+####  Storing and querying the relationship graph
+
+All these relationships – the relationships explicitly stated in the Relations datastream, the relationships implied by the object structure, and the data relationships contained in the object properties – are stored in the Resource Index. This index is automatically updated by the repository service whenever an object structure is modified or its Relations datastream is changed.
+
+The Resource Index handles queries over these relationships. The combination of all relationships into a single graph, and the automated management of that combined graph, enables a powerful and flexible service model. External services may issue queries combining relationships from different name spaces, since they are all RDF properties.  The example below shows a query listing all the representations of all objects that are members of a particular collection.
+
+```
+select $dissemination
+from <#ri>
+where ($object <fedora-view:disseminates> $dissemination)
+ and $object <rel:isMemberOf> <demo:10> 
+```
+
+ An early design goal of the Resource Index was to allow the use of different triplestores and thus permit the Fedora repository administrator to choose the most appropriate underlying store. To that end, the Resource Index employs a triplestore API similar in spirit to JDBC, to provide a consistent update and query interface to a  variety of triplestores. Extensive testing of both query performance time and query language features ultimately led to the selection of Kowari as the default triplestore.
+
+ The RDF query results naturally take the form of rows of key-value pairs, again similar to the result sets returned by a SQL query. However, it is often useful to work with a sub-graph or a constructed graph based on the original. To this end, the query API may also return triples instead of tuples.
+
+####  Using the relationship graph
+
+The Resource Index interface is exposed in a REST architectural style to provide a stateless query interface that accepts queries by value or by reference. The service has been implemented with an eye toward eventual conformance to the W3C Data Access Working Group's SPARQL protocol for RDF, as it matures.
+
+One example of a service exploiting the Resource Index is the OAI Provider Service that exposes metadata about resources in a Fedora repository. This OAI Provider Service is quite flexible in that it can be configured to allow harvesting not only of static metadata formats, but those that are dynamically produced via service-based disseminations of Fedora objects.
+
+An example of the interaction of this service with the Resource Index is as follows. An external OAI harvester requests qualified Dublin Core records for a particular set of resources from the repository. The OAI Provider service processes this by issuing the query to the Resource Index listed below. This query effectively requests “all disseminations of qualified Dublin Core records of resources that are members of the collection identified as ‘demo:10’”. The significance of requesting disseminations is that the Dublin Core records may not statically exist as datastreams within the object, but they may be derived from another metadata format such as MARC.
+
+```
+select $member $collection $dissemination
+from <#ri>
+where $member <rel:isMemberOf> <info:fedora/demo:10>
+ and $member <rel:isMemberOf> $collection
+ and $member <rel:isMemberOf> $dissemination
+ and $member <fedora-view:disseminates> $dissemination
+ and $dissemination <fedora-view:disseminationType>
+<info:fedora/*/bdef:OAI/getQualifiedDC> 
+```
+
+ The Resource Index query would return the tuples shown below that can provide the basis of an OAI response.
 
 
-t.b.c.
 
