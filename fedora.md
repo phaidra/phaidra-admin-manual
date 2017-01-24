@@ -162,19 +162,60 @@ Three datastream properties deserve special attention. The FORMAT\_URI refines t
 
 #### Functional View II - Disseminators
 
- In addition to the representations described in the previous section, which are direct transcriptions of datastreams, the Fedora object model enables the definition of virtual representations of a digital object. A virtual representation, also known as a dissemination, is a view of an object that is produced by a service operation \(i.e., a method invocation\) that can take as input one or more of the datastreams of the respective digital object. As such, it is a means to deliver dynamic or computed content from a Fedora object.
+In addition to the representations described in the previous section, which are direct transcriptions of datastreams, the Fedora object model enables the definition of virtual representations of a digital object. A virtual representation, also known as a dissemination, is a view of an object that is produced by a service operation \(i.e., a method invocation\) that can take as input one or more of the datastreams of the respective digital object. As such, it is a means to deliver dynamic or computed content from a Fedora object.
 
 t.b.c.
 
 #### Functional View III – Object Integrity Components
 
- The Fedora object model defines several metadata entities that pertain to managing the integrity of digital objects. These entities are the object’s relationship metadata, access control policy, and audit trail. To keep the Fedora model simple and consistent, integrity entities are modeled as datastream components with reserved identifiers. As such, the integrity entities are stored like other datastreams, however the Fedora Repository system recognizes them as special and asserts constraints over how they are created and modified. Figure 6 depicts these integrity-oriented entities as special datastreams in a digital object, identified as Relations, Policy, and Audit Trail.
+The Fedora object model defines several metadata entities that pertain to managing the integrity of digital objects. These entities are the object’s relationship metadata, access control policy, and audit trail. To keep the Fedora model simple and consistent, integrity entities are modeled as datastream components with reserved identifiers. As such, the integrity entities are stored like other datastreams, however the Fedora Repository system recognizes them as special and asserts constraints over how they are created and modified. Figure 6 depicts these integrity-oriented entities as special datastreams in a digital object, identified as Relations, Policy, and Audit Trail.
 
 t.b.c.
 
 ### Relationships in Fedora
 
+The Fedora object model can be abstractly viewed as a directed graph, consisting of internal arcs that relate digital objects nodes to their representation nodes and external arcs between digital objects.  
+
+The Fedora Resource Index module allows storage and query of the graph. This module builds on RDF \(Resource Description Framework\)  primitives.  The Fedora system defines a base relationship ontology that, in the fashion of any RDF properties, can co-exist with domain-specific ontologies from other namespaces. Each digital object’s relationships to other digital objects are expressed in RDF/XML \[20\] within a reserved datastream in the object. The Resource Index is a relationship graph over all digital objects in the repository that is derived by merging the relationships implied by the Fedora object model itself with the relationships explicitly stated in an object’s relationship datastream. The triples representing this graph are then stored in a triple-store providing the capability for searching over the graph.
+
+The combination of representing explicit relationships as RDF/XML in a datastream of a digital object and then mapping them to the Kowari triple store offers the “best of both worlds”. The explicit representation provides the basis for exporting, transporting, and archiving of the digital objects with their asserted relationships to other objects.  The mapping to \(Kowari\) triples provides a graph-based index of an entire repository and the basis for high-performance queries over the relationships. An  added advantage of the dual representation is that the entire triple store can be rebuilt by importing and parsing the XML-based digital objects.
+
+####  Representing object-to-object relationships
+
+ Fedora decomposes the structural units \(e.g.  book composed of chapters and diaries consisting of entries\) into separate digital objects. The units can then be reused in a variety of structural compositions. In addition, this lays the basis for expressing other types of non-structural relationships among digital objects such as:
+
+* The organization of individual resources into larger collection units, for the purpose of management, \(OAI-PMH\) harvesting, user browsing, and other uses.
+* The relationships among bibliographic entities.
+
+* Semantic relationships among resources such as their relevance to state educational standards or curricula in an educational digital library like the National Science Digital Library.
+
+* Modeling more complex forms of network overlays over the resources in a content repository such as citation links, link structure, friend of a friend, etc.
+
+All of these relationships, including structural relationships, should be expressible both within individual digital objects and among multiple digital objects. For example breaking the components of a structural entity, such as the chapters of a book, into separate digital objects provides the flexibility for reuse of those individual components into other structural units. This is even more important for the other forms of relationships. For example, a single resource may be part of multiple collections or may be relevant for multiple state standards.
+
+The expression of arbitrary, inter-object relationships in Fedora is enabled by a reserved datastream known as the Relations datastream. This datastream allows for a restricted subset of RDF/XML where the subject of each statement must be the digital object within which the datastream is defined.
+
+Since predicates from any vocabulary can be used in Relations, the repository
+manager has considerable flexibility in the kinds of relationships that can be asserted.
+The code segment below shows an example Relations datastream in a Fedora digital object identified
+by the URI, `info:fedora/demo:11`. The RDF/XML refers to three different relationship
+vocabularies (hypothetical for the purpose of this example) and asserts the following
+relationships:
+• demo:11 is a member of the collection represented by the object demo:10,
+• demo:11 fulfills the state educational standard represented by the object
+demo:Standard5,
+• demo:11 is a manifestation of the expression represented by the object
+demo:Expression2. 
+```
+<rdf:RDF   xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"   xmlns:nsdl=”http://nsdl.org/std#”   xmlns:rel="http://example.org/rel#"   xmlns:frbr="http://example.org/frbr#">     <rdf:Description rdf:about="info:fedora/demo:11">       <rel:isMemberOf rdf:resource="info:fedora/demo:10"/>       <std:fulfillsStandard rdf:resource="info:fedora/demo:Standard5"/>
+       <frbr:isManifestionOf rdf:resource=
+             "info:fedora/demo:Expression2"/>
+     </rdf:Description>  
+</rdf:RDF>
+```
+
+#### Object representations and properties in the Resource Index 
+
+
 t.b.c.
-
-
 
