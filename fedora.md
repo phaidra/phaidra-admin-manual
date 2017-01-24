@@ -224,7 +224,7 @@ demo:Expression2.
 
 #### Object representations and properties in the Resource Index
 
-A Fedora digital object consists of a number of core components such as datastreams and disseminators, which bind to BDefs and BMechs. In addition each Fedora digital object has system metadata or properties. The architecture provides a system-defined ontology to represent the relationships among these core components. For example, the relationships of an object to its representations is expressed using the `<fedora-model:disseminates `predicate as shown in the triple below:
+A Fedora digital object consists of a number of core components such as datastreams and disseminators, which bind to BDefs and BMechs. In addition each Fedora digital object has system metadata or properties. The architecture provides a system-defined ontology to represent the relationships among these core components. For example, the relationships of an object to its representations is expressed using the `<fedora-model:disseminates`predicate as shown in the triple below:
 
 ```
 <info:fedora/demo:11>
@@ -240,9 +240,9 @@ In addition to these relationships, the system-defined ontology also represents 
  "2004-12-12T00:22:00"^^xsd:dateTime 
 ```
 
- Unlike the relationships expressed in the Relations datastream, these relationships are not explicitly asserted within the digital object. Instead they are derived from the structure of the object itself and mapped into the Resource Index, alongside the relationships represented in the Relations datastreams.
+Unlike the relationships expressed in the Relations datastream, these relationships are not explicitly asserted within the digital object. Instead they are derived from the structure of the object itself and mapped into the Resource Index, alongside the relationships represented in the Relations datastreams.
 
-####  Storing and querying the relationship graph
+#### Storing and querying the relationship graph
 
 All these relationships – the relationships explicitly stated in the Relations datastream, the relationships implied by the object structure, and the data relationships contained in the object properties – are stored in the Resource Index. This index is automatically updated by the repository service whenever an object structure is modified or its Relations datastream is changed.
 
@@ -255,11 +255,11 @@ where ($object <fedora-view:disseminates> $dissemination)
  and $object <rel:isMemberOf> <demo:10> 
 ```
 
- An early design goal of the Resource Index was to allow the use of different triplestores and thus permit the Fedora repository administrator to choose the most appropriate underlying store. To that end, the Resource Index employs a triplestore API similar in spirit to JDBC, to provide a consistent update and query interface to a  variety of triplestores. Extensive testing of both query performance time and query language features ultimately led to the selection of Kowari as the default triplestore.
+An early design goal of the Resource Index was to allow the use of different triplestores and thus permit the Fedora repository administrator to choose the most appropriate underlying store. To that end, the Resource Index employs a triplestore API similar in spirit to JDBC, to provide a consistent update and query interface to a  variety of triplestores. Extensive testing of both query performance time and query language features ultimately led to the selection of Kowari as the default triplestore.
 
- The RDF query results naturally take the form of rows of key-value pairs, again similar to the result sets returned by a SQL query. However, it is often useful to work with a sub-graph or a constructed graph based on the original. To this end, the query API may also return triples instead of tuples.
+The RDF query results naturally take the form of rows of key-value pairs, again similar to the result sets returned by a SQL query. However, it is often useful to work with a sub-graph or a constructed graph based on the original. To this end, the query API may also return triples instead of tuples.
 
-####  Using the relationship graph
+#### Using the relationship graph
 
 The Resource Index interface is exposed in a REST architectural style to provide a stateless query interface that accepts queries by value or by reference. The service has been implemented with an eye toward eventual conformance to the W3C Data Access Working Group's SPARQL protocol for RDF, as it matures.
 
@@ -278,7 +278,20 @@ where $member <rel:isMemberOf> <info:fedora/demo:10>
 <info:fedora/*/bdef:OAI/getQualifiedDC> 
 ```
 
- The Resource Index query would return the tuples shown below that can provide the basis of an OAI response.
+The Resource Index query would return the tuples shown below that can provide the basis of an OAI response.
 
+| member | collection | dissemination |
+| :--- | :--- | :--- |
+| info:fedora/demo:11 | info:fedora/demo:10 | info:fedora/demo:11/bdef:OAI/getDC |
+| info:fedora/demo:12 | info:fedora/demo:10 | info:fedora/demo:12/bdef:OAI/getDC |
 
+####  Application is National Science Digital Library
+
+The NSDL \(National Science Digital Library\) Project is perhaps the most interesting example of the power of Fedora’s relationship architecture. The goal in the NSDL is not only to provide a digital library allowing search and access to distributed resources, but to augment NSDL resources with context that defines their usability and reusability in different learning and teaching environments. By “context”, we mean information such as the provenance of the resources, the manner in which resources have been used, comments by users that annotate and explain primary resources, and linkages between the resources and relevant state educational standards. While the NSDL work is specifically targeted at the education domain, we argue that the notion of contextualization is increasingly important as a means of adding value to digital content and defining its quality based on provenance, utility, and other factors. 
+
+Using the content management and semantic web tools in Fedora an information network overlay has been implemented.  This architecture represents the data underlying the NSDL as a graph of typed nodes, corresponding to the information entities in the NSDL, and semantic edges representing the contextual relationships among those entities. The nature and variety of these relationships will evolve over time and, thus, any fixed schema approach for representing the network overlay would be too restrictive.  The results thus far indicate that the semantic web approach of Fedora is particularly well-suited for this application.
+
+The figure below illustrates a fragment of the network overlay. The nodes in the overlay graph correspond to Fedora digital objects – each shape corresponding to an information entity in the NSDL. These entities include agents, resources, metadata, and the like. The edges are relationships among these entities, which are represented in the Resource Index. For example, Figure 7 shows the grouping of resources in collections, and the provenance trail of who originally recommended those resources and who manages them. Relationships from other ontologies, such as state education standards, are overlaid on this base graph. These are similarly represented in the Resource Index alongside the base ontology relationships. The entire knowledge base can then be queried by external services to build rich portals for users and tools for inferring quality, usability, and educational value.
+
+![](/assets/NDSL network overlay example.PNG)
 
