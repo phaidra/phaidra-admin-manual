@@ -307,7 +307,7 @@ The Service Deployment object or `SDep` is a special type of control object that
 
 #### Content Model Object
 
-The Content Model object or `CModel` is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including `Data`, `SDef`, `SDep`, and `CModel `objects are organized into classes by the `CModel `object.
+The Content Model object or `CModel` is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including `Data`, `SDef`, `SDep`, and `CModel`objects are organized into classes by the `CModel`object.
 
 ## Metadata design patterns in Fedora
 
@@ -322,4 +322,6 @@ Fedora 4 offers very limited support for the use of blank nodes in metadata. Whi
 ### Ordering
 
 RDF, as a graph, is inherently unordered, and this can lead to difficulty when forms of description that presuppose ordering are translated into it. The Fedora community is trying several methods for constructing order in a graph.
+
+_t.b.c._
 
