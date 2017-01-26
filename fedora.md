@@ -2,97 +2,13 @@
 
 The Fedora Repository open source software is a project supported by the DuraSpace not-for-profit organization. The software has its origins in the Flexible Extensible Digital Object Repository Architecture \(i.e., Fedora\) which was originally designed and developed by researchers at Cornell University. Fedora is a robust, modular, open source repository system for the management and dissemination of digital content. It is especially suited for digital libraries and archives, both for access and preservation. It is also used to provide specialized access to very large and complex digital collections of historic and cultural materials as well as scientific data. Fedora has a worldwide installed user base that includes academic and cultural heritage organizations, universities, research institutions, university libraries, national libraries, and government agencies.
 
-## Digital Object Model in Fedora 3.8
+_Different versions of Fedora t.b.a._
 
-Fedora defines a generic digital object model that can be used to persist and deliver the essential characteristics for many kinds of digital content including documents, images, electronic books, multi-media learning objects, datasets, metadata and many others. This digital object model is a fundamental building block of the Content Model Architecture \(CMA\) and all other Fedora-provided functionality.
+## Fedora's architecture for complex objects and their relationships
 
-Fedora uses a "compound digital object" design which aggregates one or more content items into the same digital object. Content items can be of any format and can either be stored locally in the repository, or stored externally and just referenced by the digital object. The Fedora digital object model is simple and flexible so that many different kinds of digital objects can be created, yet the generic nature of the Fedora digital object allows all objects to be managed in a consistent manner in a Fedora repository.
+This section relates mainly to Fedora version 2.0.
 
-The Fedora digital object model is defined in XML schema language \(see The [Fedora Object XML](http://www.fedora.info/definitions/1/0/foxml1-0.xsd) - FOXML\).
-
-The basic components of a Fedora digital object are:
-
-* **PID:**
-  A persistent, unique identifier for the object.
-* **Object Properties:**
-  A set of system-defined descriptive properties that are necessary to manage and track the object in the repository.
-* **Datastream\(s\):**
-  The element in a Fedora digital object that represents a content item.
-
-![](/assets/DOModel.png)
-
-### Datastreams
-
-A Datastream is the element of a Fedora digital object that represents a content item. A Fedora digital object can have one or more Datastreams. Each Datastream records useful attributes about the content it represents such as the MIME-type \(for Web compatibility\) and, optionally, the URI identifying the content's format \(from a format registry\). The content represented by a Datastream is treated as an opaque bit stream; it is up to the user to determine how to interpret the content \(i.e. data or metadata\). The content can either be stored internally in the Fedora repository, or stored remotely \(in which case Fedora holds a pointer to the content in the form of a URL\).
-
-Each Datastream is given a Datastream Identifier which is unique within the digital object's scope. Fedora reserves four Datastream Identifiers for its use, "DC", "AUDIT", "RELS-EXT" and "RELS-INT". Every Fedora digital object has one "DC" \(Dublin Core\) Datastream by default which is used to contain metadata about the object \(and will be created automatically if one is not provided\). Fedora also maintains a special Datastream, "AUDIT", that records an audit trail of all changes made to the object, and can not be edited since only the system controls it. The "RELS-EXT" Datastream is primarily used to provide a consistent place to describe relationships to other digital objects, and the "RELS-INT" datastream is used to describe internal relationships from digital object datastreams. In addition, a Fedora digital object may contain any number of custom Datastreams to represent user-defined content.
-
-![](/assets/DOExample.png)
-
-The basic properties that the Fedora object model defines for a Datastream are as follows:
-
-* **Datastream Identifier:**
-  an identifier for the datastream that is unique within the digital object \(but not necessarily globally unique\)
-* **State:**
-  the Datastream's state: Active, Inactive, or Deleted
-* **Created Date:**
-  the date/time that the Datastream was created \(assigned by the repository service\)
-* **Modified Date:**
-  the date/time that the Datastream was modified \(assigned by the repository service\)
-* **Versionable:**
-  an indicator \(true/false\) as to whether the repository service should version the Datastream \(by default the repository versions all Datastreams\)
-* **Label:**
-  a descriptive label for the Datastream
-* **MIME Type:**
-  the MIME type of the Datastream \(required\)
-* **Format Identifier:**
-  an optional format identifier for the Datastream such as emerging schemes like PRONOM \(a web-based technical registry to support digital preservation services, developed by The National Archives of the United Kingdom\) and the Global Digital Format Registry \(GDRF\)
-* **Alternate Identifiers:**
-  one or more alternate identifiers for the Datastream \(such identifiers could be local identifiers or global identifiers such as Handles or DOI\)
-* **Checksum:**
-  an integrity stamp for the Datastream content which can be calculated using one of many standard algorithms \(MD5, SHA-1, etc.\)
-* **Bytestream Content:**
-  the content \(as a stream resource\) represented or encapsulated by the Datastream \(such as a document, digital image, video, metadata record\)
-* **Control Group:**
-  the approach used by the Datastream to represent or encapsulate the content as one of four types or control groups \(Internal XML Content, Managed Content, Externally Referenced Content, Redirect Referenced Content\)
-
-### Four Types of Fedora Digital Objects
-
-Although every Fedora digital object conforms to the Fedora object model, as described above, there are four distinct types of Fedora digital objects that can be stored in a Fedora repository. The distinction between these four types is fundamental to how the Fedora repository system works. In Fedora, there are objects that store digital content entities, objects that store service descriptions, objects used to deploy services, and objects used to organize other objects.
-
-#### Data Object
-
-In Fedora, a Data object is the type of object used to represent a digital content entity. Data objects are what we normally think of when we imagine a repository storing digital collections. Data objects can represent such varied entities as images, books, electronic texts, learning objects, publications, datasets, and many other entities. One or more Datastreams are used to represent the parts of the digital content. **A Datastream is an XML element that describes the raw content \(a bitstream or external content\).**
-
-#### Service Definition Object
-
-In Fedora, a Service Definition object or `SDef` is a special type of control object used to store a model of a Service. A Service contains an integrated set of Operations that a Data object supports. In object-oriented programming terms, the `SDef` defines an "interface" which lists the operations that are supported but does not define exactly how each operation is performed. This is also similar to approaches used in Web \(REST\) programming and in SOAP Web services.
-
-#### Service Deployment Object
-
-The Service Deployment object or `SDep` is a special type of control object that describes how a specific repository will deliver the Service Operations described in a `SDef` for a class of Data objects described in a `CModel`. The `SDep` is not executable code but instead it contains information that tells the Fedora repository how and where to execute the function that the `SDep` represents.
-
-#### Content Model Object
-
-The Content Model object or `CModel` is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including Data, SDef, SDep, and CModel objects are organized into classes by the CModel object.
-
-## Metadata design patterns in Fedora 4
-
-Fedora 4 presents metadata designers with radical new capabilities, as well as new responsibilities. The main point is that Fedora 4 uses RDF structure.
-
-### Blank nodes
-
-Fedora 4 offers very limited support for the use of blank nodes in metadata. While no response from the API will contain blank nodes, it is possible to send a request to the API containing blank nodes.
-
-### Ordering
-
-RDF, as a graph, is inherently unordered, and this can lead to difficulty when forms of description that presuppose ordering are translated into it. The Fedora community is trying several methods for constructing order in a graph.
-
-## An architecture for complex objects and their relationships
-
-Link: [https://arxiv.org/ftp/cs/papers/0501/0501012.pdf](https://arxiv.org/ftp/cs/papers/0501/0501012.pdf)
-
-\(The article was written when the actual release of Fedora was version 2.0, which includes the semantic web integration that is important for us.\)
+The original article \([https://arxiv.org/ftp/cs/papers/0501/0501012.pdf](https://arxiv.org/ftp/cs/papers/0501/0501012.pdf)\) article was written when the actual release of Fedora was version 2.0, which includes the semantic web integration that is important for us.
 
 This work uniquely integrates advanced content management with semantic web technology. It supports the representation of rich information networks, where the nodes are complex digital objects combining data and metadata with web services and the edges are ontology-based relationships among these digital objects.
 
@@ -164,11 +80,9 @@ Three datastream properties deserve special attention. The FORMAT\_URI refines t
 
 In addition to the representations described in the previous section, which are direct transcriptions of datastreams, the Fedora object model enables the definition of virtual representations of a digital object. A virtual representation, also known as a dissemination, is a view of an object that is produced by a service operation \(i.e., a method invocation\) that can take as input one or more of the datastreams of the respective digital object. As such, it is a means to deliver dynamic or computed content from a Fedora object.
 
- This is illustrated in the figure below, where a virtual representation labeled` info:fedora/demo:11/BDEF:2/ZPAN` is highlighted.  From the access perspective this representation is an image wrapped in a java application that provides image zoom and pan functions. Note that this representation is not a direct transcription of any Datastream in the object. Instead, it is the result of a service operation defined in the Disseminator component labeled “BDEF:2” inside the object that uses the datastream labeled “HIGH” as input. The light-weight, REST-based interface to Fedora \(API-ALITE\) makes it possible for a client application to pass parameters to the invoked service; in this case zoom and pan specifications.
+This is illustrated in the figure below, where a virtual representation labeled`info:fedora/demo:11/BDEF:2/ZPAN` is highlighted.  From the access perspective this representation is an image wrapped in a java application that provides image zoom and pan functions. Note that this representation is not a direct transcription of any Datastream in the object. Instead, it is the result of a service operation defined in the Disseminator component labeled “BDEF:2” inside the object that uses the datastream labeled “HIGH” as input. The light-weight, REST-based interface to Fedora \(API-ALITE\) makes it possible for a client application to pass parameters to the invoked service; in this case zoom and pan specifications.
 
 ![](/assets/Fedora Object with Disseminator Added.PNG)
-
-
 
 To enable such behavior, a Disseminator must contain three pieces of information: \(1\) a reference to a description of service operation\(s\) in an abstract syntax, \(2\) a reference to a WSDL service description that defines bindings to concrete web service to run operation\(s\), and \(3\) the identifiers of any Datastreams in the object that should be used as input to the service operation\(s\).
 
@@ -186,15 +100,15 @@ The Fedora object model defines several metadata entities that pertain to managi
 
 ![](/assets/Integrity Datastreams - Relationships, Policy, and Audit Trail.PNG)
 
- A Relations datastream is used to assert object-to-object relationships such as collection/member, part/whole, equivalence, “aboutness,” and more. The previously discussed “hasMember” relationship is an example of the type of assertion that can be managed via the Relations datastream.
+A Relations datastream is used to assert object-to-object relationships such as collection/member, part/whole, equivalence, “aboutness,” and more. The previously discussed “hasMember” relationship is an example of the type of assertion that can be managed via the Relations datastream.
 
- A Policy datastream is used to express authorization policies for digital objects, both to protect the integrity of an object and to enable fine-grained access controls on an object’s content. In Fedora objects, a policy is expressed using the eXtensible Access Control Markup Language \(XACML\), which is a flexible XML-based language used to assert statements about who can do what with an object, and when they can do it. Object policies are enforced by the authorization module \(i.e., AuthZ\) implemented within the Fedora repository service.
+A Policy datastream is used to express authorization policies for digital objects, both to protect the integrity of an object and to enable fine-grained access controls on an object’s content. In Fedora objects, a policy is expressed using the eXtensible Access Control Markup Language \(XACML\), which is a flexible XML-based language used to assert statements about who can do what with an object, and when they can do it. Object policies are enforced by the authorization module \(i.e., AuthZ\) implemented within the Fedora repository service.
 
- The Audit Trail is a system-controlled datastream that keeps a record of all changes to an object during its lifetime. The Fedora repository service automatically creates an audit record for every operation upon an object, detailing who, what, when, where, and why an object was changed. This information is important to support preservation and archiving of digital objects.
+The Audit Trail is a system-controlled datastream that keeps a record of all changes to an object during its lifetime. The Fedora repository service automatically creates an audit record for every operation upon an object, detailing who, what, when, where, and why an object was changed. This information is important to support preservation and archiving of digital objects.
 
- Another feature for managing the lifecycle of objects is versioning. Versioning is important for applications where change tracking is essential, as well as for preservation and archiving systems that must be able to recover historical views of digital objects. The Fedora object model supports component-level versioning, meaning that datastreams and disseminators can be changed without losing their former instantiations. Fedora automatically creates a new version of these components whenever they are modified.
+Another feature for managing the lifecycle of objects is versioning. Versioning is important for applications where change tracking is essential, as well as for preservation and archiving systems that must be able to recover historical views of digital objects. The Fedora object model supports component-level versioning, meaning that datastreams and disseminators can be changed without losing their former instantiations. Fedora automatically creates a new version of these components whenever they are modified.
 
- This is depicted in the figure above, which shows a digital object with multiple versions of a datastream \(see component labeled “HIGH”\). Also, the versioned datastream is input to the disseminator labeled “BDEF:2.” Requests for representations of this digital object can be date-time stamped and the Fedora repository service will ensure that the appropriate component version is returned. This feature applies for representations that are direct transcriptions of datastream content, as well as for virtual representation where datastream content is mediated via a Disseminator.
+This is depicted in the figure above, which shows a digital object with multiple versions of a datastream \(see component labeled “HIGH”\). Also, the versioned datastream is input to the disseminator labeled “BDEF:2.” Requests for representations of this digital object can be date-time stamped and the Fedora repository service will ensure that the appropriate component version is returned. This feature applies for representations that are direct transcriptions of datastream content, as well as for virtual representation where datastream content is mediated via a Disseminator.
 
 ### Relationships in Fedora
 
@@ -317,5 +231,95 @@ Using the content management and semantic web tools in Fedora an information net
 
 The figure below illustrates a fragment of the network overlay. The nodes in the overlay graph correspond to Fedora digital objects – each shape corresponding to an information entity in the NSDL. These entities include agents, resources, metadata, and the like. The edges are relationships among these entities, which are represented in the Resource Index. For example, Figure 7 shows the grouping of resources in collections, and the provenance trail of who originally recommended those resources and who manages them. Relationships from other ontologies, such as state education standards, are overlaid on this base graph. These are similarly represented in the Resource Index alongside the base ontology relationships. The entire knowledge base can then be queried by external services to build rich portals for users and tools for inferring quality, usability, and educational value.
 
-![](/assets/NDSL network overlay example.PNG)
+![](/assets/NDSL network overlay example.PNG)fgfggf
+
+## Digital Object Model in Fedora
+
+This section relates mainly to Fedora version 3.8.
+
+Fedora defines a generic digital object model that can be used to persist and deliver the essential characteristics for many kinds of digital content including documents, images, electronic books, multimedia learning objects, datasets, metadata and many others. This digital object model is a fundamental building block of the Content Model Architecture \(CMA\) and all other Fedora-provided functionality.
+
+Fedora uses a "compound digital object" design which aggregates one or more content items into the same digital object. Content items can be of any format and can either be stored locally in the repository, or stored externally and just referenced by the digital object. The Fedora digital object model is simple and flexible so that many different kinds of digital objects can be created, yet the generic nature of the Fedora digital object allows all objects to be managed in a consistent manner in a Fedora repository.
+
+The Fedora digital object model is defined in XML schema language \(see The [Fedora Object XML](http://www.fedora.info/definitions/1/0/foxml1-0.xsd) - FOXML\).
+
+The basic components of a Fedora digital object are:
+
+* **PID:**
+  A persistent, unique identifier for the object.
+* **Object Properties:**
+  A set of system-defined descriptive properties that are necessary to manage and track the object in the repository.
+* **Datastream\(s\):**
+  The element in a Fedora digital object that represents a content item.
+
+![](/assets/DOModel.png)
+
+### Datastreams
+
+A datastream is the element of a Fedora digital object that represents a content item. A Fedora digital object can have one or more datastreams. Each datastream records useful attributes about the content it represents such as the MIME-type \(for Web compatibility\) and, optionally, the URI identifying the content's format \(from a format registry\). The content represented by a datastream is treated as an opaque bit stream; it is up to the user to determine how to interpret the content \(i.e. data or metadata\). The content can either be stored internally in the Fedora repository, or stored remotely \(in which case Fedora holds a pointer to the content in the form of a URL\).
+
+Each datastream is given a Datastream Identifier which is unique within the digital object's scope. Fedora reserves four Datastream Identifiers for its use, "DC", "AUDIT", "RELS-EXT" and "RELS-INT". Every Fedora digital object has one "DC" \(Dublin Core\) datastream by default which is used to contain metadata about the object \(and will be created automatically if one is not provided\). Fedora also maintains a special datastream, "AUDIT", that records an audit trail of all changes made to the object, and can not be edited since only the system controls it. The "RELS-EXT" datastream is primarily used to provide a consistent place to describe relationships to other digital objects, and the "RELS-INT" datastream is used to describe internal relationships from digital object datastreams. In addition, a Fedora digital object may contain any number of custom datastreams to represent user-defined content.
+
+![](/assets/DOExample.png)
+
+The basic properties that the Fedora object model defines for a datastream are as follows:
+
+* **Datastream Identifier:**
+  an identifier for the datastream that is unique within the digital object \(but not necessarily globally unique\)
+* **State:**
+  the datastream's state: Active, Inactive, or Deleted
+* **Created Date:**
+  the date/time that the datastream was created \(assigned by the repository service\)
+* **Modified Date:**
+  the date/time that the datastream was modified \(assigned by the repository service\)
+* **Versionable:**
+  an indicator \(true/false\) as to whether the repository service should version the datastream \(by default the repository versions all datastreams\)
+* **Label:**
+  a descriptive label for the datastream
+* **MIME Type:**
+  the MIME type of the datastream \(required\)
+* **Format Identifier:**
+  an optional format identifier for the datastream such as emerging schemes like PRONOM \(a web-based technical registry to support digital preservation services, developed by The National Archives of the United Kingdom\) and the Global Digital Format Registry \(GDRF\)
+* **Alternate Identifiers:**
+  one or more alternate identifiers for the datastream \(such identifiers could be local identifiers or global identifiers such as Handles or DOI\)
+* **Checksum:**
+  an integrity stamp for the datastream content which can be calculated using one of many standard algorithms \(MD5, SHA-1, etc.\)
+* **Bytestream Content:**
+  the content \(as a stream resource\) represented or encapsulated by the datastream \(such as a document, digital image, video, metadata record\)
+* **Control Group:**
+  the approach used by the datastream to represent or encapsulate the content as one of four types or control groups \(Internal XML Content, Managed Content, Externally Referenced Content, Redirect Referenced Content\)
+
+### Four Types of Fedora Digital Objects
+
+Although every Fedora digital object conforms to the Fedora object model, as described above, there are four distinct types of Fedora digital objects that can be stored in a Fedora repository. The distinction between these four types is fundamental to how the Fedora repository system works. In Fedora, there are objects that store digital content entities, objects that store service descriptions, objects used to deploy services, and objects used to organize other objects.
+
+#### Data Object
+
+In Fedora, a Data object is the type of object used to represent a digital content entity. Data objects are what we normally think of when we imagine a repository storing digital collections. Data objects can represent such varied entities as images, books, electronic texts, learning objects, publications, datasets, and many other entities. One or more datastreams are used to represent the parts of the digital content. A Datastream is an XML element that describes the raw content \(a bitstream or external content\).
+
+#### Service Definition Object
+
+In Fedora, a Service Definition object or `SDef` is a special type of control object used to store a model of a Service. A Service contains an integrated set of Operations that a Data object supports. In object-oriented programming terms, the `SDef` defines an "interface" which lists the operations that are supported but does not define exactly how each operation is performed. This is also similar to approaches used in Web \(REST\) programming and in SOAP Web services.
+
+#### Service Deployment Object
+
+The Service Deployment object or `SDep` is a special type of control object that describes how a specific repository will deliver the Service Operations described in a `SDef` for a class of Data objects described in a `CModel` \(see below\). The `SDep` is not executable code but instead it contains information that tells the Fedora repository how and where to execute the function that the `SDep` represents.
+
+#### Content Model Object
+
+The Content Model object or `CModel` is a new specialized control object introduced as part of the CMA. It acts as a container for the Content Model document which is a formal model that characterizes a class of digital objects. It can also provide a model of the relationships which are permitted, excluded, or required between groups of digital objects. All digital objects in Fedora including `Data`, `SDef`, `SDep`, and `CModel `objects are organized into classes by the `CModel `object.
+
+## Metadata design patterns in Fedora
+
+This section relates mainly to Fedora version 4.
+
+Fedora 4 presents metadata designers with radical new capabilities, as well as new responsibilities. The main point is that Fedora 4 uses RDF structure.
+
+### Blank nodes
+
+Fedora 4 offers very limited support for the use of blank nodes in metadata. While no response from the API will contain blank nodes, it is possible to send a request to the API containing blank nodes.
+
+### Ordering
+
+RDF, as a graph, is inherently unordered, and this can lead to difficulty when forms of description that presuppose ordering are translated into it. The Fedora community is trying several methods for constructing order in a graph.
 
