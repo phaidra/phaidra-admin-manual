@@ -39,13 +39,13 @@ This perspective hides complexity and exposes only the access points to content 
 Each digital object in the diagram has at least one representation, related to its originating digital object by a “hasRep” arc. For example, the node labeled `info:fedora/demo:11` is an image digital object with four representations, identified by  
  their respective URIs:
 
-* Dublin Core record, identified as info:fedora/demo:11/DC
+* Dublin Core record, identified as`info:fedora/demo:11/DC`
 
-* High-resolution image, identified as info:fedora/demo:11/HIGH
+* High-resolution image, identified as `info:fedora/demo:11/HIGH`
 
-* Thumbnail image, identified as info:fedora/demo:11/THUMB
+* Thumbnail image, identified as `info:fedora/demo:11/THUMB`
 
-* Image with zoom/pan utility, as info:fedora/demo:11/bdef:2/ZPAN
+* Image with zoom/pan utility, as `info:fedora/demo:11/bdef:2/ZPAN`
 
 This figure also demonstrates an example of inter-object relationships. In this example, the node labeled `info:fedora/demo:10` is a “collection” with two “items”, the nodes labeled `info:fedora/demo:11` and `info:fedora/demo:12`. These collection-item  
  relationships are expressed by the “hasMember“ arc that emanates from the collection object. The inverse “isMemberOf” relationships are not shown in the diagram for simplification.
@@ -58,7 +58,7 @@ While the representational perspective of the Fedora object model provides a sim
 
 In its simplest form a Fedora object is an aggregation of content items, where each content item maps to a representation. The Fedora object model defines a component known as a datastream to represent a content item. A datastream component either encapsulates bytestream content internally or references it externally. In either case that content may be in any media type.
 
-The figure below shows the digital object \(info:fedora/ demo:11\) as an aggregation of datastreams and the one-to-one correspondence of those datastreams to the representations of the digital object that are exposed to accessing clients. In this simple case, each representation of a Fedora object is a simple transcription of the content that lies behind a datastream component.
+The figure below shows the digital object \(`info:fedora/ demo:11`\) as an aggregation of datastreams and the one-to-one correspondence of those datastreams to the representations of the digital object that are exposed to accessing clients. In this simple case, each representation of a Fedora object is a simple transcription of the content that lies behind a datastream component.
 
 ![](/assets/Fedora Object with PID, Properties, and Datastreams.PNG)
 
@@ -66,7 +66,7 @@ As seen in the above diagram, a digital object has a unique identifier \(PID\) a
 
 ![](/assets/Properties of a Datastream Component.PNG)
 
-Three datastream properties deserve special attention. The FORMAT\_URI refines the media type definition and anticipates the emergence of a global digital format registry such as the GDFR. CONTROLGROUP defines whether the datastream represents either local or remote content. Datastreams with a control group of “Managed” are internal content bytestreams that are under the direct custodianship of the Fedora repository. Datastreams whose control group is “External” or “Redirected” represent content that is stored outside the repository. These datastreams have a CONTENT\_LOCAT property that is a URL pointing to a service point outside the repository that is responsible for providing the content. The ability to create digital objects that aggregate locally managed content with external content is a powerful feature of Fedora, and is useful in a variety of contexts. A good example of a hybrid local/remote object is an educational object where local content is an instructor’s syllabus, lecture notes, and exams, and remote content are primary resources included by-reference from other sites.
+Three datastream properties deserve special attention. The `FORMAT_URI` refines the media type definition and anticipates the emergence of a global digital format registry such as the GDFR. CONTROLROUP defines whether the datastream represents either local or remote content. Datastreams with a control group of “Managed” are internal content bytestreams that are under the direct custodianship of the Fedora repository. Datastreams whose control group is “External” or “Redirected” represent content that is stored outside the repository. These datastreams have a CONTENT\_LOCAT property that is a URL pointing to a service point outside the repository that is responsible for providing the content. The ability to create digital objects that aggregate locally managed content with external content is a powerful feature of Fedora, and is useful in a variety of contexts. A good example of a hybrid local/remote object is an educational object where local content is an instructor’s syllabus, lecture notes, and exams, and remote content are primary resources included by-reference from other sites.
 
 #### Functional View II - Disseminators
 
