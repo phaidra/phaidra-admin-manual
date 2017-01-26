@@ -301,15 +301,52 @@ The Content Model object or `CModel` is a new specialized control object introdu
 
 This section relates mainly to Fedora version 4.
 
-Fedora 4 presents metadata designers with radical new capabilities, as well as new responsibilities. The main point is that Fedora 4 uses RDF structure.
-
-### Blank nodes
-
-Fedora 4 offers very limited support for the use of blank nodes in metadata. While no response from the API will contain blank nodes, it is possible to send a request to the API containing blank nodes.
+Fedora 4 presents metadata designers with radical new capabilities, as well as new responsibilities.
 
 ### Ordering
 
 RDF, as a graph, is inherently unordered, and this can lead to difficulty when forms of description that presuppose ordering are translated into it. The Fedora community is trying several methods for constructing order in a graph.
 
+The choice of how to represent ordering is up to the user. In the following example there is an ordered list of authors for an academic research paper. Generally the authors of these papers care about the order they are cited, and so in this scenario we must retain their ordering.
+
+One might be tempted to use a structure that relies on RDF "blank nodes", such as most tools generate by default from the Collection notation in RDF Turtle. As mentioned in Common metadata design patterns, blank nodes are not well-defined in the repository context and should generally not be used in Fedora. So here's an example of what to avoid:
+
+```
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+    <>
+      dc:title "Important Academic Research Paper" ;
+      # Avoid the following
+      dc:creator (<http://example.com/author/Quinn>  #no
+                  <http://example.com/author/Alice>  #no
+                  <http://example.com/author/Bob>) . #no
+
+```
+                  
+That example creates a bunch of blank nodes, which then get mangled going into Fedora. Let's not do that.
+Here's a very simple alternative formation that gets the job done. Use hash-URIs instead of blank nodes.
+
+```
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .
+    <>
+      dc:title "Test title" ;
+      dc:creator <#author_1>, <#author_2>, <#author_3> .     
+    <#author_1> owl:sameAs <http://example.com/author/Quinn> .
+    <#author_2> owl:sameAs <http://example.com/author/Alice> .
+    <#author_3> owl:sameAs <http://example.com/author/Bob> . 
+```
+    
+In addition to being Fedora-friendly, this formulation is arguably better from a representational standpoint: anybody iterating the triples can query for the paper by author without having to jump through rdf:list hijinx. Of course, those consumers that care about the ordering would need to parse the number out of the hash part of each URI and sort by that. For plenty of people that's good enough.
+
+### Paired values
+
+_Missing from the documentation_
+
+### Date and time ranges
+
+_Missing from the documentation_
+
 _t.b.c._
+
+
 
