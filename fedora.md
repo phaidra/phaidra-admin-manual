@@ -10,15 +10,13 @@ This section relates mainly to Fedora version 2.0.
 
 The original article \([https://arxiv.org/ftp/cs/papers/0501/0501012.pdf](https://arxiv.org/ftp/cs/papers/0501/0501012.pdf)\) article was written when the actual release of Fedora was version 2.0, which includes the semantic web integration that is important for us.
 
-This work uniquely integrates advanced content management with semantic web technology. It supports the representation of rich information networks, where the nodes are complex digital objects combining data and metadata with web services and the edges are ontology-based relationships among these digital objects.
+Fedora's object model uniquely integrates advanced content management with semantic web technology. It supports the representation of rich information networks, where the nodes are complex digital objects combining data and metadata with web services and the edges are ontology-based relationships among these digital objects.
 
-The most familiar example is the need to express well-known management relationships among digital resources such as the organization of items in a collection and structural relationships such as the part-whole relationships between individual articles and a journal. While the relationships among digital objects in these familiar applications are mainly hierarchical, we are working with other applications where the relationships are more graph-like.
+The most familiar example is the need to express well-known management relationships among digital resources such as the organization of items in a collection and structural relationships such as the part-whole relationships between individual articles and a journal. While the relationships among digital objects in these familiar applications are mainly hierarchical, Fedora deals with other applications where the relationships are more graph-like.
 
 There are a number of schemes for representing these relationships such as conventional relational databases and formalisms like conceptual graphs, the products of the semantic web initiative such as RDFS, OWL, and highly scalable triple-stores provide extensible open-source solutions for representation, manipulation, and querying these knowledge networks.
 
-By providing both a model for digital objects and repository services to manage them, Fedora is distinguished from work focused on defining and promoting standard XML formats for representing and transmitting complex objects \(e.g., METS, MPEG-21 DIDL, IEEE LOM\). However, Fedora is compatible with these efforts since it has the ability to ingest and export digital objects that are encoded in such XML transmission formats . This allows Fedora to comfortably coexist in the archival framework defined by OAIS.
-
-As a service-based architecture for complex digital objects, Fedora has some commonality with the aDORe architecture developed at the Los Alamos National Laboratory research library. The aDORe system provides a standards-based repository for managing and accessing complex digital objects. Objects are encoded in XML using DIDL and a limited set of object relationships can be expressed using RDF. Object dissemination services are available via OAI-PMH and OpenURL.
+By providing both a model for digital objects and repository services to manage them, Fedora is distinguished from work focused on defining and promoting standard XML formats for representing and transmitting complex objects \(e.g., METS, MPEG-21 DIDL, IEEE LOM\). However, Fedora is compatible with these efforts since it has the ability to ingest and export digital objects that are encoded in such XML transmission formats. This allows Fedora to comfortably coexist in the archival framework defined by OAIS \(Open Archival Information System\).
 
 ### Fedora model for complex objects
 
@@ -38,9 +36,7 @@ This perspective hides complexity and exposes only the access points to content 
 
 ![](/assets/Representational View of Fedora Objects small.PNG)
 
-Each digital object in the diagram has at least one representation, related to its originating  
- digital object by a “hasRep” arc. For example, the node labeled  
- info:fedora/demo:11 is an image digital object with four representations, identified by  
+Each digital object in the diagram has at least one representation, related to its originating digital object by a “hasRep” arc. For example, the node labeled `info:fedora/demo:11` is an image digital object with four representations, identified by  
  their respective URIs:
 
 * Dublin Core record, identified as info:fedora/demo:11/DC
@@ -51,12 +47,8 @@ Each digital object in the diagram has at least one representation, related to i
 
 * Image with zoom/pan utility, as info:fedora/demo:11/bdef:2/ZPAN
 
-This figure also demonstrates an example of inter-object relationships. In this example,  
- the node labeled info:fedora/demo:10 is a “collection” with two “items”, the  
- nodes labeled info:fedora/demo:11 and info:fedora/demo:12. These collection-item  
- relationships are expressed by the “hasMember“ arc that emanates from the collection  
-object. The inverse “isMemberOf” relationships are not shown in the diagram for  
- simplification.
+This figure also demonstrates an example of inter-object relationships. In this example, the node labeled `info:fedora/demo:10` is a “collection” with two “items”, the nodes labeled `info:fedora/demo:11` and `info:fedora/demo:12`. These collection-item  
+ relationships are expressed by the “hasMember“ arc that emanates from the collection object. The inverse “isMemberOf” relationships are not shown in the diagram for simplification.
 
 This simple representational view forms the basis of Fedora’s REST-based access service \(i.e., API-A-LITE\), whereby digital object URIs and representation URIs can be easily converted to service request URLs upon Fedora repositories.
 
