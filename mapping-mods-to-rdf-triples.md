@@ -6,8 +6,19 @@ Also, we have some objects with MODS anyway.
 
 ## MODS (Metadata Object Description Schema)
 
-MODS is an XML schema for a bibliographic element set that may be used for a variety of purposes, and particularly for library applications. It is a derivative of the MARC 21 bibliographic format (MAchine-Readable Cataloging) and as such includes a subset of MARC fields, using language-based tags rather than numeric ones. Definitions (semantics) of MODS elements may be found in the appropriate section.
+MODS is a general purpose standard for creating rich descriptive metadata, and is used for large-scale efforts such as the Library of Congress Web archiving projects. 
 
+MODS is an XML schema for a bibliographic element set that may be used for a variety of purposes, and particularly for library applications. It is a derivative of the MARC 21 bibliographic format (MAchine-Readable Cataloging) and as such includes a subset of MARC fields, using language-based tags rather than numeric ones. 
+
+MODS serves as an interoperable core for the convergence between MARC and non-MARC XML descriptions. 
+
+Compering MODS to DC (Dublin Core), DC is extremely simple and therefore easy to implement; MODS has sufficient specificity but is more complicated in application, especially for non library professionals. DC has a flat structure and loose control values; MODS is hierarchical and requires high consensus and agreement about syntax and value control. DC has been adopted by the Open Archives Initiative - Protocol for Metadata Harvesting (OAI-PMH); MODS is the major descriptive format of the Metadata Encoding and Transmission Standard (METS)
+
+(Source: Marcia Lei Zeng and Jian Qin - Metadata, facet publishing, 2008)   
+
+![](/assets/MODS top level elements.gif)
+
+MODS top level elements (Source: https://ftp.hdfgroup.org/projects/hdf5_aip/hdf5_aip_wp.html, accessed February, 2017) 
 ### XML Structures
 
 By using the XML schema language, MODS defines main elements, child elements (i.e. subelements), and attributes of elements and subelements. Content of elements are included in the lowest level elements so as to avoid "mixed content", which is when some elements contain character data interspersed with child elements. For instance, if <titleInfo> contains subelements for <title>, <partNumber>, <partName>, then <titleInfo> is only a container tag to include the more specific elements <title>, <partNumber>, <partName> and does not contain any content data. (A "container" tag is one that it used only as an element that binds together child elements, but contains no data other than tags.)
