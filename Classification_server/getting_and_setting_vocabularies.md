@@ -86,7 +86,7 @@ WHERE {
  
  ### Converting MS Excel format to SKOS/TTL
  
- For converting the MS Excel format to SKOS file in Turtel format we have created and apllied the followin VBA Macro:
+ For converting the MS Excel format to SKOS file in Turtle format we have created and apllied the followin VBA Macro:
  
 ``` 
 Sub Create_ttl()
