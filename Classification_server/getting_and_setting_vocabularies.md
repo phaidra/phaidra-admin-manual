@@ -85,15 +85,40 @@ WHERE {
  ```
 After executing the above Update Query, you have to run a CONSTRUCT query to get the entire triple store without headers, etc. as it can be serve as an input of the triple store:
 
-
 ```
 CONSTRUCT WHERE { ?s ?p ?o }
 ```
 
+Then the output will appear in Turtle format.
 
-Then the output will appear in Turtle format that can be copied to a text editor.
+If you want to delete all skosxl labels, then you have to perform the following Update queries as well:
 
+DELETE
+WHERE { ?c skosxl:prefLabel/skosxl:literalForm ?hidden}
 
+DELETE
+WHERE { ?c skosxl:altLabel/skosxl:literalForm ?hidden}
+
+DELETE
+WHERE { ?c skosxl:hiddenLabel ?hidden}
+
+And you also have to delete the duplicated definition caused by the 
+INSERT { 
+    ?c skos:definition ?def . 
+} 
+WHERE { 
+     ?c skos:definition/rdf:value ?def   
+ } 
+ statement, somehow like this
+ 
+ PREFIX skos:   <http://www.w3.org/2004/02/skos/core#> 
+select  ?c ?o 
+where { 
+?c skos:definition ?o .
+FILTER (isURI(?o))
+}
+
+t.b.c.
  ### Converting MS Excel format to SKOS/TTL
  
  For converting the MS Excel format to SKOS file in Turtle format we have created and apllied the followin VBA Macro:
