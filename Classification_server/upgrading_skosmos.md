@@ -1,4 +1,4 @@
-# Upgrading Skosmos
+g# Upgrading Skosmos
 
 \(source: [https://github.com/NatLibFi/Skosmos/wiki/Upgrading](https://github.com/NatLibFi/Skosmos/wiki/Upgrading)\)
 
@@ -10,23 +10,24 @@
 
 4. upgrade your code to the new version:
 
-   1. download a new version form [https://github.com/NatLibFi/Skosmos/releases](https://github.com/NatLibFi/Skosmos/releases) and replace the files: 
+   1. download a new version form [https://github.com/NatLibFi/Skosmos/releases](https://github.com/NatLibFi/Skosmos/releases), unzip and replace the files like this:
 
-   2.     `wget "https://github.com/NatLibFi/Skosmos/archive/v1.8.tar.gz"`
+    `wget "https://github.com/NatLibFi/Skosmos/archive/v1.8.tar.gz"`
+    tar -xf v1.8.tar.gz
 
-   ls 
+   or
 
    1. switch to the new version tag/branch using  
       1. `git fetch` to fetch new versions  
-      2. `git checkout` the version you want \(e.g. `git checkout tags/v1.4` or `git checkout v1.5-maintenance`\)
+      2. `git checkout` the version you want \(e.g. `git checkout v1.8-maintenance`\)
 
-5. migrate \(copy\) config.inc and vocabularies.ttl to your new installation if necessary
+5. migrate \(copy\) config.inc and vocabularies.ttl to your new installation if necessary (normally the new version contains config.inc.dist and vocabularies.ttl.dist, so the original files will remain unattached).
 
 6. update Composer just in case: `php composer.phar self-update`
 
 7. update dependencies: `php composer.phar update --no-dev`
 
-8. restart Apache \(this will clear gettext and APC caches - reloading is not enough!\): `service httpd restart`
+8. restart Apache \(this will clear gettext and APC caches - reloading is not enough!\): `service httpd restart` on CENTOS and `apache restart apche2` on UBUNTU 
 
 ### Version specific notes
 
