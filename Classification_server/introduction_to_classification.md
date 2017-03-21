@@ -1,6 +1,6 @@
 # Introduction to classification
 
-Classification is a form of categorization, that groups objects or items according to their subjects usually arranged in a hierarchical tree structure. This knowledge organization technique can take many forms, that will be discussed below.
+Classification is a form of categorization, that groups objects  or items according to their subjects usually arranged in a hierarchical tree structure. This knowledge organization technique can take many forms, that will be discussed below.
 
 ## Controlled vocabularies
 
