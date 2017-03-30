@@ -542,7 +542,6 @@ After successful conversion process you will get a processed vocabulary that you
 
 The offline Skosify tool requires Python (2.x or 3.x) and the rdflib library. It should run fine even on Windows after installing them.
 
-If there are special characters (e.g. ä, Ä, ü, Ü, ö, Ö, etc.) in the SKOS file to be skosified, the Skosify tool may decode them to an unusable format.
 
 ## Uploading files to Fuseki
 
