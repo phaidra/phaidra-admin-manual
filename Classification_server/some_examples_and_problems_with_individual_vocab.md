@@ -64,31 +64,10 @@ Unfortunately, the remote SPARQL endpoint of COAR ([http://vocabularies.coar-rep
 
 Since we wanted to use COAR data in our Classification Server, we have converted to SKOS Core labels using both owlart converter and SPARQL Update Queries (see Getting and setting vocabularies). 
 
-There were other problems with COAR Resource Type vocabulary. First of all the imported SKOS-XL version doesn't contain the skos:narrower tag, just the skos:broader, which is not enough for Skosmos. To solve the problem, we used the Skosify tool (see Getting and setting vocabularies), which checks the dependencies, and pairs the broader and narrower concepts. 
+There were other problems with COAR Resource Type vocabulary. First of all the imported SKOS-XL version doesn't contain the skos:narrower tag, just the skos:broader, which is not enough for Skosmos. To solve the problem, we used the Skosify tool (see Getting and setting vocabularies), which checks the dependencies, and pairs the broader and narrower concepts. But Skosify creates skos:narrower as a pair of skos:broadMatch, wich is not correct. 
+Therefore we had to apply some tricks (renaming skos:broadMatch before skosifying and naming back afterwards.
 
-We have also tried this SPARQL Update query that converted SKOS XL labels into SKOS Core labels:
-
-```
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-    PREFIX skos:   <http://www.w3.org/2004/02/skos/core#> 
-    PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
-    INSERT { 
-       ?c skos:prefLabel ?pref . 
-       ?c skos:altLabel ?alt . 
-       ?c skos:hiddenLabel ?hidden . 
-       ?c skos:definition ?def . 
-    } 
-    WHERE { 
-       { ?c skosxl:prefLabel/skosxl:literalForm ?pref } 
-       UNION 
-       { ?c skosxl:altLabel/skosxl:literalForm ?alt } 
-       UNION 
-       { ?c skosxl:hiddenLabel/skosxl:literalForm ?hidden } 
-      UNION 
-       { ?c skos:definition/rdf:value ?def }  
-     } 
-     
-```
+COAR Resource Type Vocabulary contains the dct:created data in xsd:http://www.w3.org/2001/XMLSchema#dateTime format (e.g. "2015-06-03T20:06:48Z"^^xsd:dateTime), that should be displayed in the "New" tab of Skosmos. Unfortunately the current version (1.8) can not handle this format, only the xsd:date (e.g. "2015-06-03"^^xsd:dateTime). Therefore we had to transform the data form xsd:dateTime format (e.g. "2015-06-03T20:06:48Z") to xsd:date format (e.g. "2015-06-03") and apply ^^xsd:date instead of ^^xsd:dateTime.
 
 ### ÖFOS
 
