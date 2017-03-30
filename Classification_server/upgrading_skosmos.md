@@ -27,7 +27,9 @@ g# Upgrading Skosmos
 
 7. update dependencies: `php composer.phar update --no-dev`
 
-8. restart Apache \(this will clear gettext and APC caches - reloading is not enough!\): `service httpd restart` on CENTOS and `apache restart apche2` on UBUNTU 
+8. restart Apache \(this will clear gettext and APC caches - reloading is not enough!\):
+ `service httpd restart` on CENTOS and `apache restart apche2` on UBUNTU 
+9. clear your browser cache, as it may contain JavaScript or CSS files from the old version
 
 ### Version specific notes
 
